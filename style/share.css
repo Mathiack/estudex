@@ -258,6 +258,12 @@ button {
     transform: translateX(0%);
 }
 
+.sidebar .sidebar-button-for-item {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: calc(100% - 20px);
+}
+
 @media screen and (max-width: 800px){
     .sidebar.show {
         width: calc(100vw - 10px);

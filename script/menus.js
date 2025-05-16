@@ -291,13 +291,8 @@ function promptConfirm(message) {
     });
 }
 
-function newTimer(type) {
-    if (type === "pomodoro") {
-        promptPomodoro();
-        return new PomodoroTimer();
-    } else if (type === "custom") {
-        return new CustomTimer();
-    }
+function newTimer() {
+    
 }
 
 function promptPomodoro() {
@@ -466,7 +461,7 @@ function promptPomodoro() {
       if (sidebar) {
         const li = document.createElement("li");
         li.className = "sidebar-item";
-        li.textContent = `Pomodoro: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')} / Descanso: ${restHours.toString().padStart(2, '0')}:${restMinutes.toString().padStart(2, '0')}`;
+        li.textContent = `Pomodoro`;
         sidebar.appendChild(li);
       }
 
