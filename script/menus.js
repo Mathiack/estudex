@@ -378,7 +378,7 @@ function promptPomodoro() {
 
     const restHourUp = document.createElement('button');
     restHourUp.className = 'icon-button';
-    restHourUp.textContent = '▲';
+    restHourUp.textContent = 'keyboard_arrow_up';
 
     const restHourField = document.createElement('input');
     restHourField.type = 'number';
@@ -389,7 +389,7 @@ function promptPomodoro() {
 
     const restHourDown = document.createElement('button');
     restHourDown.className = 'icon-button';
-    restHourDown.textContent = '▼';
+    restHourDown.textContent = 'keyboard_arrow_down';
 
     restHourCol.appendChild(restHourUp);
     restHourCol.appendChild(restHourField);
@@ -400,7 +400,7 @@ function promptPomodoro() {
 
     const restMinuteUp = document.createElement('button');
     restMinuteUp.className = 'icon-button';
-    restMinuteUp.textContent = '▲';
+    restMinuteUp.textContent = 'keyboard_arrow_up';
 
     const restMinuteField = document.createElement('input');
     restMinuteField.type = 'number';
@@ -411,7 +411,7 @@ function promptPomodoro() {
 
     const restMinuteDown = document.createElement('button');
     restMinuteDown.className = 'icon-button';
-    restMinuteDown.textContent = '▼';
+    restMinuteDown.textContent = 'keyboard_arrow_down';
 
     restMinuteCol.appendChild(restMinuteUp);
     restMinuteCol.appendChild(restMinuteField);

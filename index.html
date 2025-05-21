@@ -1,53 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hora de Focar</title>
+    <title>Estudex</title>
     <link rel="stylesheet" href="style/palette.css">
-    <link rel="stylesheet" href="style/share.css">
-    <!-- <link rel="stylesheet" href="style/editor.css"> -->
-     <link rel="stylesheet" href="style/pomodoroDialog.css">
-    <link rel="stylesheet" href="style/prompts.css">
-    <link rel="shortcut icon" href="resources/icons8-brain-16.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--background-color);
+        }
+
+        .center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #454545;
+            padding: 40px;
+            border-radius: 12px;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .button {
+            background-color: var(--background-color);
+            border: 1px solid #ffae00;
+            border-radius: 10px;
+            color: #ffae00;
+            padding: 20px 150px;
+            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #333;
+        }
+    </style>
 </head>
 
 <body>
-    <header class="window-title">
-        <div class="header-left">
-            <button class="icon-button" translate="no" onclick="toggleSidebar('files-bar')" title="Documents">
-                side_navigation
-            </button>
-            <button class="icon-button" translate="no" onclick="promptMessageFromFile('option.html', 'Fechar')" title="Novo timer">
-                add
-            </button>
+    <div class="center">
+        <div class="text">
+            <h1>Estudex</h1>
+            <p>Estudex é o app ideal para gerenciar seus estudos</p>
         </div>
-        <div class="header-center hide-on-tablet">
-            <p id="filename">titulo</p>
+        <div class="buttons">
+            <a href="#" class="button">Biblioteca</a>
+            <a href="timerIndex.html" class="button">Focar</a>
         </div>
-        <div class="header-right">
-            <div class="dropdown">
-                <button class="icon-button" translate="no" onclick="toggleDropdown('more-menu')" title="More options">
-                    more_vert
-                </button>
-                <div class="dropdown-content menu" id="more-menu">
-                    <button class="text-button" onclick="promptMessageFromFile('about.html', 'Fechar'); hideAllMenus();">Sobre<kbd>F1</kbd></button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div id="files-bar" class="sidebar">
-        <button class="text-button hide-on-pc" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" onclick="createFile();">Novo timer</button>
-        <div id="files"></div>
-        <button class="sidebar-button-for-item"><p class="sidebar-timer"></p></button>
     </div>
-
-    <div class="main-wrapper">
-    </div>
-
-    <script src="script/menus.js"></script>
 </body>
 
 </html>
