@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livros</title>
+    <link rel="stylesheet" href="style/palette.css">
+    <link rel="stylesheet" href="style/share.css">
+    <!-- <link rel="stylesheet" href="style/editor.css"> -->
+     <link rel="stylesheet" href="style/pomodoroDialog.css">
+    <link rel="stylesheet" href="style/prompts.css">
+    <link rel="shortcut icon" href="resources/icons8-brain-16.png" type="image/x-icon">
+</head>
+
+<body>
+    <header class="window-title">
+        <div class="header-left">
+            <button class="icon-button" translate="no" onclick="" title="Voltar">
+                arrow_back
+            </button>
+            <button class="icon-button" translate="no" onclick="toggleSidebar('files-bar')" title="Livros">
+                side_navigation
+            </button>
+            <button class="icon-button" translate="no" onclick="promptBiblioteca()" title="Novo livro">
+                add
+            </button>
+        </div>
+        <div class="header-center hide-on-tablet">
+            <p id="filename">titulo</p>
+        </div>
+        <div class="header-right">
+            <div class="dropdown">
+                <button class="icon-button" translate="no" onclick="toggleDropdown('more-menu')" title="Opções">
+                    more_vert
+                </button>
+                <div class="dropdown-content menu" id="more-menu">
+                    <a href="timerIndex.html"><button class="text-button">Timer</button></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="files-bar" class="sidebar">
+        <button class="text-button hide-on-pc" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" onclick="createFile();">Novo livro</button>
+        <div id="files">
+            
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+    </div>
+
+    <script src="script/menus.js"></script>
+</body>
+
+</html>

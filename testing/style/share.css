@@ -1,0 +1,388 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+body {
+    background-color: var(--background-color);
+    margin: 0px;
+    font-family: "ubuntu", sans-serif;
+}
+
+header.window-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color-2);
+    border-bottom: 1px solid var(--border-dark-color);
+    padding: 10px 20px;
+    box-sizing: border-box;
+    color: var(--text-color);
+    height: 48px;
+    z-index: 999;
+}
+
+.header-left,
+.header-center,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-center {
+    width: 100%;
+    justify-content: center;
+}
+
+header hr {
+    border: 0;
+    border-left: 1px solid var(--border-light-color);
+    height: 20px;
+}
+
+header.window-title .icon-button {
+    font-size: x-large;
+}
+
+header.window-title input[type=text] {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: large;
+    height: 24px;
+    border-radius: 12px;
+    min-width: 10px;
+    width: 50%;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+header.window-title input[type=text]:hover {
+    background-color: var(--hover-color);
+}
+
+header.window-title input[type=text]:focus {
+    outline: 2px solid var(--highlight-color);
+    background-color: var(--hover-color);
+}
+
+span.icon {
+    font-family: "Material Symbols Rounded";
+}
+
+button {
+    font-family: var(--font-text);
+}
+
+.icon-button,
+.text-button {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    height: 30px;
+}
+
+.icon-button.danger {
+    color: var(--danger);
+}
+
+.icon-button:hover,
+.text-button:hover {
+    background-color: var(--hover-color);
+}
+
+.icon-button.danger:hover {
+    background-color: var(--danger-bg);
+}
+
+.icon-button {
+    font-size: large;
+    font-family: "Material Symbols Rounded";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-button {
+    font-weight: bold;
+    padding: 0px 10px 0px 10px;
+}
+
+.button-on {
+    background-color: var(--background-color-3);
+}
+
+@media screen and (max-width: 800px){
+    .hide-on-tablet {
+        display: none;
+    }
+
+    header.window-title input[type=text] {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .hide-on-mobile {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 501px) {
+    .hide-on-pc {
+        display: none;
+    }
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--background-color-2);
+    border-radius: 10px;
+    min-width: 150px;
+    z-index: 1000;
+    white-space: nowrap;
+    overflow: hidden;
+    right: 0;
+    transform: translateX(0);
+    padding: 10px 0px 10px 0px;
+    box-shadow: var(--shadow);
+    margin-top: 10px;
+}
+
+.dropdown-content.align-left {
+    right: auto;
+    left: 0;
+}
+
+.dropdown-content .text-button {
+    margin: 0 auto;
+    color: var(--text-color);
+    display: flex;
+    width: 95%;
+    border-radius: 5px;
+    padding: 15px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    align-items: center;
+    gap: 10px;
+    transition: none;
+}
+
+.dropdown-content .text-button:hover {
+    background-color: var(--hover-color);
+}
+
+.dropdown.show .dropdown-content {
+    display: block;
+}
+
+.dropdown-content .text-button kbd {
+    margin-left: auto;
+    opacity: 0.6;
+    font-size: 12px;
+    font-family: var(--font-text);
+    font-weight: 500;
+}
+
+.dropdown hr {
+    border: 0;
+    border-bottom: 1px solid var(--border-light-color);
+    height: 1px;
+    width: 90%;
+}
+
+@media screen and (max-width: 800px) {
+    .dropdown-content .text-button{
+        margin-top: 7px;
+        margin-bottom: 7px;
+    }
+}
+
+@keyframes sidebar-slide-in {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.main-wrapper {
+    height: calc(100vh - 48px);
+    transition: margin-left 0.3s ease;
+    overflow: hidden;
+}
+
+.sidebar.show+.main-wrapper {
+    margin-left: 310px;
+}
+
+#editor,
+#preview {
+    width: 100%;
+    height: 100%;
+}
+  
+.sidebar {
+    transition: transform 0.3s ease;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: block;
+
+    overflow-y: scroll;
+
+    height: calc(100vh - 48px - 10px);
+    background-color: var(--background-color-2);
+    position: absolute;
+    z-index: 998;
+    padding: 5px;
+    border-right: 1px solid var(--border-dark-color);
+    transform: translateX(-100%);
+    width: 300px;
+}
+
+.sidebar.show {
+    transform: translateX(0%);
+}
+
+.sidebar .sidebar-button-for-item {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: calc(100% - 20px);
+}
+
+@media screen and (max-width: 800px){
+    .sidebar.show {
+        width: calc(100vw - 10px);
+        border-right: none;
+    }
+}
+
+.sidebar .item {
+    background-color: var(--background-color-2);
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: var(--text-color);
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-break: anywhere;
+}
+
+.sidebar .item.selected {
+    background-color: var(--background-color-3);
+}
+
+.sidebar .item:hover {
+    background-color: var(--background-color-3);
+    border-radius: 15px;
+}
+
+.sidebar .item h3, .sidebar .item p {
+    margin: 0;
+}
+
+.sidebar .item p {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    opacity: 75%;
+}
+
+/* toast */
+
+.toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: var(--background-color-3);
+    color: var(--text-color);
+    border: 1px solid var(--border-light-color);
+    border-radius: 300px;
+    padding: 0px 20px 0px 20px;
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    box-shadow: var(--shadow);
+}
+
+.snackbar p {
+    text-align: center;
+    width: 100%;
+}
+
+.toast.show {
+    visibility: visible;
+    animation: ts-fadein 0.5s, ts-fadeout 0.5s 2.5s forwards;
+}
+
+@keyframes ts-fadein {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+
+    to {
+        top: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes ts-fadeout {
+    from {
+        top: 30px;
+        opacity: 1;
+    }
+
+    to {
+        top: 0;
+        opacity: 0;
+    }
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--border-light-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--highlight-back);
+}
+
+* {
+    scrollbar-color: var(--border-light-color) transparent;
+}
