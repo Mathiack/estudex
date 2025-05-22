@@ -502,7 +502,7 @@ function promptBiblioteca() {
         overlay.className = 'prompt-overlay';
 
         const dialog = document.createElement('div');
-        dialog.className = 'prompt-dialog';
+        dialog.className = 'prompt-dialog biblioteca';
 
         const titleElement = document.createElement('p');
         titleElement.className = 'prompt-title';
@@ -520,7 +520,7 @@ function promptBiblioteca() {
             const input = document.createElement('input');
             input.type = 'text';
             input.placeholder = placeholder;
-            input.className = 'prompt-input';
+            input.className = 'prompt-input biblioteca';
             container.appendChild(input);
 
             return { container, input };
@@ -588,8 +588,8 @@ function promptBiblioteca() {
             const genero = genreInput.value.trim();
             const descricao = descInput.value.trim();
 
-            if (!nome || !autor) {
-                alert("Nome do livro e autor são obrigatórios.");
+            if (!nome) {
+                showToast("Nome é obrigatório!", "error");
                 return;
             }
 
@@ -614,13 +614,14 @@ function promptBiblioteca() {
         overlay.tabIndex = -1;
         overlay.focus();
 
-        overlay.addEventListener('keydown', (event) => {
-            if (event.key === 'Enter') {
-                submitButton.click();
-            } else if (event.key === 'Escape') {
-                closePrompt(null);
-            }
-        });
+        const isEditable = activeElement.isContentEditable ||
+            activeElement.tagName === 'INPUT' ||
+            activeElement.tagName === 'TEXTAREA';
+
+        if (event.key === 'Enter' && !isEditable) {
+            submitButton.click();
+        }
+
     });
 }
 
