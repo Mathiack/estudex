@@ -492,14 +492,95 @@ function promptPomodoro() {
 }
 
 let biblioteca = [];
+
 function saveData() {
     localStorage.setItem('biblioteca', JSON.stringify(biblioteca));
 }
 
 function loadData() {
-    localStorage.getItem('biblioteca');
-    biblioteca = JSON.parse(localStorage.getItem('biblioteca')) || [];
+    const data = localStorage.getItem('biblioteca');
+    biblioteca = data ? JSON.parse(data) : [];
 }
+
+function renderBiblioteca() {
+    const sidebar = document.getElementById("files");
+    sidebar.innerHTML = '';
+    biblioteca.forEach((livro, index) => {
+        const button = document.createElement("button");
+        button.className = "item";
+        button.textContent = `${livro.nome} - ${livro.autor}`;
+
+        button.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            showContextMenu(e.pageX, e.pageY, index);
+        });
+
+        sidebar.appendChild(button);
+    });
+}
+
+function showContextMenu(x, y, index) {
+    closeContextMenu();
+    const menu = document.createElement('div');
+    menu.className = 'custom-context-menu';
+    menu.style.top = `${y}px`;
+    menu.style.left = `${x}px`;
+
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Editar';
+    editBtn.onclick = () => {
+        closeContextMenu();
+        editLivro(index);
+    };
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = 'Excluir';
+    deleteBtn.onclick = () => {
+        closeContextMenu();
+        deleteLivro(index);
+    };
+
+    menu.appendChild(editBtn);
+    menu.appendChild(deleteBtn);
+    document.body.appendChild(menu);
+
+    document.addEventListener('click', closeContextMenu);
+}
+
+function closeContextMenu() {
+    const existing = document.querySelector('.custom-context-menu');
+    if (existing) existing.remove();
+    document.removeEventListener('click', closeContextMenu);
+}
+
+function deleteLivro(index) {
+    biblioteca.splice(index, 1);
+    saveData();
+    renderBiblioteca();
+}
+
+function editLivro(index) {
+    const original = biblioteca[index];
+    const snapshotLength = biblioteca.length;
+
+    promptBiblioteca().then(() => {
+        const addedLivro = biblioteca[biblioteca.length - 1];
+
+        biblioteca[index] = addedLivro;
+        if (biblioteca.length > snapshotLength) {
+            biblioteca.pop();
+        }
+
+        saveData();
+        renderBiblioteca();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadData();
+    renderBiblioteca();
+});
+
 
 function promptBiblioteca() {
     return new Promise((resolve) => {
@@ -635,17 +716,5 @@ function promptBiblioteca() {
                 submitButton.click();
             }
         });
-
     });
 }
-
-
-/**
- * const sidebar = document.getElementById("files");
-      if (sidebar) {
-        const button = document.createElement("button");
-        button.className = "item";
-        button.textContent = `${nome} - ${autor}`;
-        sidebar.appendChild(button);
-      }
-*/

@@ -195,3 +195,31 @@
     border: 1px solid var(--highlight-color);
     color: var(--highlight-color);
 }
+
+/* menu do botão direito */
+
+.custom-context-menu {
+    position: absolute;
+    background: var(--background-color-3);
+    border: 1px solid var(--border-light-color);
+    z-index: 9999;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    min-width: 120px;
+}
+
+.custom-context-menu button {
+    padding: 8px;
+    color: var(--text-color);
+    font-family: var(--font-text);
+    border: none;
+    border-radius: 10px;
+    text-align: left;
+    background: none;
+    cursor: pointer;
+}
+
+.custom-context-menu button:hover {
+    background: var(--background-color-2);
+}
