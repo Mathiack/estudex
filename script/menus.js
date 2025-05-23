@@ -491,13 +491,18 @@ function promptPomodoro() {
     });
 }
 
+let biblioteca = [];
+function saveData() {
+    localStorage.setItem('biblioteca', JSON.stringify(biblioteca));
+}
+
+function loadData() {
+    localStorage.getItem('biblioteca');
+    biblioteca = JSON.parse(localStorage.getItem('biblioteca')) || [];
+}
+
 function promptBiblioteca() {
     return new Promise((resolve) => {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = '/styles/prompts.css';
-        document.head.appendChild(link);
-
         const overlay = document.createElement('div');
         overlay.className = 'prompt-overlay';
 
@@ -591,8 +596,10 @@ function promptBiblioteca() {
             if (!nome) {
                 showToast("Nome é obrigatório!", "error");
                 return;
+            } else if (!autor) {
+                autor = "Autor desconhecido";
+                return;
             }
-
             const sidebar = document.getElementById("files");
             if (sidebar) {
                 const button = document.createElement("button");
@@ -601,26 +608,33 @@ function promptBiblioteca() {
                 sidebar.appendChild(button);
             }
 
-            closePrompt({
+            const novoLivro = {
                 nome,
                 autor,
                 ano: ano || null,
                 paginas: paginas || null,
                 genero: genero || null,
                 descricao: descricao || null
-            });
+            };
+
+            biblioteca.push(novoLivro);
+            saveData(); // <- salva no localStorage
+            closePrompt(null);
         });
 
         overlay.tabIndex = -1;
         overlay.focus();
 
-        const isEditable = activeElement.isContentEditable ||
-            activeElement.tagName === 'INPUT' ||
-            activeElement.tagName === 'TEXTAREA';
+        document.addEventListener('keydown', (event) => {
+            const activeElement = document.activeElement;
+            const isEditable = activeElement.isContentEditable ||
+                activeElement.tagName === 'INPUT' ||
+                activeElement.tagName === 'TEXTAREA';
 
-        if (event.key === 'Enter' && !isEditable) {
-            submitButton.click();
-        }
+            if (event.key === 'Enter' && !isEditable) {
+                submitButton.click();
+            }
+        });
 
     });
 }

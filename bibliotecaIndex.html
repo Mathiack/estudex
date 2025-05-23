@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style/palette.css">
     <link rel="stylesheet" href="style/share.css">
     <!-- <link rel="stylesheet" href="style/editor.css"> -->
-     <link rel="stylesheet" href="style/pomodoroDialog.css">
+    <link rel="stylesheet" href="style/pomodoroDialog.css">
     <link rel="stylesheet" href="style/prompts.css">
     <link rel="shortcut icon" href="resources/icons8-brain-16.png" type="image/x-icon">
 </head>
@@ -42,9 +42,10 @@
     </header>
 
     <div id="files-bar" class="sidebar">
-        <button class="text-button hide-on-pc" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" onclick="createFile();">Novo livro</button>
+        <button class="text-button hide-on-pc" style="width: 100%; margin-top: 20px; margin-bottom: 20px;"
+            onclick="createFile();">Novo livro</button>
         <div id="files">
-            
+
         </div>
     </div>
 
@@ -52,6 +53,10 @@
     </div>
 
     <script src="script/menus.js"></script>
+    <script>
+        loadData();
+        console.log(biblioteca);
+    </script>
 </body>
 
 </html>

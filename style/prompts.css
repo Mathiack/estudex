@@ -163,6 +163,7 @@
     padding: 8px;
     margin-top: 5px;
     border-radius: 10px;
+    font-family: var(--font-text);
     border: 1px solid var(--border-light-color);
     background-color: var(--background-color-2);
     resize: none;

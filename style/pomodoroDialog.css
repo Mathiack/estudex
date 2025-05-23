@@ -82,9 +82,12 @@
 }
 
 .prompt-button.submit {
-    background: white;
+    background: var(--highlight-color);
+    color: var(--background-color);
 }
 
 .prompt-button.cancel {
-    background: #a00;
+    background: var(--background-color);
+    color: var(--highlight-color);
+    border: 1px solid var(--highlight-color);
 }
