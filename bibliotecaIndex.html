@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -15,9 +15,9 @@
 <body>
     <header class="window-title">
         <div class="header-left">
-            <button class="icon-button" translate="no" onclick="" title="Voltar">
+            <a href="index.html"><button class="icon-button" translate="no" onclick="" title="Voltar">
                 arrow_back
-            </button>
+            </button></a>
             <button class="icon-button" translate="no" onclick="toggleSidebar('files-bar')" title="Livros">
                 side_navigation
             </button>
@@ -36,6 +36,9 @@
                 <div class="dropdown-content menu" id="more-menu">
                     <a href="timerIndex.html"><button class="text-button">Timer</button></a>
                 </div>
+                <div class="dropdown-content menu" id="more-menu">
+                    <a href="notasIndex.html"><button class="text-button">Notas</button></a>
+                </div>
             </div>
         </div>
     </header>
@@ -52,6 +55,7 @@
     </div>
 
     <script src="script/menus.js"></script>
+    <script src="script/biblioteca.js"></script>
     <script>
         loadData();
     </script>

@@ -95,43 +95,7 @@
     color: var(--background-color);
 }
 
-.table-selector-dialog {
-    display: grid;
-    grid-template-columns: repeat(6, 30px);
-    grid-template-rows: repeat(4, 30px);
-    gap: 4px;
-    padding: 10px;
-    justify-content: center;
-}
-
-.table-item-ex {
-    background: var(--background-color-2);
-    cursor: pointer;
-    border-radius: 3px;
-    transition: 0.3s;
-}
-
-.table-item-ex.highlighted {
-    background: var(--highlight-color);
-}
-
-.table-selector-dialog>.table-item-ex:first-child {
-    border-top-left-radius: 10px;
-}
-
-.table-selector-dialog>.table-item-ex:nth-child(6) {
-    border-top-right-radius: 10px;
-}
-
-.table-selector-dialog>.table-item-ex:nth-child(19) {
-    border-bottom-left-radius: 10px;
-}
-
-.table-selector-dialog>.table-item-ex:nth-child(24) {
-    border-bottom-right-radius: 10px;
-}
-
-/* Promp to add books */
+/* prompt para adicionar os livros */
 
 .prompt-dialog.biblioteca {
     color: var(--text-color);
