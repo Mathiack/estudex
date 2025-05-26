@@ -7,7 +7,7 @@
     <title>Hora de Focar</title>
     <link rel="stylesheet" href="style/palette.css">
     <link rel="stylesheet" href="style/share.css">
-     <link rel="stylesheet" href="style/pomodoroDialog.css">
+    <link rel="stylesheet" href="style/pomodoroDialog.css">
     <link rel="stylesheet" href="style/prompts.css">
     <link rel="shortcut icon" href="resources/icons8-brain-16.png" type="image/x-icon">
 </head>
@@ -16,12 +16,13 @@
     <header class="window-title">
         <div class="header-left">
             <a href="index.html"><button class="icon-button" translate="no" title="Voltar">
-                arrow_back
-            </button></a>
+                    arrow_back
+                </button></a>
             <button class="icon-button" translate="no" onclick="toggleSidebar('files-bar')" title="Timers">
                 side_navigation
             </button>
-            <button class="icon-button" translate="no" onclick="promptMessageFromFile('option.html', 'Fechar')" title="Novo timer">
+            <button class="icon-button" translate="no" onclick="promptMessageFromFile('option.html', 'Fechar')"
+                title="Novo timer">
                 add
             </button>
         </div>
@@ -35,9 +36,6 @@
                 </button>
                 <div class="dropdown-content menu" id="more-menu">
                     <a href="bibliotecaIndex.html"><button class="text-button">Biblioteca</button></a>
-                </div>
-                <br>
-                <div class="dropdown-content menu" id="more-menu">
                     <a href="notasIndex.html"><button class="text-button">Notas</button></a>
                 </div>
             </div>
@@ -45,7 +43,8 @@
     </header>
 
     <div id="files-bar" class="sidebar">
-        <button class="text-button hide-on-pc" style="width: 100%; margin-top: 20px; margin-bottom: 20px;" onclick="createFile();">Novo timer</button>
+        <button class="text-button hide-on-pc" style="width: 100%; margin-top: 20px; margin-bottom: 20px;"
+            onclick="createFile();">Novo timer</button>
         <div id="files"></div>
     </div>
 

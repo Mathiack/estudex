@@ -28,7 +28,7 @@ function renderBiblioteca() {
 
 function deleteLivro(index) {
     biblioteca.splice(index, 1);
-    saveData();
+    saveDataBiblioteca();
     renderBiblioteca();
 }
 
@@ -44,13 +44,13 @@ function editLivro(index) {
             biblioteca.pop();
         }
 
-        saveData();
+        saveDataBiblioteca();
         renderBiblioteca();
     });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadData();
+    loadDataBiblioteca();
     renderBiblioteca();
 });
 
@@ -101,12 +101,12 @@ function promptBiblioteca() {
             return { container, textarea };
         }
 
-        const { container: nameGroup, input: nameInput } = createInputField('Nome do livro', 'Ex: Dom Casmurro');
-        const { container: authorGroup, input: authorInput } = createInputField('Autor', 'Ex: Machado de Assis');
-        const { container: yearGroup, input: yearInput } = createInputField('Ano de lançamento', 'Ex: 1899', true);
-        const { container: pagesGroup, input: pagesInput } = createInputField('Páginas', 'Ex: 256', true);
-        const { container: genreGroup, input: genreInput } = createInputField('Gênero', 'Ex: Romance', true);
-        const { container: descGroup, textarea: descInput } = createTextAreaField('Descrição', 'Digite uma breve descrição...', true);
+        const { container: nameGroup, input: nameInput } = createInputField('Nome do livro', '');
+        const { container: authorGroup, input: authorInput } = createInputField('Autor', '');
+        const { container: yearGroup, input: yearInput } = createInputField('Ano de lançamento', '', true);
+        const { container: pagesGroup, input: pagesInput } = createInputField('Páginas', '', true);
+        const { container: genreGroup, input: genreInput } = createInputField('Gênero', '', true);
+        const { container: descGroup, textarea: descInput } = createTextAreaField('Descrição', '', true);
 
         dialog.appendChild(nameGroup);
         dialog.appendChild(authorGroup);
@@ -172,7 +172,7 @@ function promptBiblioteca() {
             };
 
             biblioteca.push(novoLivro);
-            saveData(); // <- salva no localStorage
+            saveDataBiblioteca(); // <- salva no localStorage
             closePrompt(null);
         });
 
@@ -196,26 +196,30 @@ function showContextMenu(x, y, index) {
     closeContextMenu();
     const menu = document.createElement('div');
     menu.className = 'custom-context-menu';
+    menu.style.position = 'absolute';
     menu.style.top = `${y}px`;
     menu.style.left = `${x}px`;
+    menu.style.zIndex = 1000;
 
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Editar';
     editBtn.onclick = () => {
         closeContextMenu();
-        // funcao para editar
+        editLivro(index);
     };
 
     const deleteBtn = document.createElement('button');
     deleteBtn.textContent = 'Excluir';
     deleteBtn.onclick = () => {
         closeContextMenu();
-        //funcao para excluir
+        deleteLivro(index);
     };
 
     menu.appendChild(editBtn);
     menu.appendChild(deleteBtn);
     document.body.appendChild(menu);
 
-    document.addEventListener('click', closeContextMenu);
+    setTimeout(() => {
+        document.addEventListener('click', closeContextMenu, { once: true });
+    }, 0);
 }
