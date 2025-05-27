@@ -115,6 +115,11 @@ function promptBiblioteca() {
         dialog.appendChild(genreGroup);
         dialog.appendChild(descGroup);
 
+        const uploadButton = document.createElement('button');
+        uploadButton.textContent = 'Adicionar imagem';
+        uploadButton.className = 'prompt-button upload';
+        dialog.appendChild(uploadButton);
+
         const buttonContainer = document.createElement('div');
         buttonContainer.className = 'prompt-buttons';
 

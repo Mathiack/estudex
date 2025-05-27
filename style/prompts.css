@@ -76,11 +76,6 @@
     outline: none;
 }
 
-.prompt-buttons {
-    display: flex;
-    gap: 10px;
-}
-
 .prompt-button {
     padding: 5px 30px;
     border-radius: 15px;
@@ -141,6 +136,13 @@
     justify-content: center;
 }
 
+.prompt-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
 .prompt-dialog hr {
     border: 0;
     border-bottom: 1px solid var(--border-light-color);
@@ -154,11 +156,29 @@
     text-decoration: none;
 }
 
+.prompt-button.upload {
+    padding: 10px 110px;
+    margin-top: 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    color: var(--text-color);
+    border: 1px solid var(--border-light-color);
+    background-color: transparent;
+}
+
 .prompt-button.cancel {
     background-color: var(--background-color);
     border: 1px solid var(--highlight-color);
     color: var(--highlight-color);
 }
+
+.prompt-button.submit {
+    background-color: var(--highlight-color);
+    color: var(--background-color);
+    border: 1px solid var(--highlight-color);
+    width: 117px;
+}
+
 
 /* menu do botão direito */
 
