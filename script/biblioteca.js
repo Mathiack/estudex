@@ -22,14 +22,39 @@ function renderBiblioteca() {
             showContextMenu(e.pageX, e.pageY, index);
         });
 
+        button.addEventListener('click', () => {
+            exibirDetalhesLivro(index);
+        });
+
         sidebar.appendChild(button);
     });
+}
+
+function exibirDetalhesLivro(index) {
+    const livro = biblioteca[index];
+    const detalhes = document.getElementById("livro-detalhes");
+    if (!detalhes) return;
+
+    detalhes.innerHTML = `
+        <div class="detalhes-container">
+            <h2>${livro.nome}</h2>
+            <p><strong>Autor:</strong> ${livro.autor}</p>
+            <p><strong>Ano:</strong> ${livro.ano || "-"}</p>
+            <p><strong>Páginas:</strong> ${livro.paginas || "-"}</p>
+            <p><strong>Gênero:</strong> ${livro.genero || "-"}</p>
+            <p><strong>Descrição:</strong> ${livro.descricao || "-"}</p>
+            ${livro.imagem ? `<img src="${livro.imagem}" alt="Capa do livro" style="max-width: 200px; margin-top: 10px;">` : ""}
+        </div>
+    `;
 }
 
 function deleteLivro(index) {
     biblioteca.splice(index, 1);
     saveDataBiblioteca();
     renderBiblioteca();
+
+    const detalhes = document.getElementById("livro-detalhes");
+    if (detalhes) detalhes.innerHTML = "";
 }
 
 function editLivro(index) {
@@ -46,6 +71,7 @@ function editLivro(index) {
 
         saveDataBiblioteca();
         renderBiblioteca();
+        exibirDetalhesLivro(index);
     });
 }
 
@@ -53,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadDataBiblioteca();
     renderBiblioteca();
 });
-
 
 function promptBiblioteca() {
     return new Promise((resolve) => {
@@ -115,10 +140,32 @@ function promptBiblioteca() {
         dialog.appendChild(genreGroup);
         dialog.appendChild(descGroup);
 
+        const imageInput = document.createElement('input');
+        imageInput.type = 'file';
+        imageInput.accept = 'image/*';
+        imageInput.style.display = 'none';
+
+        let imageBase64 = null;
+        imageInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imageBase64 = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
         const uploadButton = document.createElement('button');
         uploadButton.textContent = 'Adicionar imagem';
         uploadButton.className = 'prompt-button upload';
+        uploadButton.addEventListener('click', () => {
+            imageInput.click();
+        });
+
         dialog.appendChild(uploadButton);
+        dialog.appendChild(imageInput);
 
         const buttonContainer = document.createElement('div');
         buttonContainer.className = 'prompt-buttons';
@@ -227,4 +274,11 @@ function showContextMenu(x, y, index) {
     setTimeout(() => {
         document.addEventListener('click', closeContextMenu, { once: true });
     }, 0);
+}
+
+function closeContextMenu() {
+    const existingMenu = document.querySelector('.custom-context-menu');
+    if (existingMenu) {
+        existingMenu.remove();
+    }
 }
