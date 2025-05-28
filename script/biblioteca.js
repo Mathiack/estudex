@@ -58,21 +58,28 @@ function deleteLivro(index) {
 }
 
 function editLivro(index) {
-    const original = biblioteca[index];
-    const snapshotLength = biblioteca.length;
-
-    promptBiblioteca().then(() => {
-        const addedLivro = biblioteca[biblioteca.length - 1];
-
-        biblioteca[index] = addedLivro;
-        if (biblioteca.length > snapshotLength) {
-            biblioteca.pop();
+    const livroOriginal = biblioteca[index];
+    promptBiblioteca().then((livroEditado) => {
+        if (livroEditado) {
+            biblioteca[index] = livroEditado;
+            saveDataBiblioteca();
+            renderBiblioteca();
+            exibirDetalhesLivro(index);
         }
-
-        saveDataBiblioteca();
-        renderBiblioteca();
-        exibirDetalhesLivro(index);
     });
+
+    setTimeout(() => {
+        const inputs = document.querySelectorAll('.prompt-input.biblioteca');
+        if (inputs.length >= 5) {
+            inputs[0].value = livroOriginal.nome;
+            inputs[1].value = livroOriginal.autor;
+            inputs[2].value = livroOriginal.ano || '';
+            inputs[3].value = livroOriginal.paginas || '';
+            inputs[4].value = livroOriginal.genero || '';
+        }
+        const textarea = document.querySelector('.prompt-textarea');
+        if (textarea) textarea.value = livroOriginal.descricao || '';
+    }, 10);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
