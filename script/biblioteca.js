@@ -59,11 +59,14 @@ function deleteLivro(index) {
 
 function editLivro(index) {
     const livroOriginal = biblioteca[index];
+    livroEditandoIndex = index;
     promptBiblioteca().then((livroEditado) => {
         if (livroEditado) {
-            biblioteca[index] = livroEditado;
+            biblioteca[livroEditandoIndex] = livroEditado;
+            livroEditandoIndex = null;
             saveDataBiblioteca();
             renderBiblioteca();
+            deleteLivro(index);
             exibirDetalhesLivro(index);
         }
     });
