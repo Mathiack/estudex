@@ -16,18 +16,21 @@
 <body>
     <header class="window-title">
         <div class="header-left">
-            <a href="index.html"><button class="icon-button" translate="no" onclick="" title="Voltar">
+            <a href="index.html"><button class="icon-button" translate="no" title="Voltar">
                     arrow_back
                 </button></a>
             <button class="icon-button" translate="no" onclick="toggleSidebar('files-bar')" title="Livros">
                 side_navigation
             </button>
-            <button class="icon-button" translate="no" onclick="promptBiblioteca()" title="Novo livro">
+            <button class="icon-button" translate="no" onclick="promptMessageFromFile('efs.html')" title="Imagens">
+                folder_open
+            </button>
+            <button class="icon-button" translate="no" onclick="toggleSidebar('files-bar')" title="Novo Livro">
                 add
             </button>
         </div>
         <div class="header-center hide-on-tablet">
-            <p id="filename">titulo</p>
+            <p>Minha Biblioteca</p>
         </div>
         <div class="header-right">
             <div class="dropdown">

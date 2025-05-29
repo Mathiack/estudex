@@ -32,18 +32,20 @@ function renderBiblioteca() {
 
 function exibirDetalhesLivro(index) {
     const livro = biblioteca[index];
-    const detalhes = document.getElementById("livro-detalhes");
+    const detalhes = document.querySelector(".livro-detalhes");
     if (!detalhes) return;
 
     detalhes.innerHTML = `
         <div class="detalhes-container">
             <h2>${livro.nome}</h2>
             <p><strong>Autor:</strong> ${livro.autor}</p>
-            <p><strong>Ano:</strong> ${livro.ano || "-"}</p>
-            <p><strong>Páginas:</strong> ${livro.paginas || "-"}</p>
-            <p><strong>Gênero:</strong> ${livro.genero || "-"}</p>
-            <p><strong>Descrição:</strong> ${livro.descricao || "-"}</p>
-            ${livro.imagem ? `<img src="${livro.imagem}" alt="Capa do livro" style="max-width: 200px; margin-top: 10px;">` : ""}
+            <p><strong>Ano:</strong> ${livro.ano || " -"}</p>
+            <p><strong>Páginas:</strong> ${livro.paginas || " -"}</p>
+            <p><strong>Gênero:</strong> ${livro.genero || " -"}</p>
+            <fieldset>
+                <legend><strong>Descrição:</strong></legend>
+                ${livro.descricao || " -"}
+            </fieldset>
         </div>
     `;
 }
