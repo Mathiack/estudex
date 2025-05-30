@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>EFS</title>
     <style>
@@ -88,15 +89,23 @@
     <p>O EFS permite você gerenciar as imagens dos seus livros</p>
 
     <div style="display: flex;align-items: center; gap: 2px; margin-bottom: 10px;">
-        <button class="text-button" onclick="uploadFSFile().then(() => renderFSFiles());">Adicionar</button>
+        <button id="adicionar-imagem">Adicionar Imagem</button>
+        <input type="file" id="imagem-input" accept="image/*" style="display: none;">
         <button class="text-button" onclick="renderFSFiles();">Refresh</button>
-        <button class="text-button danger" onclick="deleteAllFS().then(renderFSFiles());">Excluir tudo  </button>
+        <button class="text-button danger" onclick="deleteAllFS().then(renderFSFiles());">Excluir tudo </button>
     </div>
 
     <div id="fs-file-container" class="fs-file-container">
     </div>
 
     <script>
+        const botaoAdicionar = document.getElementById("adicionar-imagem");
+        const inputImagem = document.getElementById("imagem-input");
+
+        botaoAdicionar.addEventListener("click", () => {
+            inputImagem.click();
+        });
+
         async function renderFSFiles() {
             const container = document.getElementById("fs-file-container");
             const files = await getFSFiles();
@@ -131,80 +140,81 @@
             }
         }
 
-            async function handleRenameFSFile(index) {
-                const files = await getFSFiles();
-                const current = files[index];
-                if (!current) return;
+        async function handleRenameFSFile(index) {
+            const files = await getFSFiles();
+            const current = files[index];
+            if (!current) return;
 
-                const newName = await promptString("Rename file", current.name);
-                if (!newName || newName === current.name) return;
+            const newName = await promptString("Rename file", current.name);
+            if (!newName || newName === current.name) return;
 
-                try {
-                    await renameFSFile(index, newName);
-                    await renderFSFiles();
-                } catch (err) {
-                    console.error(err);
-                    showToast("Failed to rename file", "error");
-                }
+            try {
+                await renameFSFile(index, newName);
+                await renderFSFiles();
+            } catch (err) {
+                console.error(err);
+                showToast("Failed to rename file", "error");
+            }
+        }
+
+        async function getIcon(fileName) {
+            const ext = fileName.split(".").pop().toLowerCase();
+
+            let icon = "draft";
+
+            if (["apng", "gif", "ico", "cur", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "svg", "webp"].includes(ext)) {
+                icon = "image";
+            } else if (["mp4", "webm", "ogg"].includes(ext)) {
+                icon = "movie";
+            } else if (["mp3", "wav", "aac", "flac"].includes(ext)) {
+                icon = "album";
+            } else if (["md", "txt", "pdf", "html"].includes(ext)) {
+                icon = "description";
             }
 
-            async function getIcon(fileName) {
-                const ext = fileName.split(".").pop().toLowerCase();
+            return icon;
+        }
 
-                let icon = "draft";
+        function copyPath(name) {
+            const ext = name.split(".").pop().toLowerCase();
+            let filecontent = "";
 
-                if (["apng", "gif", "ico", "cur", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "svg", "webp"].includes(ext)) {
-                    icon = "image";
-                } else if (["mp4", "webm", "ogg"].includes(ext)) {
-                    icon = "movie";
-                } else if (["mp3", "wav", "aac", "flac"].includes(ext)) {
-                    icon = "album";
-                } else if (["md", "txt", "pdf", "html"].includes(ext)) {
-                    icon = "description";
-                }
-
-                return icon;
+            if (["apng", "gif", "ico", "cur", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "svg", "webp"].includes(ext)) {
+                filecontent = `![${name}](pocket/${name})`;
+            } else if (["mp4", "webm", "ogg"].includes(ext)) {
+                filecontent = `![${name}](pocket/${name})`;
+            } else if (["mp3", "wav", "aac", "flac"].includes(ext)) {
+                filecontent = `![${name}](pocket/${name})`;
+            } else if (ext === "pdf") {
+                filecontent = `<iframe src="pocket/${name}"></iframe>`;
+            } else {
+                filecontent = `pocket/${name}`;
             }
 
-            function copyPath(name) {
-                const ext = name.split(".").pop().toLowerCase();
-                let filecontent = "";
+            navigator.clipboard.writeText(filecontent).then(() => {
+                showToast("Copied to the clipboard", "content_copy");
+            });
+        }
 
-                if (["apng", "gif", "ico", "cur", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "svg", "webp"].includes(ext)) {
-                    filecontent = `![${name}](pocket/${name})`;
-                } else if (["mp4", "webm", "ogg"].includes(ext)) {
-                    filecontent = `![${name}](pocket/${name})`;
-                } else if (["mp3", "wav", "aac", "flac"].includes(ext)) {
-                    filecontent = `![${name}](pocket/${name})`;
-                } else if (ext === "pdf") {
-                    filecontent = `<iframe src="pocket/${name}"></iframe>`;
-                } else {
-                    filecontent = `pocket/${name}`;
-                }
+        async function downloadFSFile(name) {
+            const content = await resolveFSItem(name);
+            if (!content) return;
 
-                navigator.clipboard.writeText(filecontent).then(() => {
-                    showToast("Copied to the clipboard", "content_copy");
-                });
-            }
+            const a = document.createElement("a");
+            a.href = content;
+            a.download = name;
+            a.click();
+        }
 
-            async function downloadFSFile(name) {
-                const content = await resolveFSItem(name);
-                if (!content) return;
+        async function deleteFSFile(name) {
+            const db = await openFSDB();
+            const tx = db.transaction("files", "readwrite");
+            tx.objectStore("files").delete(name);
+            await tx.done;
+        }
 
-                const a = document.createElement("a");
-                a.href = content;
-                a.download = name;
-                a.click();
-            }
+        renderFSFiles();
+    </script>
+</body>
 
-            async function deleteFSFile(name) {
-                const db = await openFSDB();
-                const tx = db.transaction("files", "readwrite");
-                tx.objectStore("files").delete(name);
-                await tx.done;
-            }
-
-            renderFSFiles();
-        </script>
-    </body>
 </html>
