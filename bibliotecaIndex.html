@@ -25,7 +25,7 @@
             <button class="icon-button" translate="no" onclick="promptMessageFromFile('efs.html')" title="Imagens">
                 folder_open
             </button>
-            <button class="icon-button" translate="no" onclick="toggleSidebar('files-bar')" title="Novo Livro">
+            <button class="icon-button" translate="no" onclick="promptBiblioteca()" title="Novo Livro">
                 add
             </button>
         </div>
@@ -40,6 +40,7 @@
                 <div class="dropdown-content menu" id="more-menu">
                     <a href="timerIndex.html"><button class="text-button">Timer</button></a>
                     <a href="notasIndex.html"><button class="text-button">Notas</button></a>
+                    <a href="calendarioIndex.html"><button class="text-button">Calendário</button></a>
                 </div>
             </div>
         </div>
@@ -47,7 +48,7 @@
 
     <div id="files-bar" class="sidebar">
         <button class="text-button hide-on-pc" style="width: 100%; margin-top: 20px; margin-bottom: 20px;"
-            onclick="createFile();">Novo livro</button>
+            onclick="exibirDetalhesLivro();">Novo livro</button>
         <div id="files">
 
         </div>
