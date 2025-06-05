@@ -22,5 +22,5 @@ As funcionalidades presentes no programa são:
 > [!NOTE]
 > A interface do Estudex é baseada no site <a href="https://flarom.github.io/cohesion"> Cohesion</a>, feita por <a href="https://github.com/flarom"> flarom</a>.
 > O uso foi autorizado pelo mesmo, assim como outras funções do Estudex que se assemelham ao Cohesion
-> 
+###### obrigado flarom
 
