@@ -59,38 +59,15 @@ function deleteLivro(index) {
     if (detalhes) detalhes.innerHTML = "";
 }
 
-function editLivro(index) {
-    const livroOriginal = biblioteca[index];
-    livroEditandoIndex = index;
-    promptBiblioteca().then((livroEditado) => {
-        if (livroEditado) {
-            biblioteca[livroEditandoIndex] = livroEditado;
-            livroEditandoIndex = null;
-            saveDataBiblioteca();
-            renderBiblioteca();
-            deleteLivro(index);
-            exibirDetalhesLivro(index);
-        }
-    });
-
-    setTimeout(() => {
-        const inputs = document.querySelectorAll('.prompt-input.biblioteca');
-        if (inputs.length >= 5) {
-            inputs[0].value = livroOriginal.nome;
-            inputs[1].value = livroOriginal.autor;
-            inputs[2].value = livroOriginal.ano || '';
-            inputs[3].value = livroOriginal.paginas || '';
-            inputs[4].value = livroOriginal.genero || '';
-        }
-        const textarea = document.querySelector('.prompt-textarea');
-        if (textarea) textarea.value = livroOriginal.descricao || '';
-    }, 10);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     loadDataBiblioteca();
     renderBiblioteca();
 });
+
+function editLivro(index) {
+    livroEditandoIndex = index;
+    promptBiblioteca();
+}
 
 function promptBiblioteca() {
     return new Promise((resolve) => {
@@ -203,6 +180,7 @@ function promptBiblioteca() {
         }
 
         cancelButton.addEventListener('click', () => closePrompt(null));
+
         submitButton.addEventListener('click', () => {
             const nome = nameInput.value.trim();
             const autor = authorInput.value.trim();
@@ -214,29 +192,27 @@ function promptBiblioteca() {
             if (!nome) {
                 showToast("Nome é obrigatório!", "error");
                 return;
-            } else if (!autor) {
-                autor = "Autor desconhecido";
-                return;
-            }
-            const sidebar = document.getElementById("files");
-            if (sidebar) {
-                const button = document.createElement("button");
-                button.className = "item";
-                button.textContent = `${nome} - ${autor}`;
-                sidebar.appendChild(button);
             }
 
             const novoLivro = {
                 nome,
-                autor,
+                autor: autor || "Autor desconhecido",
                 ano: ano || null,
                 paginas: paginas || null,
                 genero: genero || null,
-                descricao: descricao || null
+                descricao: descricao || null,
+                imagem: imageBase64 || null
             };
 
-            biblioteca.push(novoLivro);
-            saveDataBiblioteca(); // <- salva no localStorage
+            if (livroEditandoIndex !== null) {
+                biblioteca[livroEditandoIndex] = novoLivro;
+                livroEditandoIndex = null;
+            } else {
+                biblioteca.push(novoLivro);
+            }
+
+            saveDataBiblioteca();
+            renderBiblioteca();
             closePrompt(null);
         });
 
@@ -253,6 +229,17 @@ function promptBiblioteca() {
                 submitButton.click();
             }
         });
+
+        // preencher campos se for edição
+        if (livroEditandoIndex !== null) {
+            const livro = biblioteca[livroEditandoIndex];
+            nameInput.value = livro.nome || '';
+            authorInput.value = livro.autor || '';
+            yearInput.value = livro.ano || '';
+            pagesInput.value = livro.paginas || '';
+            genreInput.value = livro.genero || '';
+            descInput.value = livro.descricao || '';
+        }
     });
 }
 
