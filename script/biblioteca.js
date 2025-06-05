@@ -66,7 +66,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function editLivro(index) {
     livroEditandoIndex = index;
-    promptBiblioteca();
+    promptBiblioteca().then(() => {
+        const detalhes = document.querySelector(".livro-detalhes");
+        if (detalhes) {
+            const livro = biblioteca[index];
+            detalhes.innerHTML = `
+                <div class="detalhes-container">
+                    <h2>${livro.nome}</h2>
+                    <p><strong>Autor:</strong> ${livro.autor}</p>
+                    <p><strong>Ano:</strong> ${livro.ano || "-"}</p>
+                    <p><strong>Páginas:</strong> ${livro.paginas || "-"}</p>
+                    <p><strong>Gênero:</strong> ${livro.genero || "-"}</p>
+                    <fieldset>
+                        <legend><strong>Descrição:</strong></legend>
+                        ${livro.descricao || "-"}
+                    </fieldset>
+                    ${livro.imagem ? `<img src="${livro.imagem}" alt="Capa do livro" style="max-width: 200px; margin-top: 10px;">` : ""}
+                </div>
+            `;
+        }
+    });
 }
 
 function promptBiblioteca() {
@@ -180,7 +199,6 @@ function promptBiblioteca() {
         }
 
         cancelButton.addEventListener('click', () => closePrompt(null));
-
         submitButton.addEventListener('click', () => {
             const nome = nameInput.value.trim();
             const autor = authorInput.value.trim();
@@ -192,27 +210,29 @@ function promptBiblioteca() {
             if (!nome) {
                 showToast("Nome é obrigatório!", "error");
                 return;
+            } else if (!autor) {
+                autor = "Autor desconhecido";
+                return;
+            }
+            const sidebar = document.getElementById("files");
+            if (sidebar) {
+                const button = document.createElement("button");
+                button.className = "item";
+                button.textContent = `${nome} - ${autor}`;
+                sidebar.appendChild(button);
             }
 
             const novoLivro = {
                 nome,
-                autor: autor || "Autor desconhecido",
+                autor,
                 ano: ano || null,
                 paginas: paginas || null,
                 genero: genero || null,
-                descricao: descricao || null,
-                imagem: imageBase64 || null
+                descricao: descricao || null
             };
 
-            if (livroEditandoIndex !== null) {
-                biblioteca[livroEditandoIndex] = novoLivro;
-                livroEditandoIndex = null;
-            } else {
-                biblioteca.push(novoLivro);
-            }
-
-            saveDataBiblioteca();
-            renderBiblioteca();
+            biblioteca.push(novoLivro);
+            saveDataBiblioteca(); // <- salva no localStorage
             closePrompt(null);
         });
 
@@ -229,17 +249,6 @@ function promptBiblioteca() {
                 submitButton.click();
             }
         });
-
-        // preencher campos se for edição
-        if (livroEditandoIndex !== null) {
-            const livro = biblioteca[livroEditandoIndex];
-            nameInput.value = livro.nome || '';
-            authorInput.value = livro.autor || '';
-            yearInput.value = livro.ano || '';
-            pagesInput.value = livro.paginas || '';
-            genreInput.value = livro.genero || '';
-            descInput.value = livro.descricao || '';
-        }
     });
 }
 
