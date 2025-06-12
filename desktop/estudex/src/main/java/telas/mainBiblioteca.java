@@ -1,9 +1,16 @@
 package telas;
 
 import com.mycompany.estudex.index;
+import dialogos.addLivroDlg;
+import java.awt.event.ActionEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.KeyStroke;
 
 public class mainBiblioteca extends javax.swing.JFrame {
 
@@ -15,10 +22,23 @@ public class mainBiblioteca extends javax.swing.JFrame {
         setTitle("Biblioteca");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
+        addLivroDlg addDlg = new addLivroDlg();
+
+        //quando fechar a janela, volta para o index
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
                 new index().setVisible(true);
+            }
+        });
+
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_DOWN_MASK), "addLivroDlg");
+
+        getRootPane().getActionMap().put("addLivroDlg", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addDlg.setVisible(true);
             }
         });
     }
@@ -32,9 +52,17 @@ public class mainBiblioteca extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         areaLivrosBtn = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        addLivroBtn = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1400, 800));
@@ -58,11 +86,31 @@ public class mainBiblioteca extends javax.swing.JFrame {
         jMenu1.setText("<");
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setText("Livros");
+
+        addLivroBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        addLivroBtn.setText("Adicionar");
+        addLivroBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addLivroBtnActionPerformed(evt);
+            }
+        });
+        jMenu2.add(addLivroBtn);
+
+        jMenuBar1.add(jMenu2);
+
         setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    addLivroDlg add = new addLivroDlg();
+
+    private void addLivroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLivroBtnActionPerformed
+        new addLivroDlg();
+        add.setVisible(true);
+    }//GEN-LAST:event_addLivroBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -100,8 +148,12 @@ public class mainBiblioteca extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addLivroBtn;
     private javax.swing.JPanel areaLivrosBtn;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }
