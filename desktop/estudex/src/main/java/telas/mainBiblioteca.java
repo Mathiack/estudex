@@ -54,7 +54,8 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        areaLivrosBtn = new javax.swing.JPanel();
+        painelLateral = new javax.swing.JPanel();
+        painelCentral = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -68,20 +69,33 @@ public class mainBiblioteca extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1400, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        areaLivrosBtn.setBackground(new java.awt.Color(52, 52, 52));
+        painelLateral.setBackground(new java.awt.Color(52, 52, 52));
 
-        javax.swing.GroupLayout areaLivrosBtnLayout = new javax.swing.GroupLayout(areaLivrosBtn);
-        areaLivrosBtn.setLayout(areaLivrosBtnLayout);
-        areaLivrosBtnLayout.setHorizontalGroup(
-            areaLivrosBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout painelLateralLayout = new javax.swing.GroupLayout(painelLateral);
+        painelLateral.setLayout(painelLateralLayout);
+        painelLateralLayout.setHorizontalGroup(
+            painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 290, Short.MAX_VALUE)
         );
-        areaLivrosBtnLayout.setVerticalGroup(
-            areaLivrosBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        painelLateralLayout.setVerticalGroup(
+            painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 780, Short.MAX_VALUE)
         );
 
-        getContentPane().add(areaLivrosBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
+        getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
+
+        javax.swing.GroupLayout painelCentralLayout = new javax.swing.GroupLayout(painelCentral);
+        painelCentral.setLayout(painelCentralLayout);
+        painelCentralLayout.setHorizontalGroup(
+            painelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 850, Short.MAX_VALUE)
+        );
+        painelCentralLayout.setVerticalGroup(
+            painelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 780, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 850, 780));
 
         jMenu1.setText("<");
         jMenuBar1.add(jMenu1);
@@ -149,11 +163,12 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addLivroBtn;
-    private javax.swing.JPanel areaLivrosBtn;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel painelCentral;
+    private javax.swing.JPanel painelLateral;
     // End of variables declaration//GEN-END:variables
 }

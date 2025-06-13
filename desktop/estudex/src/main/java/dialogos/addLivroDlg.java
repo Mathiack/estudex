@@ -12,6 +12,7 @@ public class addLivroDlg extends javax.swing.JFrame {
         initComponents();
         setTitle("Adicionar Livro");
         setSize(1200, 550);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -104,6 +105,9 @@ public class addLivroDlg extends javax.swing.JFrame {
         String genero = inputGenero.getText();
         String descricao = inputDescricao.getText();
         biblioteca.addLivro(nome, autor, ano, paginas, genero, descricao);
+        
+        this.dispose();
+        //biblioteca.addLivroNaLista();
     }//GEN-LAST:event_addLivroBtnActionPerformed
 
     /**
