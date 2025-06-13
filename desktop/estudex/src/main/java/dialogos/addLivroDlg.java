@@ -1,17 +1,17 @@
 package dialogos;
 
+import classes.bibliotecaClass;
+import java.io.Closeable;
 import javax.swing.JFrame;
 
 public class addLivroDlg extends javax.swing.JFrame {
 
-    /**
-     * Creates new form addLivroDlg
-     */
+    bibliotecaClass biblioteca = new bibliotecaClass();
+
     public addLivroDlg() {
         initComponents();
         setTitle("Adicionar Livro");
-        setSize(450, 550);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(1200, 550);
     }
 
     /**
@@ -24,7 +24,7 @@ public class addLivroDlg extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        cancelarBtn = new javax.swing.JButton();
         inputNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         inputAutor = new javax.swing.JTextField();
@@ -37,51 +37,80 @@ public class addLivroDlg extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         inputDescricao = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
+        addLivroBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1200, 550));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nome:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
 
-        jButton1.setText("Adicionar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, -1, -1));
-        getContentPane().add(inputNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 223, -1));
+        cancelarBtn.setText("Cancelar");
+        cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cancelarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 90, -1));
+        getContentPane().add(inputNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 223, -1));
 
         jLabel2.setText("Autor");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, -1));
-        getContentPane().add(inputAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 223, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
+        getContentPane().add(inputAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 223, -1));
 
         jLabel3.setText("Ano");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
-        getContentPane().add(inputAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 100, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, -1, -1));
+        getContentPane().add(inputAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 80, 100, -1));
 
         jLabel4.setText("Páginas");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, -1, -1));
-        getContentPane().add(inputPaginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 100, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 60, -1, -1));
+        getContentPane().add(inputPaginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 80, 100, -1));
 
         jLabel5.setText("Descrição");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 310, -1, -1));
-        getContentPane().add(inputGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 223, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
+        getContentPane().add(inputGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 223, -1));
 
         inputDescricao.setColumns(20);
         inputDescricao.setRows(5);
         jScrollPane1.setViewportView(inputDescricao);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 330, 220, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 980, 250));
 
         jLabel6.setText("Gênero");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, -1, -1));
+
+        addLivroBtn.setText("Adicionar");
+        addLivroBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addLivroBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(addLivroBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 90, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cancelarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelarBtnActionPerformed
+
+    private void addLivroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLivroBtnActionPerformed
+        String nome = inputNome.getText();
+        String autor = inputAutor.getText();
+        int ano = Integer.parseInt(inputAno.getText());
+        int paginas = Integer.parseInt(inputPaginas.getText());
+        String genero = inputGenero.getText();
+        String descricao = inputDescricao.getText();
+        biblioteca.addLivro(nome, autor, ano, paginas, genero, descricao);
+    }//GEN-LAST:event_addLivroBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -91,13 +120,14 @@ public class addLivroDlg extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addLivroBtn;
+    private javax.swing.JButton cancelarBtn;
     private javax.swing.JTextField inputAno;
     private javax.swing.JTextField inputAutor;
     private javax.swing.JTextArea inputDescricao;
     private javax.swing.JTextField inputGenero;
     private javax.swing.JTextField inputNome;
     private javax.swing.JTextField inputPaginas;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
