@@ -8,6 +8,8 @@ dialogos\addLivroDlg.class
 com\mycompany\estudex\index$3.class
 com\mycompany\estudex\index.class
 telas\mainBiblioteca$2.class
+classes\bibliotecaClass$1.class
+telas\mainBiblioteca$5.class
 telas\mainCalendario.class
 telas\mainSobre$1.class
 com\mycompany\estudex\index$5.class
@@ -23,6 +25,7 @@ classes\bibliotecaClass.class
 telas\mainSobre$2.class
 telas\mainTimer$2.class
 telas\mainBiblioteca$1.class
+classes\LivroListener.class
 telas\mainNotas.class
 com\mycompany\estudex\index$1.class
 com\mycompany\estudex\index$4.class

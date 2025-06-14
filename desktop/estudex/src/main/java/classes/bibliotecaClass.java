@@ -13,6 +13,7 @@ public class bibliotecaClass {
 
     static final String FILE_PATH = "livros.json";
     static JSONArray livrosArray = new JSONArray();
+    static JSONArray livrosArrayLocal = new JSONArray();
 
     public static void addLivro(String nome, String autor, int ano, int paginas, String genero, String descricao) {
 
@@ -51,7 +52,7 @@ public class bibliotecaClass {
     public static void addLivroNaLista(JPanel painelLateral, JPanel painelCentral) {
         painelLateral.removeAll();
 
-        JSONArray livrosArrayLocal = new JSONArray();
+        
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             StringBuilder jsonText = new StringBuilder();
             String line;
