@@ -1,27 +1,32 @@
 package telas;
 
+import classes.bibliotecaClass;
 import com.mycompany.estudex.index;
 import dialogos.addLivroDlg;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.AbstractAction;
+import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.KeyStroke;
+import javax.swing.table.DefaultTableModel;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class mainBiblioteca extends javax.swing.JFrame {
 
-    /**
-     * Creates new form mainBiblioteca
-     */
     public mainBiblioteca() {
         initComponents();
         setTitle("Biblioteca");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
+
         addLivroDlg addDlg = new addLivroDlg();
 
         //quando fechar a janela, volta para o index
@@ -41,6 +46,50 @@ public class mainBiblioteca extends javax.swing.JFrame {
                 addDlg.setVisible(true);
             }
         });
+
+        carregarTabelaLivros();
+
+        // Listener da JTable
+        buttonList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = buttonList.getSelectedRow();
+                if (row != -1) {
+                    mostrarLivroNaTela(row);
+                }
+            }
+        });
+    }
+
+    private void carregarTabelaLivros() {
+        JSONArray livros = bibliotecaClass.getLivros();
+        String[] colunas = {"Nome"};
+        DefaultTableModel model = new DefaultTableModel(colunas, 0);
+
+        for (int i = 0; i < livros.length(); i++) {
+            JSONObject livro = livros.getJSONObject(i);
+            model.addRow(new Object[]{livro.getString("nome")});
+        }
+        buttonList.setModel(model);
+    }
+
+    private void mostrarLivroNaTela(int index) {
+        JSONArray livros = bibliotecaClass.getLivros();
+        if (index >= 0 && index < livros.length()) {
+            JSONObject livro = livros.getJSONObject(index);
+            painelCentral.removeAll();
+            
+            painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
+
+            painelCentral.add(new JLabel("Nome: " + livro.getString("nome")));
+            painelCentral.add(new JLabel("Autor: " + livro.getString("autor")));
+            painelCentral.add(new JLabel("Ano: " + livro.getInt("ano")));
+            painelCentral.add(new JLabel("Páginas: " + livro.getInt("paginas")));
+            painelCentral.add(new JLabel("Gênero: " + livro.getString("genero")));
+            painelCentral.add(new JLabel("Descrição: " + livro.getString("descricao")));
+            painelCentral.revalidate();
+            painelCentral.repaint();
+        }
     }
 
     /**
@@ -55,6 +104,8 @@ public class mainBiblioteca extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         painelLateral = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        buttonList = new javax.swing.JTable();
         painelCentral = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -71,30 +122,39 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
         painelLateral.setBackground(new java.awt.Color(52, 52, 52));
 
+        buttonList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Title 1"
+            }
+        ));
+        jScrollPane1.setViewportView(buttonList);
+
         javax.swing.GroupLayout painelLateralLayout = new javax.swing.GroupLayout(painelLateral);
         painelLateral.setLayout(painelLateralLayout);
         painelLateralLayout.setHorizontalGroup(
             painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 290, Short.MAX_VALUE)
+            .addGroup(painelLateralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addContainerGap())
         );
         painelLateralLayout.setVerticalGroup(
             painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
+            .addGroup(painelLateralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
 
-        javax.swing.GroupLayout painelCentralLayout = new javax.swing.GroupLayout(painelCentral);
-        painelCentral.setLayout(painelCentralLayout);
-        painelCentralLayout.setHorizontalGroup(
-            painelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
-        );
-        painelCentralLayout.setVerticalGroup(
-            painelCentralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 780, Short.MAX_VALUE)
-        );
-
+        painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
         getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 850, 780));
 
         jMenu1.setText("<");
@@ -163,11 +223,13 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addLivroBtn;
+    private javax.swing.JTable buttonList;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel painelCentral;
     private javax.swing.JPanel painelLateral;
     // End of variables declaration//GEN-END:variables

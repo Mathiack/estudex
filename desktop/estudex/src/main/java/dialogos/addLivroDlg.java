@@ -106,6 +106,8 @@ public class addLivroDlg extends javax.swing.JFrame {
         String descricao = inputDescricao.getText();
         biblioteca.addLivro(nome, autor, ano, paginas, genero, descricao);
         
+        
+        
         this.dispose();
         //biblioteca.addLivroNaLista();
     }//GEN-LAST:event_addLivroBtnActionPerformed

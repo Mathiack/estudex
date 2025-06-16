@@ -52,7 +52,6 @@ public class bibliotecaClass {
     public static void addLivroNaLista(JPanel painelLateral, JPanel painelCentral) {
         painelLateral.removeAll();
 
-        
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             StringBuilder jsonText = new StringBuilder();
             String line;
@@ -97,5 +96,21 @@ public class bibliotecaClass {
 
         painelCentral.revalidate();
         painelCentral.repaint();
+    }
+
+    public static JSONArray getLivros() {
+        JSONArray livrosArray = new JSONArray();
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
+            StringBuilder jsonText = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                jsonText.append(line);
+            }
+            livrosArray = new JSONArray(jsonText.toString());
+        } catch (IOException e) {
+            // Se o arquivo não existir, retorna array vazio
+            System.out.println("Arquivo livros.json não encontrado. Criando novo.");
+        }
+        return livrosArray;
     }
 }
