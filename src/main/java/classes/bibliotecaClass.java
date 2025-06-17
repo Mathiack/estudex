@@ -15,7 +15,7 @@ public class bibliotecaClass {
     static JSONArray livrosArray = new JSONArray();
     static JSONArray livrosArrayLocal = new JSONArray();
 
-    public static void addLivro(String nome, String autor, int ano, int paginas, String genero, String descricao) {
+    public static void addLivro(String nome, String autor, int ano, int paginas, String genero, String descricao, String caminhoImagem) {
 
         // Lê JSON existente (se existir)
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
@@ -38,6 +38,7 @@ public class bibliotecaClass {
         novoLivro.put("paginas", paginas);
         novoLivro.put("genero", genero);
         novoLivro.put("descricao", descricao);
+        novoLivro.put("imagem", caminhoImagem);
 
         livrosArray.put(novoLivro);
 

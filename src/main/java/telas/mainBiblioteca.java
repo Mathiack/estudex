@@ -12,6 +12,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.AbstractAction;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -80,7 +81,7 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
     public void carregarTabelaLivros() {
         JSONArray livros = bibliotecaClass.getLivros();
-        String[] colunas = {"Nome"};
+        String[] colunas = {""};
         DefaultTableModel model = new DefaultTableModel(colunas, 0);
 
         for (int i = 0; i < livros.length(); i++) {
@@ -92,10 +93,12 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
     private void mostrarLivroNaTela(int index) {
         JSONArray livros = bibliotecaClass.getLivros();
+
         if (index >= 0 && index < livros.length()) {
             JSONObject livro = livros.getJSONObject(index);
-            painelCentral.removeAll();
+            String caminhoImagem = livro.optString("imagem", "");
 
+            painelCentral.removeAll();
             painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
 
             painelCentral.add(new JLabel("Nome: " + livro.getString("nome")));
@@ -104,6 +107,10 @@ public class mainBiblioteca extends javax.swing.JFrame {
             painelCentral.add(new JLabel("Páginas: " + livro.getInt("paginas")));
             painelCentral.add(new JLabel("Gênero: " + livro.getString("genero")));
             painelCentral.add(new JLabel("Descrição: " + livro.getString("descricao")));
+            if (!caminhoImagem.isEmpty()) {
+                ImageIcon icon = new ImageIcon(new ImageIcon(caminhoImagem).getImage().getScaledInstance(200, 300, java.awt.Image.SCALE_SMOOTH));
+                painelCentral.add(new JLabel(icon));
+            }
             painelCentral.revalidate();
             painelCentral.repaint();
         }
@@ -124,6 +131,7 @@ public class mainBiblioteca extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         buttonList = new javax.swing.JTable();
         painelCentral = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -136,8 +144,6 @@ public class mainBiblioteca extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1400, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        painelLateral.setBackground(new java.awt.Color(52, 52, 52));
 
         buttonList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -171,8 +177,24 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
         getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
 
+        painelCentral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 530, 670));
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 530, 670));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 246, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 406, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 140, 250, 410));
 
         jMenu1.setText("<");
         jMenuBar1.add(jMenu1);
@@ -246,6 +268,7 @@ public class mainBiblioteca extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel painelCentral;
     private javax.swing.JPanel painelLateral;

@@ -2,11 +2,15 @@ package dialogos;
 
 import classes.LivroListener;
 import classes.bibliotecaClass;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 
 public class addLivroDlg extends javax.swing.JFrame {
 
     bibliotecaClass bibliotecaClass = new bibliotecaClass();
     private LivroListener listener;
+    private String caminhoImagem = "";
 
     public addLivroDlg() {
         this(null);
@@ -16,8 +20,15 @@ public class addLivroDlg extends javax.swing.JFrame {
         this.listener = listener;
         initComponents();
         setTitle("Adicionar Livro");
-        setSize(1200, 550);
+        setSize(535, 694);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        livroImgPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                selecionarImagem();
+            }
+        });
     }
 
     /**
@@ -44,13 +55,14 @@ public class addLivroDlg extends javax.swing.JFrame {
         inputDescricao = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         addLivroBtn = new javax.swing.JButton();
+        livroImgPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 550));
+        setPreferredSize(new java.awt.Dimension(522, 664));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nome:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
 
         cancelarBtn.setText("Cancelar");
         cancelarBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -58,33 +70,33 @@ public class addLivroDlg extends javax.swing.JFrame {
                 cancelarBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 90, -1));
-        getContentPane().add(inputNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 223, -1));
+        getContentPane().add(cancelarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 620, 90, -1));
+        getContentPane().add(inputNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 230, -1));
 
         jLabel2.setText("Autor");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 60, -1, -1));
-        getContentPane().add(inputAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 223, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 70, -1, -1));
+        getContentPane().add(inputAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, 230, -1));
 
         jLabel3.setText("Ano");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 60, -1, -1));
-        getContentPane().add(inputAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 80, 100, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, -1, -1));
+        getContentPane().add(inputAno, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 110, -1));
 
         jLabel4.setText("Páginas");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 60, -1, -1));
-        getContentPane().add(inputPaginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 80, 100, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
+        getContentPane().add(inputPaginas, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 110, -1));
 
         jLabel5.setText("Descrição");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, -1, -1));
-        getContentPane().add(inputGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 223, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+        getContentPane().add(inputGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 230, -1));
 
         inputDescricao.setColumns(20);
         inputDescricao.setRows(5);
         jScrollPane1.setViewportView(inputDescricao);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 980, 250));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 500, 250));
 
         jLabel6.setText("Gênero");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 60, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, -1, -1));
 
         addLivroBtn.setText("Adicionar");
         addLivroBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +104,8 @@ public class addLivroDlg extends javax.swing.JFrame {
                 addLivroBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(addLivroBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, 90, -1));
+        getContentPane().add(addLivroBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 90, -1));
+        getContentPane().add(livroImgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 230));
 
         pack();
         setLocationRelativeTo(null);
@@ -109,7 +122,7 @@ public class addLivroDlg extends javax.swing.JFrame {
         int paginas = Integer.parseInt(inputPaginas.getText());
         String genero = inputGenero.getText();
         String descricao = inputDescricao.getText();
-        bibliotecaClass.addLivro(nome, autor, ano, paginas, genero, descricao);
+        bibliotecaClass.addLivro(nome, autor, ano, paginas, genero, descricao, caminhoImagem);
         if (listener != null) {
             listener.livroAdicionado(); // chama o mainBiblioteca para atualizar JTable
         }
@@ -117,6 +130,21 @@ public class addLivroDlg extends javax.swing.JFrame {
         //biblioteca.addLivroNaLista();
     }//GEN-LAST:event_addLivroBtnActionPerformed
 
+    private void selecionarImagem() {
+    JFileChooser chooser = new JFileChooser();
+    int resultado = chooser.showOpenDialog(this);
+    if (resultado == JFileChooser.APPROVE_OPTION) {
+        caminhoImagem = chooser.getSelectedFile().getAbsolutePath();
+        // Exibe miniatura da imagem no painel (opcional)
+        livroImgPanel.removeAll();
+        JLabel imgLabel = new JLabel(new ImageIcon(new ImageIcon(caminhoImagem).getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH)));
+        livroImgPanel.add(imgLabel);
+        livroImgPanel.revalidate();
+        livroImgPanel.repaint();
+    }
+}
+
+    
     /**
      * @param args the command line arguments
      */
@@ -146,5 +174,6 @@ public class addLivroDlg extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel livroImgPanel;
     // End of variables declaration//GEN-END:variables
 }
