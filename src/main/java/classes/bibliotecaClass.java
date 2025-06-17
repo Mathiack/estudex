@@ -50,6 +50,26 @@ public class bibliotecaClass {
         }
     }
 
+    public static void atualizarLivro(int index, String nome, String autor, int ano, int paginas, String genero, String descricao, String imagem) {
+        livrosArray = getLivros(); // usa o array global corretamente
+        if (index >= 0 && index < livrosArray.length()) {
+            JSONObject livro = livrosArray.getJSONObject(index);
+            livro.put("nome", nome);
+            livro.put("autor", autor);
+            livro.put("ano", ano);
+            livro.put("paginas", paginas);
+            livro.put("genero", genero);
+            livro.put("descricao", descricao);
+            livro.put("imagem", imagem);
+
+            try (FileWriter file = new FileWriter(FILE_PATH)) {
+                file.write(livrosArray.toString(4));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     public static void addLivroNaLista(JPanel painelLateral, JPanel painelCentral) {
         painelLateral.removeAll();
 
@@ -114,4 +134,17 @@ public class bibliotecaClass {
         }
         return livrosArray;
     }
+
+    public static void removerLivro(int index) {
+        JSONArray livrosArray = getLivros(); // lê JSON atual
+        if (index >= 0 && index < livrosArray.length()) {
+            livrosArray.remove(index);
+            try (FileWriter file = new FileWriter(FILE_PATH)) {
+                file.write(livrosArray.toString(4));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }

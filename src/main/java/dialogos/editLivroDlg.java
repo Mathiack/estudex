@@ -5,23 +5,46 @@ import classes.bibliotecaClass;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import org.json.JSONObject;
 
-public class addLivroDlg extends javax.swing.JFrame {
+public class editLivroDlg extends javax.swing.JFrame {
 
     bibliotecaClass bibliotecaClass = new bibliotecaClass();
     private LivroListener listener;
     private String caminhoImagem = "";
+    private int livroIndex = -1;
 
-    public addLivroDlg() {
-        this(null);
+    public editLivroDlg() {
+        this(null, -1, null);
     }
 
-    public addLivroDlg(LivroListener listener) {
+    public editLivroDlg(JSONObject livro, int index, LivroListener listener) {
         this.listener = listener;
+        this.livroIndex = index;
         initComponents();
-        setTitle("Adicionar Livro");
+        setTitle("Editar Livro");
         setSize(535, 694);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        // Preenche os campos:
+        inputNome.setText(livro.optString("nome", ""));
+        inputAutor.setText(livro.optString("autor", ""));
+        inputAno.setText(String.valueOf(livro.optInt("ano", 0)));
+        inputPaginas.setText(String.valueOf(livro.optInt("paginas", 0)));
+        inputGenero.setText(livro.optString("genero", ""));
+        inputDescricao.setText(livro.optString("descricao", ""));
+        caminhoImagem = livro.optString("imagem", "");
+
+        // Carrega imagem:
+        if (!caminhoImagem.isEmpty()) {
+            ImageIcon icon = new ImageIcon(new ImageIcon(caminhoImagem)
+                    .getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH));
+            JLabel imgLabel = new JLabel(icon);
+            livroImgPanel.removeAll();
+            livroImgPanel.add(imgLabel);
+            livroImgPanel.revalidate();
+            livroImgPanel.repaint();
+        }
 
         livroImgPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -54,7 +77,7 @@ public class addLivroDlg extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         inputDescricao = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        addLivroBtn = new javax.swing.JButton();
+        addLivroEditadoBtn = new javax.swing.JButton();
         livroImgPanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -98,13 +121,13 @@ public class addLivroDlg extends javax.swing.JFrame {
         jLabel6.setText("Gênero");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, -1, -1));
 
-        addLivroBtn.setText("Adicionar");
-        addLivroBtn.addActionListener(new java.awt.event.ActionListener() {
+        addLivroEditadoBtn.setText("Salvar Edição");
+        addLivroEditadoBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addLivroBtnActionPerformed(evt);
+                addLivroEditadoBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(addLivroBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 90, -1));
+        getContentPane().add(addLivroEditadoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 90, -1));
 
         jLabel7.setText("Imagem");
         livroImgPanel.add(jLabel7);
@@ -119,35 +142,56 @@ public class addLivroDlg extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
-    private void addLivroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLivroBtnActionPerformed
+    private void addLivroEditadoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLivroEditadoBtnActionPerformed
         String nome = inputNome.getText();
         String autor = inputAutor.getText();
         int ano = Integer.parseInt(inputAno.getText());
         int paginas = Integer.parseInt(inputPaginas.getText());
         String genero = inputGenero.getText();
         String descricao = inputDescricao.getText();
-        bibliotecaClass.addLivro(nome, autor, ano, paginas, genero, descricao, caminhoImagem);
+        bibliotecaClass.atualizarLivro(livroIndex, nome, autor, ano, paginas, genero, descricao, caminhoImagem);
         if (listener != null) {
             listener.livroAdicionado(); // chama o mainBiblioteca para atualizar JTable
         }
         this.dispose();
-    }//GEN-LAST:event_addLivroBtnActionPerformed
+    }//GEN-LAST:event_addLivroEditadoBtnActionPerformed
 
     private void selecionarImagem() {
-    JFileChooser chooser = new JFileChooser();
-    int resultado = chooser.showOpenDialog(this);
-    if (resultado == JFileChooser.APPROVE_OPTION) {
-        caminhoImagem = chooser.getSelectedFile().getAbsolutePath();
-        // Exibe miniatura da imagem no painel (opcional)
-        livroImgPanel.removeAll();
-        JLabel imgLabel = new JLabel(new ImageIcon(new ImageIcon(caminhoImagem).getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH)));
-        livroImgPanel.add(imgLabel);
-        livroImgPanel.revalidate();
-        livroImgPanel.repaint();
+        JFileChooser chooser = new JFileChooser();
+        int resultado = chooser.showOpenDialog(this);
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            caminhoImagem = chooser.getSelectedFile().getAbsolutePath();
+            // Exibe miniatura da imagem no painel (opcional)
+            livroImgPanel.removeAll();
+            JLabel imgLabel = new JLabel(new ImageIcon(new ImageIcon(caminhoImagem).getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH)));
+            livroImgPanel.add(imgLabel);
+            livroImgPanel.revalidate();
+            livroImgPanel.repaint();
+        }
     }
-}
 
-    
+    public void setLivroParaEdicao(JSONObject livro, int index) {
+        this.livroIndex = index;
+
+        inputNome.setText(livro.optString("nome", ""));
+        inputAutor.setText(livro.optString("autor", ""));
+        inputAno.setText(String.valueOf(livro.optInt("ano", 0)));
+        inputPaginas.setText(String.valueOf(livro.optInt("paginas", 0)));
+        inputGenero.setText(livro.optString("genero", ""));
+        inputDescricao.setText(livro.optString("descricao", ""));
+        caminhoImagem = livro.optString("imagem", "");
+
+        if (!caminhoImagem.isEmpty()) {
+            ImageIcon icon = new ImageIcon(new ImageIcon(caminhoImagem)
+                    .getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH));
+            JLabel imgLabel = new JLabel(icon);
+            livroImgPanel.removeAll();
+            livroImgPanel.add(imgLabel);
+            livroImgPanel.revalidate();
+            livroImgPanel.repaint();
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -156,13 +200,13 @@ public class addLivroDlg extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addLivroDlg().setVisible(true);
+                new editLivroDlg().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addLivroBtn;
+    private javax.swing.JButton addLivroEditadoBtn;
     private javax.swing.JButton cancelarBtn;
     private javax.swing.JTextField inputAno;
     private javax.swing.JTextField inputAutor;

@@ -3,6 +3,7 @@ package telas;
 import classes.bibliotecaClass;
 import com.mycompany.estudex.index;
 import dialogos.addLivroDlg;
+import dialogos.editLivroDlg;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -16,7 +17,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -66,6 +70,18 @@ public class mainBiblioteca extends javax.swing.JFrame {
         });
 
         carregarTabelaLivros();
+
+        buttonList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = buttonList.getSelectedRow();
+                if (SwingUtilities.isLeftMouseButton(e) && row != -1) {
+                    mostrarLivroNaTela(row);
+                } else if (SwingUtilities.isRightMouseButton(e) && row != -1) {
+                    mostrarMenuContexto(e, row);
+                }
+            }
+        });
 
         // Listener da JTable
         buttonList.addMouseListener(new MouseAdapter() {
@@ -123,6 +139,36 @@ public class mainBiblioteca extends javax.swing.JFrame {
         }
     }
 
+    private void mostrarMenuContexto(MouseEvent e, int row) {
+        JPopupMenu menu = new JPopupMenu();
+
+        JMenuItem editar = new JMenuItem("Editar");
+        editar.addActionListener(ae -> editarLivro(row));
+        menu.add(editar);
+
+        JMenuItem excluir = new JMenuItem("Excluir");
+        excluir.addActionListener(ae -> excluirLivro(row));
+        menu.add(excluir);
+
+        menu.show(e.getComponent(), e.getX(), e.getY());
+    }
+
+    private void editarLivro(int index) {
+        JSONArray livros = bibliotecaClass.getLivros();
+        JSONObject livro = livros.getJSONObject(index);
+
+        editLivroDlg editDlg = new editLivroDlg(livro, index, () -> carregarTabelaLivros());
+        editDlg.setVisible(true);
+    }
+
+    private void excluirLivro(int index) {
+        bibliotecaClass.removerLivro(index);
+        carregarTabelaLivros();
+        painelCentral.removeAll();
+        painelCentral.revalidate();
+        painelCentral.repaint();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,13 +180,14 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         painelLateral = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         buttonList = new javax.swing.JTable();
         painelCentral = new javax.swing.JPanel();
         imgLivro = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         addLivroBtn = new javax.swing.JMenuItem();
 
@@ -148,8 +195,11 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
         jMenuItem2.setText("jMenuItem2");
 
+        jMenuItem3.setText("jMenuItem3");
+
+        jMenuItem4.setText("jMenuItem4");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1400, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonList.setModel(new javax.swing.table.DefaultTableModel(
@@ -186,7 +236,7 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
         painelCentral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 530, 670));
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 530, 670));
 
         imgLivro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -194,17 +244,14 @@ public class mainBiblioteca extends javax.swing.JFrame {
         imgLivro.setLayout(imgLivroLayout);
         imgLivroLayout.setHorizontalGroup(
             imgLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 246, Short.MAX_VALUE)
+            .addGap(0, 396, Short.MAX_VALUE)
         );
         imgLivroLayout.setVerticalGroup(
             imgLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
+            .addGap(0, 546, Short.MAX_VALUE)
         );
 
-        getContentPane().add(imgLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 140, 250, 410));
-
-        jMenu1.setText("<");
-        jMenuBar1.add(jMenu1);
+        getContentPane().add(imgLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 110, 400, 550));
 
         jMenu2.setText("Livros");
 
@@ -271,11 +318,12 @@ public class mainBiblioteca extends javax.swing.JFrame {
     private javax.swing.JMenuItem addLivroBtn;
     private javax.swing.JTable buttonList;
     private javax.swing.JPanel imgLivro;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel painelCentral;
     private javax.swing.JPanel painelLateral;

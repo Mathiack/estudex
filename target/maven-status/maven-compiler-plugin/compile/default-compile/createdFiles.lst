@@ -1,10 +1,12 @@
 telas\mainBiblioteca$3.class
 telas\mainBiblioteca.class
+dialogos\editLivroDlg$2.class
 telas\mainCalendario$2.class
 dialogos\addLivroDlg$3.class
 telas\mainNotas$2.class
 com\mycompany\estudex\index$2.class
 dialogos\addLivroDlg.class
+telas\mainBiblioteca$8.class
 com\mycompany\estudex\index$3.class
 dialogos\addLivroDlg$4.class
 telas\mainBiblioteca$7.class
@@ -13,9 +15,11 @@ telas\mainBiblioteca$2.class
 classes\bibliotecaClass$1.class
 telas\mainBiblioteca$5.class
 telas\mainCalendario.class
+dialogos\editLivroDlg.class
 telas\mainSobre$1.class
 com\mycompany\estudex\index$5.class
 dialogos\addLivroDlg$1.class
+dialogos\editLivroDlg$3.class
 com\mycompany\estudex\index$6.class
 dialogos\addLivroDlg$2.class
 telas\mainBiblioteca$4.class
@@ -23,10 +27,12 @@ telas\mainNotas$1.class
 telas\mainTimer.class
 telas\mainCalendario$1.class
 telas\mainTimer$1.class
+dialogos\editLivroDlg$1.class
 classes\bibliotecaClass.class
 telas\mainSobre$2.class
 telas\mainTimer$2.class
 telas\mainBiblioteca$1.class
+dialogos\editLivroDlg$4.class
 classes\LivroListener.class
 telas\mainNotas.class
 com\mycompany\estudex\index$1.class
