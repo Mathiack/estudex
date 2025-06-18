@@ -5,6 +5,7 @@ import classes.bibliotecaClass;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class addLivroDlg extends javax.swing.JFrame {
 
@@ -29,6 +30,15 @@ public class addLivroDlg extends javax.swing.JFrame {
                 selecionarImagem();
             }
         });
+
+        // coisas do campo de descricao
+        inputDescricao.setLineWrap(true);
+        inputDescricao.setWrapStyleWord(true);
+        inputDescricao = new javax.swing.JTextArea();
+        inputDescricao.setColumns(20);
+        inputDescricao.setRows(5);
+        inputDescricao.setLineWrap(true);
+        inputDescricao.setWrapStyleWord(true);
     }
 
     /**
@@ -57,6 +67,8 @@ public class addLivroDlg extends javax.swing.JFrame {
         addLivroBtn = new javax.swing.JButton();
         livroImgPanel = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,6 +123,14 @@ public class addLivroDlg extends javax.swing.JFrame {
 
         getContentPane().add(livroImgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 230));
 
+        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel8.setText("(opcional)");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
+
+        jLabel9.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel9.setText("(opcional)");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -120,34 +140,64 @@ public class addLivroDlg extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarBtnActionPerformed
 
     private void addLivroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLivroBtnActionPerformed
-        String nome = inputNome.getText();
-        String autor = inputAutor.getText();
-        int ano = Integer.parseInt(inputAno.getText());
-        int paginas = Integer.parseInt(inputPaginas.getText());
-        String genero = inputGenero.getText();
-        String descricao = inputDescricao.getText();
+        String nome = inputNome.getText().trim();
+        String autor = inputAutor.getText().trim();
+        String anoStr = inputAno.getText().trim();
+        String paginasStr = inputPaginas.getText().trim();
+        String genero = inputGenero.getText().trim();
+        String descricao = inputDescricao.getText().trim();
+
+        // Verificação de campos obrigatórios
+        if (nome.isEmpty() || paginasStr.isEmpty() || genero.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Todos os campos devem ser preenchidos.", "Erro de validação", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Verificação de autor e número inteiro positivo para ano e páginas
+        int ano, paginas;
+        try {
+            ano = Integer.parseInt(anoStr);
+            paginas = Integer.parseInt(paginasStr);
+
+            if (autor.isEmpty()) {
+                autor = "Autor desconhecido"; // se não tiver autor, bota como desconhecido
+            }
+
+            if (ano <= 0) {
+                anoStr = "Ano desconhecido"; // se não tiver ano, bota como desconhecido
+                return;
+            } else if (ano <= 0 || paginas <= 0) {
+                JOptionPane.showMessageDialog(this, "Ano e Páginas devem ser números positivos.", "Erro de validação", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Ano e Páginas devem ser números inteiros.", "Erro de validação", JOptionPane.ERROR_MESSAGE); // Erro
+            return;
+        }
+
         bibliotecaClass.addLivro(nome, autor, ano, paginas, genero, descricao, caminhoImagem);
         if (listener != null) {
-            listener.livroAdicionado(); // chama o mainBiblioteca para atualizar JTable
+            listener.livroAdicionado(); // Atualiza JTable
         }
         this.dispose();
+
     }//GEN-LAST:event_addLivroBtnActionPerformed
 
     private void selecionarImagem() {
-    JFileChooser chooser = new JFileChooser();
-    int resultado = chooser.showOpenDialog(this);
-    if (resultado == JFileChooser.APPROVE_OPTION) {
-        caminhoImagem = chooser.getSelectedFile().getAbsolutePath();
-        // Exibe miniatura da imagem no painel (opcional)
-        livroImgPanel.removeAll();
-        JLabel imgLabel = new JLabel(new ImageIcon(new ImageIcon(caminhoImagem).getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH)));
-        livroImgPanel.add(imgLabel);
-        livroImgPanel.revalidate();
-        livroImgPanel.repaint();
+        JFileChooser chooser = new JFileChooser();
+        int resultado = chooser.showOpenDialog(this);
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            caminhoImagem = chooser.getSelectedFile().getAbsolutePath();
+            // Exibe miniatura da imagem no painel (opcional)
+            livroImgPanel.removeAll();
+            JLabel imgLabel = new JLabel(new ImageIcon(new ImageIcon(caminhoImagem).getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH)));
+            livroImgPanel.add(imgLabel);
+            livroImgPanel.revalidate();
+            livroImgPanel.repaint();
+        }
     }
-}
 
-    
     /**
      * @param args the command line arguments
      */
@@ -177,6 +227,8 @@ public class addLivroDlg extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel livroImgPanel;
     // End of variables declaration//GEN-END:variables

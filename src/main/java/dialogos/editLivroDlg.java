@@ -33,6 +33,16 @@ public class editLivroDlg extends javax.swing.JFrame {
         inputPaginas.setText(String.valueOf(livro.optInt("paginas", 0)));
         inputGenero.setText(livro.optString("genero", ""));
         inputDescricao.setText(livro.optString("descricao", ""));
+        
+        // coisas do campo de descricao
+        inputDescricao.setLineWrap(true);
+        inputDescricao.setWrapStyleWord(true);
+        inputDescricao = new javax.swing.JTextArea();
+        inputDescricao.setColumns(20);
+        inputDescricao.setRows(5);
+        inputDescricao.setLineWrap(true);
+        inputDescricao.setWrapStyleWord(true);
+        
         caminhoImagem = livro.optString("imagem", "");
 
         // Carrega imagem:

@@ -6,6 +6,7 @@ import dialogos.addLivroDlg;
 import dialogos.editLivroDlg;
 import java.awt.Component;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -30,6 +31,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class mainBiblioteca extends javax.swing.JFrame {
+
+    JTextArea descricaoArea;
 
     public mainBiblioteca() {
         initComponents();
@@ -118,19 +121,42 @@ public class mainBiblioteca extends javax.swing.JFrame {
             painelCentral.removeAll();
             painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
 
-            nomeLabel(livro.getString("nome"), Font.BOLD, 28);
-            nomeLabel("Por " + livro.getString("autor"), Font.PLAIN, 16);
-            nomeLabel("Lançado em " + livro.getInt("ano"), Font.PLAIN, 16);
-            nomeLabel("" + livro.getInt("paginas") + " páginas", Font.PLAIN, 16);
+            //titulo
+            JTextArea tituloArea = new JTextArea("" + livro.getString("nome"));
+            tituloArea.setFont(new Font("Arial", Font.BOLD, 20));
+            tituloArea.setLineWrap(true);
+            tituloArea.setWrapStyleWord(true);
+            tituloArea.setEditable(false);
+            tituloArea.setOpaque(false);
+            tituloArea.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
+            tituloArea.setAlignmentX(Component.LEFT_ALIGNMENT);
+            painelCentral.add(tituloArea);
+
+            // Exibir imagem no imgLivro
+            imgLivro.removeAll();
+            String caminhoImagem = livro.optString("imagem", "");
+            if (!caminhoImagem.isEmpty()) {
+                ImageIcon icon = new ImageIcon(new ImageIcon(caminhoImagem).getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH));
+                JLabel imgLabel = new JLabel(icon);
+                imgLivro.add(imgLabel);
+            }
+            imgLivro.revalidate();
+            imgLivro.repaint();
+
+            //informações gerais
+            nomeLabel("Por " + livro.getString("autor") + " - " + livro.getInt("ano"), Font.PLAIN, 16);
+            nomeLabel(livro.getInt("paginas") + " páginas", Font.PLAIN, 16);
             nomeLabel(livro.getString("genero"), Font.PLAIN, 16);
 
+            //descricao
             JTextArea descricaoArea = new JTextArea("Descrição: \n" + livro.getString("descricao"));
             descricaoArea.setFont(new Font("Arial", Font.PLAIN, 14));
             descricaoArea.setLineWrap(true);
             descricaoArea.setWrapStyleWord(true);
             descricaoArea.setEditable(false);
             descricaoArea.setBackground(painelCentral.getBackground());
-            descricaoArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            descricaoArea.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+            descricaoArea.setAlignmentX(Component.LEFT_ALIGNMENT);
             painelCentral.add(descricaoArea);
 
             painelCentral.revalidate();
@@ -142,7 +168,7 @@ public class mainBiblioteca extends javax.swing.JFrame {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", style, size));
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
-        label.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        label.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
         painelCentral.add(label);
     }
 
@@ -193,7 +219,6 @@ public class mainBiblioteca extends javax.swing.JFrame {
         painelCentral = new javax.swing.JPanel();
         imgLivro = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         addLivroBtn = new javax.swing.JMenuItem();
 
@@ -202,6 +227,7 @@ public class mainBiblioteca extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1400, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonList.setModel(new javax.swing.table.DefaultTableModel(
@@ -236,27 +262,21 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
         getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
 
-        painelCentral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
         getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 530, 670));
-
-        imgLivro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         javax.swing.GroupLayout imgLivroLayout = new javax.swing.GroupLayout(imgLivro);
         imgLivro.setLayout(imgLivroLayout);
         imgLivroLayout.setHorizontalGroup(
             imgLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         imgLivroLayout.setVerticalGroup(
             imgLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGap(0, 550, Short.MAX_VALUE)
         );
 
-        getContentPane().add(imgLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, 400, 550));
-
-        jMenu1.setText("<");
-        jMenuBar1.add(jMenu1);
+        getContentPane().add(imgLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 110, 400, 550));
 
         jMenu2.setText("Livros");
 
@@ -323,7 +343,6 @@ public class mainBiblioteca extends javax.swing.JFrame {
     private javax.swing.JMenuItem addLivroBtn;
     private javax.swing.JTable buttonList;
     private javax.swing.JPanel imgLivro;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

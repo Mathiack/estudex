@@ -33,14 +33,31 @@ public class mainSobre extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(700, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 174, 0));
-        jLabel1.setText("Sobre");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, 57));
+        jLabel1.setText("Estudex");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jSeparator1.setForeground(new java.awt.Color(255, 174, 0));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 680, 10));
+
+        jLabel2.setText("Estudex é seu app de estudos ideal para gerenciar seu material e tempo de estudo");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+
+        jLabel3.setText("Acesse o repositório do Github!");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, -1));
+
+        jLabel4.setText("Inspirado no Cohesion, por um grande amigo, flarom!");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -83,5 +100,9 @@ public class mainSobre extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
