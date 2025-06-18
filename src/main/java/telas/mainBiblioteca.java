@@ -4,6 +4,8 @@ import classes.bibliotecaClass;
 import com.mycompany.estudex.index;
 import dialogos.addLivroDlg;
 import dialogos.editLivroDlg;
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -12,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -19,6 +22,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
@@ -109,34 +113,37 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
     private void mostrarLivroNaTela(int index) {
         JSONArray livros = bibliotecaClass.getLivros();
-
         if (index >= 0 && index < livros.length()) {
             JSONObject livro = livros.getJSONObject(index);
-            String caminhoImagem = livro.optString("imagem", "");
-
             painelCentral.removeAll();
-            imgLivro.removeAll();
-
             painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
 
-            painelCentral.add(new JLabel("Nome: " + livro.getString("nome")));
-            painelCentral.add(new JLabel("Autor: " + livro.getString("autor")));
-            painelCentral.add(new JLabel("Ano: " + livro.getInt("ano")));
-            painelCentral.add(new JLabel("Páginas: " + livro.getInt("paginas")));
-            painelCentral.add(new JLabel("Gênero: " + livro.getString("genero")));
-            painelCentral.add(new JLabel("Descrição: " + livro.getString("descricao")));
-            if (!caminhoImagem.isEmpty()) {
-                ImageIcon icon = new ImageIcon(new ImageIcon(caminhoImagem)
-                        .getImage().getScaledInstance(imgLivro.getWidth(), imgLivro.getHeight(), java.awt.Image.SCALE_SMOOTH));
-                JLabel labelImg = new JLabel(icon);
-                imgLivro.add(labelImg);
-            }
+            nomeLabel(livro.getString("nome"), Font.BOLD, 28);
+            nomeLabel("Por " + livro.getString("autor"), Font.PLAIN, 16);
+            nomeLabel("Lançado em " + livro.getInt("ano"), Font.PLAIN, 16);
+            nomeLabel("" + livro.getInt("paginas") + " páginas", Font.PLAIN, 16);
+            nomeLabel(livro.getString("genero"), Font.PLAIN, 16);
 
-            imgLivro.revalidate();
-            imgLivro.repaint();
+            JTextArea descricaoArea = new JTextArea("Descrição: \n" + livro.getString("descricao"));
+            descricaoArea.setFont(new Font("Arial", Font.PLAIN, 14));
+            descricaoArea.setLineWrap(true);
+            descricaoArea.setWrapStyleWord(true);
+            descricaoArea.setEditable(false);
+            descricaoArea.setBackground(painelCentral.getBackground());
+            descricaoArea.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+            painelCentral.add(descricaoArea);
+
             painelCentral.revalidate();
             painelCentral.repaint();
         }
+    }
+
+    private void nomeLabel(String text, int style, int size) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Arial", style, size));
+        label.setAlignmentX(Component.LEFT_ALIGNMENT);
+        label.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        painelCentral.add(label);
     }
 
     private void mostrarMenuContexto(MouseEvent e, int row) {
@@ -180,24 +187,19 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         painelLateral = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         buttonList = new javax.swing.JTable();
         painelCentral = new javax.swing.JPanel();
         imgLivro = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         addLivroBtn = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
         jMenuItem2.setText("jMenuItem2");
-
-        jMenuItem3.setText("jMenuItem3");
-
-        jMenuItem4.setText("jMenuItem4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -236,7 +238,7 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
         painelCentral.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 530, 670));
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 530, 670));
 
         imgLivro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
@@ -251,7 +253,10 @@ public class mainBiblioteca extends javax.swing.JFrame {
             .addGap(0, 546, Short.MAX_VALUE)
         );
 
-        getContentPane().add(imgLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 110, 400, 550));
+        getContentPane().add(imgLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, 400, 550));
+
+        jMenu1.setText("<");
+        jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Livros");
 
@@ -318,12 +323,11 @@ public class mainBiblioteca extends javax.swing.JFrame {
     private javax.swing.JMenuItem addLivroBtn;
     private javax.swing.JTable buttonList;
     private javax.swing.JPanel imgLivro;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel painelCentral;
     private javax.swing.JPanel painelLateral;

@@ -12,18 +12,13 @@
         <Property name="text" type="java.lang.String" value="jMenuItem2"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JMenuItem" name="jMenuItem3">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jMenuItem3"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JMenuItem" name="jMenuItem4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jMenuItem4"/>
-      </Properties>
-    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <SubComponents>
+        <Menu class="javax.swing.JMenu" name="jMenu1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="&lt;"/>
+          </Properties>
+        </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
             <Property name="text" type="java.lang.String" value="Livros"/>
@@ -128,7 +123,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="360" y="50" width="530" height="670"/>
+          <AbsoluteConstraints x="320" y="110" width="530" height="670"/>
         </Constraint>
       </Constraints>
 
@@ -144,7 +139,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="960" y="110" width="400" height="550"/>
+          <AbsoluteConstraints x="970" y="110" width="400" height="550"/>
         </Constraint>
       </Constraints>
 
