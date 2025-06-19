@@ -42,26 +42,6 @@ public class editLivroDlg extends javax.swing.JFrame {
         inputDescricao.setRows(5);
         inputDescricao.setLineWrap(true);
         inputDescricao.setWrapStyleWord(true);
-        
-        caminhoImagem = livro.optString("imagem", "");
-
-        // Carrega imagem:
-        if (!caminhoImagem.isEmpty()) {
-            ImageIcon icon = new ImageIcon(new ImageIcon(caminhoImagem)
-                    .getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH));
-            JLabel imgLabel = new JLabel(icon);
-            livroImgPanel.removeAll();
-            livroImgPanel.add(imgLabel);
-            livroImgPanel.revalidate();
-            livroImgPanel.repaint();
-        }
-
-        livroImgPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                selecionarImagem();
-            }
-        });
     }
 
     /**
@@ -88,8 +68,6 @@ public class editLivroDlg extends javax.swing.JFrame {
         inputDescricao = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         addLivroEditadoBtn = new javax.swing.JButton();
-        livroImgPanel = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -139,11 +117,6 @@ public class editLivroDlg extends javax.swing.JFrame {
         });
         getContentPane().add(addLivroEditadoBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 90, -1));
 
-        jLabel7.setText("Imagem");
-        livroImgPanel.add(jLabel7);
-
-        getContentPane().add(livroImgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 230));
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -159,26 +132,12 @@ public class editLivroDlg extends javax.swing.JFrame {
         int paginas = Integer.parseInt(inputPaginas.getText());
         String genero = inputGenero.getText();
         String descricao = inputDescricao.getText();
-        bibliotecaClass.atualizarLivro(livroIndex, nome, autor, ano, paginas, genero, descricao, caminhoImagem);
+        bibliotecaClass.atualizarLivro(livroIndex, nome, autor, ano, paginas, genero, descricao);
         if (listener != null) {
             listener.livroAdicionado(); // chama o mainBiblioteca para atualizar JTable
         }
         this.dispose();
     }//GEN-LAST:event_addLivroEditadoBtnActionPerformed
-
-    private void selecionarImagem() {
-        JFileChooser chooser = new JFileChooser();
-        int resultado = chooser.showOpenDialog(this);
-        if (resultado == JFileChooser.APPROVE_OPTION) {
-            caminhoImagem = chooser.getSelectedFile().getAbsolutePath();
-            // Exibe miniatura da imagem no painel (opcional)
-            livroImgPanel.removeAll();
-            JLabel imgLabel = new JLabel(new ImageIcon(new ImageIcon(caminhoImagem).getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH)));
-            livroImgPanel.add(imgLabel);
-            livroImgPanel.revalidate();
-            livroImgPanel.repaint();
-        }
-    }
 
     public void setLivroParaEdicao(JSONObject livro, int index) {
         this.livroIndex = index;
@@ -189,17 +148,6 @@ public class editLivroDlg extends javax.swing.JFrame {
         inputPaginas.setText(String.valueOf(livro.optInt("paginas", 0)));
         inputGenero.setText(livro.optString("genero", ""));
         inputDescricao.setText(livro.optString("descricao", ""));
-        caminhoImagem = livro.optString("imagem", "");
-
-        if (!caminhoImagem.isEmpty()) {
-            ImageIcon icon = new ImageIcon(new ImageIcon(caminhoImagem)
-                    .getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH));
-            JLabel imgLabel = new JLabel(icon);
-            livroImgPanel.removeAll();
-            livroImgPanel.add(imgLabel);
-            livroImgPanel.revalidate();
-            livroImgPanel.repaint();
-        }
     }
 
     /**
@@ -230,8 +178,6 @@ public class editLivroDlg extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel livroImgPanel;
     // End of variables declaration//GEN-END:variables
 }

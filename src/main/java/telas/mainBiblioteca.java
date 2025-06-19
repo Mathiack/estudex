@@ -121,41 +121,27 @@ public class mainBiblioteca extends javax.swing.JFrame {
             painelCentral.removeAll();
             painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
 
-            //titulo
-            JTextArea tituloArea = new JTextArea("" + livro.getString("nome"));
+            JTextArea tituloArea = new JTextArea(livro.getString("nome"));
             tituloArea.setFont(new Font("Arial", Font.BOLD, 20));
             tituloArea.setLineWrap(true);
             tituloArea.setWrapStyleWord(true);
             tituloArea.setEditable(false);
             tituloArea.setOpaque(false);
-            tituloArea.setBorder(BorderFactory.createEmptyBorder(5, 0, 0, 0));
+            tituloArea.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
             tituloArea.setAlignmentX(Component.LEFT_ALIGNMENT);
             painelCentral.add(tituloArea);
 
-            // Exibir imagem no imgLivro
-            imgLivro.removeAll();
-            String caminhoImagem = livro.optString("imagem", "");
-            if (!caminhoImagem.isEmpty()) {
-                ImageIcon icon = new ImageIcon(new ImageIcon(caminhoImagem).getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH));
-                JLabel imgLabel = new JLabel(icon);
-                imgLivro.add(imgLabel);
-            }
-            imgLivro.revalidate();
-            imgLivro.repaint();
-
-            //informações gerais
             nomeLabel("Por " + livro.getString("autor") + " - " + livro.getInt("ano"), Font.PLAIN, 16);
             nomeLabel(livro.getInt("paginas") + " páginas", Font.PLAIN, 16);
             nomeLabel(livro.getString("genero"), Font.PLAIN, 16);
 
-            //descricao
-            JTextArea descricaoArea = new JTextArea("Descrição: \n" + livro.getString("descricao"));
+            JTextArea descricaoArea = new JTextArea("Descrição:\n" + livro.getString("descricao"));
             descricaoArea.setFont(new Font("Arial", Font.PLAIN, 14));
             descricaoArea.setLineWrap(true);
             descricaoArea.setWrapStyleWord(true);
             descricaoArea.setEditable(false);
             descricaoArea.setBackground(painelCentral.getBackground());
-            descricaoArea.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+            descricaoArea.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
             descricaoArea.setAlignmentX(Component.LEFT_ALIGNMENT);
             painelCentral.add(descricaoArea);
 
@@ -168,7 +154,7 @@ public class mainBiblioteca extends javax.swing.JFrame {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Arial", style, size));
         label.setAlignmentX(Component.LEFT_ALIGNMENT);
-        label.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+        label.setBorder(BorderFactory.createEmptyBorder(2, 0, 2, 0));
         painelCentral.add(label);
     }
 
@@ -217,7 +203,6 @@ public class mainBiblioteca extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         buttonList = new javax.swing.JTable();
         painelCentral = new javax.swing.JPanel();
-        imgLivro = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         addLivroBtn = new javax.swing.JMenuItem();
@@ -263,20 +248,7 @@ public class mainBiblioteca extends javax.swing.JFrame {
         getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
 
         painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 530, 670));
-
-        javax.swing.GroupLayout imgLivroLayout = new javax.swing.GroupLayout(imgLivro);
-        imgLivro.setLayout(imgLivroLayout);
-        imgLivroLayout.setHorizontalGroup(
-            imgLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        imgLivroLayout.setVerticalGroup(
-            imgLivroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(imgLivro, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 110, 400, 550));
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 560, 640));
 
         jMenu2.setText("Livros");
 
@@ -342,7 +314,6 @@ public class mainBiblioteca extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addLivroBtn;
     private javax.swing.JTable buttonList;
-    private javax.swing.JPanel imgLivro;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

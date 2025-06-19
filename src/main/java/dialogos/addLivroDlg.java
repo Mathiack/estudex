@@ -24,13 +24,6 @@ public class addLivroDlg extends javax.swing.JFrame {
         setSize(535, 694);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        livroImgPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                selecionarImagem();
-            }
-        });
-
         // coisas do campo de descricao
         inputDescricao.setLineWrap(true);
         inputDescricao.setWrapStyleWord(true);
@@ -65,8 +58,6 @@ public class addLivroDlg extends javax.swing.JFrame {
         inputDescricao = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         addLivroBtn = new javax.swing.JButton();
-        livroImgPanel = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -118,11 +109,6 @@ public class addLivroDlg extends javax.swing.JFrame {
         });
         getContentPane().add(addLivroBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 90, -1));
 
-        jLabel7.setText("Imagem");
-        livroImgPanel.add(jLabel7);
-
-        getContentPane().add(livroImgPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 260, 230));
-
         jLabel8.setForeground(new java.awt.Color(153, 153, 153));
         jLabel8.setText("(opcional)");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
@@ -148,8 +134,8 @@ public class addLivroDlg extends javax.swing.JFrame {
         String descricao = inputDescricao.getText().trim();
 
         // Verificação de campos obrigatórios
-        if (nome.isEmpty() || paginasStr.isEmpty() || genero.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Todos os campos devem ser preenchidos.", "Erro de validação", JOptionPane.ERROR_MESSAGE);
+        if (nome.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nome é obrigatório.", "Erro de validação", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -176,27 +162,13 @@ public class addLivroDlg extends javax.swing.JFrame {
             return;
         }
 
-        bibliotecaClass.addLivro(nome, autor, ano, paginas, genero, descricao, caminhoImagem);
+        bibliotecaClass.addLivro(nome, autor, ano, paginas, genero, descricao);
         if (listener != null) {
             listener.livroAdicionado(); // Atualiza JTable
         }
         this.dispose();
 
     }//GEN-LAST:event_addLivroBtnActionPerformed
-
-    private void selecionarImagem() {
-        JFileChooser chooser = new JFileChooser();
-        int resultado = chooser.showOpenDialog(this);
-        if (resultado == JFileChooser.APPROVE_OPTION) {
-            caminhoImagem = chooser.getSelectedFile().getAbsolutePath();
-            // Exibe miniatura da imagem no painel (opcional)
-            livroImgPanel.removeAll();
-            JLabel imgLabel = new JLabel(new ImageIcon(new ImageIcon(caminhoImagem).getImage().getScaledInstance(260, 230, java.awt.Image.SCALE_SMOOTH)));
-            livroImgPanel.add(imgLabel);
-            livroImgPanel.revalidate();
-            livroImgPanel.repaint();
-        }
-    }
 
     /**
      * @param args the command line arguments
@@ -226,10 +198,8 @@ public class addLivroDlg extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel livroImgPanel;
     // End of variables declaration//GEN-END:variables
 }

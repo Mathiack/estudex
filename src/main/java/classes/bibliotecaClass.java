@@ -15,7 +15,7 @@ public class bibliotecaClass {
     static JSONArray livrosArray = new JSONArray();
     static JSONArray livrosArrayLocal = new JSONArray();
 
-    public static void addLivro(String nome, String autor, int ano, int paginas, String genero, String descricao, String caminhoImagem) {
+    public static void addLivro(String nome, String autor, int ano, int paginas, String genero, String descricao) {
 
         // Lê JSON existente (se existir)
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
@@ -38,7 +38,6 @@ public class bibliotecaClass {
         novoLivro.put("paginas", paginas);
         novoLivro.put("genero", genero);
         novoLivro.put("descricao", descricao);
-        novoLivro.put("imagem", caminhoImagem);
 
         livrosArray.put(novoLivro);
 
@@ -50,7 +49,7 @@ public class bibliotecaClass {
         }
     }
 
-    public static void atualizarLivro(int index, String nome, String autor, int ano, int paginas, String genero, String descricao, String imagem) {
+    public static void atualizarLivro(int index, String nome, String autor, int ano, int paginas, String genero, String descricao) {
         livrosArray = getLivros(); // usa o array global corretamente
         if (index >= 0 && index < livrosArray.length()) {
             JSONObject livro = livrosArray.getJSONObject(index);
@@ -60,7 +59,6 @@ public class bibliotecaClass {
             livro.put("paginas", paginas);
             livro.put("genero", genero);
             livro.put("descricao", descricao);
-            livro.put("imagem", imagem);
 
             try (FileWriter file = new FileWriter(FILE_PATH)) {
                 file.write(livrosArray.toString(4));
