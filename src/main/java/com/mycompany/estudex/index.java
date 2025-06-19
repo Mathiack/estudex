@@ -35,10 +35,11 @@ public class index extends javax.swing.JFrame {
         bibliotecaBtn = new javax.swing.JButton();
         notasBtn = new javax.swing.JButton();
         calendarioBtn = new javax.swing.JButton();
-        sobreBtn = new javax.swing.JButton();
+        tarefasBtn = new javax.swing.JButton();
         timerBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
+        sobreBtn1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 174, 0));
@@ -49,7 +50,7 @@ public class index extends javax.swing.JFrame {
         mainTitle.setFont(new java.awt.Font("Segoe UI", 1, 70)); // NOI18N
         mainTitle.setForeground(new java.awt.Color(255, 174, 0));
         mainTitle.setText("Estudex");
-        getContentPane().add(mainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, -1, -1));
+        getContentPane().add(mainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
 
         bibliotecaBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         bibliotecaBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -84,16 +85,16 @@ public class index extends javax.swing.JFrame {
         });
         getContentPane().add(calendarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 310, 240, 60));
 
-        sobreBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        sobreBtn.setForeground(new java.awt.Color(255, 255, 255));
-        sobreBtn.setText("Sobre");
-        sobreBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 174, 0)));
-        sobreBtn.addActionListener(new java.awt.event.ActionListener() {
+        tarefasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tarefasBtn.setForeground(new java.awt.Color(255, 255, 255));
+        tarefasBtn.setText("Tarefas");
+        tarefasBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 174, 0)));
+        tarefasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sobreBtnActionPerformed(evt);
+                tarefasBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(sobreBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 450, 240, 60));
+        getContentPane().add(tarefasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 450, 240, 60));
 
         timerBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         timerBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -107,12 +108,23 @@ public class index extends javax.swing.JFrame {
         getContentPane().add(timerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 380, 240, 60));
 
         jSeparator1.setForeground(new java.awt.Color(255, 174, 0));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 603, 10));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 603, 10));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Estudex é seu app para focar nos estudos, marcar eventos importantes, registrar suas conquistas e sua evolução");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 820, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 820, 20));
+
+        sobreBtn1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        sobreBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        sobreBtn1.setText("Sobre");
+        sobreBtn1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 174, 0)));
+        sobreBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobreBtn1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sobreBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 520, 240, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -141,17 +153,21 @@ public class index extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_calendarioBtnActionPerformed
 
-    private void sobreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreBtnActionPerformed
-        new mainSobre();
-        sobre.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_sobreBtnActionPerformed
+    private void tarefasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefasBtnActionPerformed
+        
+    }//GEN-LAST:event_tarefasBtnActionPerformed
 
     private void timerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerBtnActionPerformed
         new mainTimer();
         timer.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_timerBtnActionPerformed
+
+    private void sobreBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreBtn1ActionPerformed
+        new mainSobre();
+        sobre.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_sobreBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +194,8 @@ public class index extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel mainTitle;
     private javax.swing.JButton notasBtn;
-    private javax.swing.JButton sobreBtn;
+    private javax.swing.JButton sobreBtn1;
+    private javax.swing.JButton tarefasBtn;
     private javax.swing.JButton timerBtn;
     // End of variables declaration//GEN-END:variables
 }

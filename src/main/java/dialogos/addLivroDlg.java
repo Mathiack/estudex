@@ -43,6 +43,7 @@ public class addLivroDlg extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel13 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         cancelarBtn = new javax.swing.JButton();
         inputNome = new javax.swing.JTextField();
@@ -58,8 +59,10 @@ public class addLivroDlg extends javax.swing.JFrame {
         inputDescricao = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         addLivroBtn = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+
+        jLabel13.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel13.setText("(opcional)");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -109,13 +112,9 @@ public class addLivroDlg extends javax.swing.JFrame {
         });
         getContentPane().add(addLivroBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 620, 90, -1));
 
-        jLabel8.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel8.setText("(opcional)");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
-
         jLabel9.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel9.setText("(opcional)");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, -1));
+        jLabel9.setText("(obrigatorio)");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -151,9 +150,6 @@ public class addLivroDlg extends javax.swing.JFrame {
 
             if (ano <= 0) {
                 anoStr = "Ano desconhecido"; // se não tiver ano, bota como desconhecido
-                return;
-            } else if (ano <= 0 || paginas <= 0) {
-                JOptionPane.showMessageDialog(this, "Ano e Páginas devem ser números positivos.", "Erro de validação", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -193,12 +189,12 @@ public class addLivroDlg extends javax.swing.JFrame {
     private javax.swing.JTextField inputNome;
     private javax.swing.JTextField inputPaginas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
