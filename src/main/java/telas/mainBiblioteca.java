@@ -5,8 +5,8 @@ import com.mycompany.estudex.index;
 import dialogos.addLivroDlg;
 import dialogos.editLivroDlg;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -17,12 +17,12 @@ import java.awt.event.WindowEvent;
 import javax.swing.AbstractAction;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
@@ -121,21 +121,27 @@ public class mainBiblioteca extends javax.swing.JFrame {
             painelCentral.removeAll();
             painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
 
-            JTextArea tituloArea = new JTextArea(livro.getString("nome"));
-            tituloArea.setFont(new Font("Arial", Font.BOLD, 20));
-            tituloArea.setLineWrap(true);
-            tituloArea.setWrapStyleWord(true);
-            tituloArea.setEditable(false);
-            tituloArea.setOpaque(false);
-            tituloArea.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-            tituloArea.setAlignmentX(Component.LEFT_ALIGNMENT);
-            painelCentral.add(tituloArea);
+            JLabel tituloLabel = new JLabel("<html><body style='width: 500px;'><p style='margin: 0;'><b>" + livro.getString("nome") + "</b></p></body></html>");
+            tituloLabel.setFont(new Font("Arial", Font.BOLD, 20));
+            tituloLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            tituloLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 4, 0));
+            tituloLabel.setOpaque(false);
+            tituloLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+            painelCentral.add(tituloLabel);
 
             nomeLabel("Por " + livro.getString("autor") + " - " + livro.getInt("ano"), Font.PLAIN, 16);
             nomeLabel(livro.getInt("paginas") + " páginas", Font.PLAIN, 16);
             nomeLabel(livro.getString("genero"), Font.PLAIN, 16);
-
-            JTextArea descricaoArea = new JTextArea("Descrição:\n" + livro.getString("descricao"));
+            
+            nomeLabel("", Font.PLAIN, 16); // esse é literalmente
+            nomeLabel("", Font.PLAIN, 16); // o jeito mais podre
+            nomeLabel("", Font.PLAIN, 16); // de deixa
+            nomeLabel("", Font.PLAIN, 16); // quebra de linha 
+            nomeLabel("", Font.PLAIN, 16); // no layout
+            
+            nomeLabel("Descrição:", Font.PLAIN, 16);
+            
+            JTextArea descricaoArea = new JTextArea(livro.getString("descricao"));
             descricaoArea.setFont(new Font("Arial", Font.PLAIN, 14));
             descricaoArea.setLineWrap(true);
             descricaoArea.setWrapStyleWord(true);
@@ -144,6 +150,12 @@ public class mainBiblioteca extends javax.swing.JFrame {
             descricaoArea.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
             descricaoArea.setAlignmentX(Component.LEFT_ALIGNMENT);
             painelCentral.add(descricaoArea);
+            
+            JScrollPane scrollDescricao = new JScrollPane(descricaoArea);
+            scrollDescricao.setPreferredSize(new Dimension(500, 200));
+            scrollDescricao.setAlignmentX(Component.LEFT_ALIGNMENT);
+            scrollDescricao.setBorder(BorderFactory.createEmptyBorder());
+            painelCentral.add(scrollDescricao);
 
             painelCentral.revalidate();
             painelCentral.repaint();
@@ -248,7 +260,7 @@ public class mainBiblioteca extends javax.swing.JFrame {
         getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
 
         painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 560, 640));
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 950, 640));
 
         jMenu2.setText("Livros");
 

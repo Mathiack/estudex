@@ -52,19 +52,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="bibliotecaBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="dc" green="dc" red="db" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Biblioteca"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
-              <Color PropertyName="color" blue="0" green="ae" red="ff" type="rgb"/>
-            </LineBorder>
-          </Border>
+          <Border info="null"/>
         </Property>
       </Properties>
       <Events>
@@ -72,25 +71,24 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="970" y="170" width="240" height="60"/>
+          <AbsoluteConstraints x="970" y="150" width="240" height="60"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="notasBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="dc" green="dc" red="db" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Notas"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
-              <Color PropertyName="color" blue="0" green="ae" red="ff" type="rgb"/>
-            </LineBorder>
-          </Border>
+          <Border info="null"/>
         </Property>
       </Properties>
       <Events>
@@ -98,25 +96,24 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="970" y="240" width="240" height="60"/>
+          <AbsoluteConstraints x="970" y="220" width="240" height="60"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="calendarioBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="dc" green="dc" red="db" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Calend&#xe1;rio"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
-              <Color PropertyName="color" blue="0" green="ae" red="ff" type="rgb"/>
-            </LineBorder>
-          </Border>
+          <Border info="null"/>
         </Property>
       </Properties>
       <Events>
@@ -124,25 +121,24 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="970" y="310" width="240" height="60"/>
+          <AbsoluteConstraints x="970" y="290" width="240" height="60"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="tarefasBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="dc" green="dc" red="db" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Tarefas"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
-              <Color PropertyName="color" blue="0" green="ae" red="ff" type="rgb"/>
-            </LineBorder>
-          </Border>
+          <Border info="null"/>
         </Property>
       </Properties>
       <Events>
@@ -150,25 +146,24 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="970" y="450" width="240" height="60"/>
+          <AbsoluteConstraints x="970" y="430" width="240" height="60"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JButton" name="timerBtn">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="dc" green="dc" red="db" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Timer"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
-              <Color PropertyName="color" blue="0" green="ae" red="ff" type="rgb"/>
-            </LineBorder>
-          </Border>
+          <Border info="null"/>
         </Property>
       </Properties>
       <Events>
@@ -176,7 +171,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="970" y="380" width="240" height="60"/>
+          <AbsoluteConstraints x="970" y="360" width="240" height="60"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -198,7 +193,7 @@
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="dc" green="dc" red="db" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Estudex &#xe9; seu app para focar nos estudos, marcar eventos importantes, registrar suas conquistas e sua evolu&#xe7;&#xe3;o"/>
       </Properties>
@@ -210,19 +205,18 @@
     </Component>
     <Component class="javax.swing.JButton" name="sobreBtn1">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+          <Color blue="dc" green="dc" red="db" type="rgb"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Sobre"/>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder>
-              <Color PropertyName="color" blue="0" green="ae" red="ff" type="rgb"/>
-            </LineBorder>
-          </Border>
+          <Border info="null"/>
         </Property>
       </Properties>
       <Events>
@@ -230,7 +224,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="970" y="520" width="240" height="60"/>
+          <AbsoluteConstraints x="970" y="500" width="240" height="60"/>
         </Constraint>
       </Constraints>
     </Component>

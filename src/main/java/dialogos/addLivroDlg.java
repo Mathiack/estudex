@@ -2,9 +2,6 @@ package dialogos;
 
 import classes.LivroListener;
 import classes.bibliotecaClass;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 public class addLivroDlg extends javax.swing.JFrame {
@@ -24,10 +21,9 @@ public class addLivroDlg extends javax.swing.JFrame {
         setSize(535, 694);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        // coisas do campo de descricao
+        // coisas do campo de descricao 
         inputDescricao.setLineWrap(true);
         inputDescricao.setWrapStyleWord(true);
-        inputDescricao = new javax.swing.JTextArea();
         inputDescricao.setColumns(20);
         inputDescricao.setRows(5);
         inputDescricao.setLineWrap(true);

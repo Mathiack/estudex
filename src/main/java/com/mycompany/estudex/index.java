@@ -52,79 +52,85 @@ public class index extends javax.swing.JFrame {
         mainTitle.setText("Estudex");
         getContentPane().add(mainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
 
+        bibliotecaBtn.setBackground(new java.awt.Color(51, 51, 51));
         bibliotecaBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        bibliotecaBtn.setForeground(new java.awt.Color(255, 255, 255));
+        bibliotecaBtn.setForeground(new java.awt.Color(219, 220, 220));
         bibliotecaBtn.setText("Biblioteca");
-        bibliotecaBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 174, 0)));
+        bibliotecaBtn.setBorder(null);
         bibliotecaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bibliotecaBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 170, 240, 60));
+        getContentPane().add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 150, 240, 60));
 
+        notasBtn.setBackground(new java.awt.Color(51, 51, 51));
         notasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        notasBtn.setForeground(new java.awt.Color(255, 255, 255));
+        notasBtn.setForeground(new java.awt.Color(219, 220, 220));
         notasBtn.setText("Notas");
-        notasBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 174, 0)));
+        notasBtn.setBorder(null);
         notasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 notasBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(notasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 240, 240, 60));
+        getContentPane().add(notasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 220, 240, 60));
 
+        calendarioBtn.setBackground(new java.awt.Color(51, 51, 51));
         calendarioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        calendarioBtn.setForeground(new java.awt.Color(255, 255, 255));
+        calendarioBtn.setForeground(new java.awt.Color(219, 220, 220));
         calendarioBtn.setText("Calendário");
-        calendarioBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 174, 0)));
+        calendarioBtn.setBorder(null);
         calendarioBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 calendarioBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(calendarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 310, 240, 60));
+        getContentPane().add(calendarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 290, 240, 60));
 
+        tarefasBtn.setBackground(new java.awt.Color(51, 51, 51));
         tarefasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tarefasBtn.setForeground(new java.awt.Color(255, 255, 255));
+        tarefasBtn.setForeground(new java.awt.Color(219, 220, 220));
         tarefasBtn.setText("Tarefas");
-        tarefasBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 174, 0)));
+        tarefasBtn.setBorder(null);
         tarefasBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tarefasBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(tarefasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 450, 240, 60));
+        getContentPane().add(tarefasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 430, 240, 60));
 
+        timerBtn.setBackground(new java.awt.Color(51, 51, 51));
         timerBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        timerBtn.setForeground(new java.awt.Color(255, 255, 255));
+        timerBtn.setForeground(new java.awt.Color(219, 220, 220));
         timerBtn.setText("Timer");
-        timerBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 174, 0)));
+        timerBtn.setBorder(null);
         timerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 timerBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(timerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 380, 240, 60));
+        getContentPane().add(timerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 360, 240, 60));
 
         jSeparator1.setForeground(new java.awt.Color(255, 174, 0));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 603, 10));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(219, 220, 220));
         jLabel1.setText("Estudex é seu app para focar nos estudos, marcar eventos importantes, registrar suas conquistas e sua evolução");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 820, 20));
 
+        sobreBtn1.setBackground(new java.awt.Color(51, 51, 51));
         sobreBtn1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        sobreBtn1.setForeground(new java.awt.Color(255, 255, 255));
+        sobreBtn1.setForeground(new java.awt.Color(219, 220, 220));
         sobreBtn1.setText("Sobre");
-        sobreBtn1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 174, 0)));
+        sobreBtn1.setBorder(null);
         sobreBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sobreBtn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(sobreBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 520, 240, 60));
+        getContentPane().add(sobreBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 500, 240, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
