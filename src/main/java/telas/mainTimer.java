@@ -1,6 +1,8 @@
 package telas;
 
-import dialogos.addLivroDlg;
+import dialogos.addCronometroLivreDlg;
+import dialogos.addPomodoroDlg;
+import dialogos.addTemporizadorDlg;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
@@ -31,7 +33,9 @@ public class mainTimer extends javax.swing.JFrame {
         painelCentral = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         addTimerMenuBtn = new javax.swing.JMenu();
-        addLivroBtn = new javax.swing.JMenuItem();
+        novoPomodoroMenuBtn = new javax.swing.JMenuItem();
+        cronLivreMenuBtn = new javax.swing.JMenuItem();
+        temporizadorMenuBtn = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -74,18 +78,38 @@ public class mainTimer extends javax.swing.JFrame {
         getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
 
         painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 1080, 640));
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 880, 520));
 
         addTimerMenuBtn.setText("Timer");
-
-        addLivroBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        addLivroBtn.setText("Adicionar");
-        addLivroBtn.addActionListener(new java.awt.event.ActionListener() {
+        addTimerMenuBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addLivroBtnActionPerformed(evt);
+                addTimerMenuBtnActionPerformed(evt);
             }
         });
-        addTimerMenuBtn.add(addLivroBtn);
+
+        novoPomodoroMenuBtn.setText("Novo Pomodoro");
+        novoPomodoroMenuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novoPomodoroMenuBtnActionPerformed(evt);
+            }
+        });
+        addTimerMenuBtn.add(novoPomodoroMenuBtn);
+
+        cronLivreMenuBtn.setText("Cronômetro Livre");
+        cronLivreMenuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cronLivreMenuBtnActionPerformed(evt);
+            }
+        });
+        addTimerMenuBtn.add(cronLivreMenuBtn);
+
+        temporizadorMenuBtn.setText("Temporizador");
+        temporizadorMenuBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                temporizadorMenuBtnActionPerformed(evt);
+            }
+        });
+        addTimerMenuBtn.add(temporizadorMenuBtn);
 
         jMenuBar1.add(addTimerMenuBtn);
 
@@ -95,10 +119,24 @@ public class mainTimer extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    addLivroDlg add = new addLivroDlg();
+    private void addTimerMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTimerMenuBtnActionPerformed
+        
+    }//GEN-LAST:event_addTimerMenuBtnActionPerformed
 
-    private void addLivroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLivroBtnActionPerformed
-    }//GEN-LAST:event_addLivroBtnActionPerformed
+    private void novoPomodoroMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoPomodoroMenuBtnActionPerformed
+        addPomodoroDlg pomodoroDlg = new addPomodoroDlg();
+        pomodoroDlg.setVisible(true);
+    }//GEN-LAST:event_novoPomodoroMenuBtnActionPerformed
+
+    private void cronLivreMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cronLivreMenuBtnActionPerformed
+        addCronometroLivreDlg cronLivreDlg = new addCronometroLivreDlg();
+        cronLivreDlg.setVisible(true);
+    }//GEN-LAST:event_cronLivreMenuBtnActionPerformed
+
+    private void temporizadorMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_temporizadorMenuBtnActionPerformed
+        addTemporizadorDlg temporizadorDlg = new addTemporizadorDlg();
+        temporizadorDlg.setVisible(true);
+    }//GEN-LAST:event_temporizadorMenuBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,14 +175,16 @@ public class mainTimer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem addLivroBtn;
     private javax.swing.JMenu addTimerMenuBtn;
     private javax.swing.JTable buttonList;
+    private javax.swing.JMenuItem cronLivreMenuBtn;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem novoPomodoroMenuBtn;
     private javax.swing.JPanel painelCentral;
     private javax.swing.JPanel painelLateral;
+    private javax.swing.JMenuItem temporizadorMenuBtn;
     // End of variables declaration//GEN-END:variables
 }
