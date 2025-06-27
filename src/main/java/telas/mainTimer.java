@@ -1,26 +1,17 @@
 package telas;
 
-import com.mycompany.estudex.index;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import dialogos.addLivroDlg;
 import javax.swing.JFrame;
+import javax.swing.JTextArea;
 
 public class mainTimer extends javax.swing.JFrame {
 
-    /**
-     * Creates new form mainBiblioteca
-     */
+    JTextArea descricaoArea;
+
     public mainTimer() {
         initComponents();
-        setTitle("Biblioteca");
+        setTitle("Timer");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        
-        addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                new index().setVisible(true);
-            }
-        });
     }
 
     /**
@@ -32,20 +23,82 @@ public class mainTimer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        painelLateral = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        buttonList = new javax.swing.JTable();
+        painelCentral = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        addTimerMenuBtn = new javax.swing.JMenu();
+        addLivroBtn = new javax.swing.JMenuItem();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1400, 800));
+        setMinimumSize(new java.awt.Dimension(1400, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 174, 0));
-        jLabel1.setText("Timer");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 282, 57));
+        buttonList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Title 1"
+            }
+        ));
+        jScrollPane1.setViewportView(buttonList);
+
+        javax.swing.GroupLayout painelLateralLayout = new javax.swing.GroupLayout(painelLateral);
+        painelLateral.setLayout(painelLateralLayout);
+        painelLateralLayout.setHorizontalGroup(
+            painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelLateralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        painelLateralLayout.setVerticalGroup(
+            painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelLateralLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
+
+        painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 1080, 640));
+
+        addTimerMenuBtn.setText("Timer");
+
+        addLivroBtn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        addLivroBtn.setText("Adicionar");
+        addLivroBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addLivroBtnActionPerformed(evt);
+            }
+        });
+        addTimerMenuBtn.add(addLivroBtn);
+
+        jMenuBar1.add(addTimerMenuBtn);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    addLivroDlg add = new addLivroDlg();
+
+    private void addLivroBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addLivroBtnActionPerformed
+    }//GEN-LAST:event_addLivroBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -84,6 +137,14 @@ public class mainTimer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem addLivroBtn;
+    private javax.swing.JMenu addTimerMenuBtn;
+    private javax.swing.JTable buttonList;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel painelCentral;
+    private javax.swing.JPanel painelLateral;
     // End of variables declaration//GEN-END:variables
 }
