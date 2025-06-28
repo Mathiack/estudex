@@ -1,18 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package dialogos;
 
-/**
- *
- * @author GUILHERMEMATHIACK
- */
 public class addCronometroLivreDlg extends javax.swing.JFrame {
 
-    /**
-     * Creates new form addCronometroLivreDlg
-     */
     public addCronometroLivreDlg() {
         initComponents();
         setTitle("Novo Cronômetro Livre");

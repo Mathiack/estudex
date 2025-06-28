@@ -1,23 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package dialogos;
 
-/**
- *
- * @author GUILHERMEMATHIACK
- */
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import telas.mainBiblioteca;
+import telas.mainTimer;
+
 public class addPomodoroDlg extends javax.swing.JFrame {
 
-    /**
-     * Creates new form addPomodoroDlg
-     */
-    public addPomodoroDlg() {
+    private mainTimer mainRef;
+
+    public addPomodoroDlg(mainTimer parent) {
+        this.mainRef = parent;
         initComponents();
-        setTitle("Adicionar Pomodoro");
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(293, 212);
+        setTitle("Novo Pomodoro");
+        setLocationRelativeTo(parent);
+
+        addPomodoroBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adicionarPomodoro();
+            }
+        });
     }
 
     /**
@@ -29,37 +33,61 @@ public class addPomodoroDlg extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pauseTimeTxtField = new javax.swing.JTextField();
-        actionTimeTxtField1 = new javax.swing.JTextField();
+        inputPausa = new javax.swing.JTextField();
+        inputAtivo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        cancelarBtn = new javax.swing.JButton();
+        addPomodoroBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        inputTituloPomodoro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(263, 216));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(pauseTimeTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
-        getContentPane().add(actionTimeTxtField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        getContentPane().add(inputPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 100, -1));
+        getContentPane().add(inputAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 100, -1));
 
         jLabel1.setText("Descanso");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
 
         jLabel2.setText("Tempo ativo");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        jButton1.setText("Cancelar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, -1, -1));
+        cancelarBtn.setText("Cancelar");
+        getContentPane().add(cancelarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
 
-        jButton2.setText("Adicionar");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        addPomodoroBtn.setText("Adicionar");
+        getContentPane().add(addPomodoroBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
-        jSeparator1.setForeground(new java.awt.Color(255, 174, 0));
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 10, 60));
+        jLabel3.setText("Nome do Pomodoro");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        getContentPane().add(inputTituloPomodoro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 220, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void adicionarPomodoro() {
+        String titulo = inputTituloPomodoro.getText().trim();
+        int atividade;
+        int descanso;
+
+        try {
+            atividade = Integer.parseInt(inputAtivo.getText().trim());
+            descanso = Integer.parseInt(inputPausa.getText().trim());
+            
+            if (titulo.isEmpty() || atividade <= 0 || descanso <= 0) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Preencha um título e duração válida (> 0).", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        mainRef.adicionarPomodoro(titulo, atividade, descanso);
+        dispose();
+    }
 
     /**
      * @param args the command line arguments
@@ -89,20 +117,21 @@ public class addPomodoroDlg extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new addPomodoroDlg().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            mainTimer dummyMain = new mainTimer(); // usado como referência
+            addPomodoroDlg dialog = new addPomodoroDlg(dummyMain);
+            dialog.setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField actionTimeTxtField1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addPomodoroBtn;
+    private javax.swing.JButton cancelarBtn;
+    private javax.swing.JTextField inputAtivo;
+    private javax.swing.JTextField inputPausa;
+    private javax.swing.JTextField inputTituloPomodoro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField pauseTimeTxtField;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

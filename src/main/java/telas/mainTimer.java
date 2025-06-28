@@ -3,17 +3,44 @@ package telas;
 import dialogos.addCronometroLivreDlg;
 import dialogos.addPomodoroDlg;
 import dialogos.addTemporizadorDlg;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import java.io.*;
+import javax.swing.table.DefaultTableModel;
 
 public class mainTimer extends javax.swing.JFrame {
 
-    JTextArea descricaoArea;
+    private DefaultTableModel tabelaModel;
+    private static final String JSON_PATH = "timer.json";
 
     public mainTimer() {
         initComponents();
         setTitle("Timer");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        tabelaModel = new DefaultTableModel(new Object[]{"Título"}, 0);
+        buttonList.setModel(tabelaModel);
+        //carregarTimersNaTabela();
+
+        //menu de contexto de botão direito
+        buttonList.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int row = buttonList.getSelectedRow();
+                if (SwingUtilities.isLeftMouseButton(e) && row != -1) {
+
+                } else if (SwingUtilities.isRightMouseButton(e) && row != -1) {
+                    mostrarMenuContexto(e, row);
+                }
+            }
+        });
     }
 
     /**
@@ -120,12 +147,12 @@ public class mainTimer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addTimerMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTimerMenuBtnActionPerformed
-        
+
     }//GEN-LAST:event_addTimerMenuBtnActionPerformed
 
     private void novoPomodoroMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoPomodoroMenuBtnActionPerformed
-        addPomodoroDlg pomodoroDlg = new addPomodoroDlg();
-        pomodoroDlg.setVisible(true);
+        addPomodoroDlg addPomodoroDlg = new addPomodoroDlg(this);
+        addPomodoroDlg.setVisible(true);
     }//GEN-LAST:event_novoPomodoroMenuBtnActionPerformed
 
     private void cronLivreMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cronLivreMenuBtnActionPerformed
@@ -137,6 +164,80 @@ public class mainTimer extends javax.swing.JFrame {
         addTemporizadorDlg temporizadorDlg = new addTemporizadorDlg();
         temporizadorDlg.setVisible(true);
     }//GEN-LAST:event_temporizadorMenuBtnActionPerformed
+
+    // coisas do pomodoro
+    public void adicionarPomodoro(String titulo, int trabalhoMin, int descansoMin) {
+        JSONObject obj = new JSONObject();
+        obj.put("titulo", titulo);
+        obj.put("tipo", "pomodoro");
+        obj.put("trabalho", trabalhoMin);
+        obj.put("descanso", descansoMin);
+
+        tabelaModel.addRow(new Object[]{
+            titulo,
+            "Pomodoro",
+            trabalhoMin + " / " + descansoMin + " min"
+        });
+
+        salvarTimer(obj);
+    }
+
+    // salva no JSON
+    private void salvarTimer(JSONObject timer) {
+        JSONArray lista = carregarTimersJson();
+        lista.put(timer);
+
+        try (FileWriter file = new FileWriter(JSON_PATH)) {
+            file.write(lista.toString(4));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private JSONArray carregarTimersJson() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(JSON_PATH))) {
+            StringBuilder content = new StringBuilder();
+            String linha;
+            while ((linha = reader.readLine()) != null) {
+                content.append(linha);
+            }
+            return new JSONArray(content.toString());
+        } catch (IOException e) {
+            return new JSONArray(); // novo arquivo se não existir
+        }
+    }
+
+    // bota na tabela
+    private void carregarTimersSalvos() {
+        JSONArray lista = carregarTimersJson();
+        for (int i = 0; i < lista.length(); i++) {
+            JSONObject obj = lista.getJSONObject(i);
+            String titulo = obj.getString("titulo");
+            String tipo = obj.getString("tipo");
+
+            if (tipo.equals("pomodoro")) {
+                int trabalho = obj.getInt("trabalho");
+                int descanso = obj.getInt("descanso");
+                tabelaModel.addRow(new Object[]{titulo, "Pomodoro", trabalho + " / " + descanso + " min"});
+            } else {
+                // futuros tipos
+            }
+        }
+    }
+    
+    private void mostrarMenuContexto(MouseEvent e, int row) {
+        JPopupMenu menu = new JPopupMenu();
+
+        JMenuItem editar = new JMenuItem("Editar");
+        //editar.addActionListener(ae -> editarLivro(row));
+        menu.add(editar);
+
+        JMenuItem excluir = new JMenuItem("Excluir");
+        //excluir.addActionListener(ae -> excluirLivro(row));
+        menu.add(excluir);
+
+        menu.show(e.getComponent(), e.getX(), e.getY());
+    }
 
     /**
      * @param args the command line arguments

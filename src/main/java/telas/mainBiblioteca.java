@@ -22,7 +22,6 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -34,8 +33,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class mainBiblioteca extends javax.swing.JFrame {
-
-    JTextArea descricaoArea;
 
     public mainBiblioteca() {
         initComponents();
@@ -79,8 +76,11 @@ public class mainBiblioteca extends javax.swing.JFrame {
             }
         });
 
+        //carrega a tabela dos livros (não acredito que estou tendo que escrever isso, pois
+        //provavelmente alguém não saberia o que isso faz... nunca sobre nada pro beta)
         carregarTabelaLivros();
 
+        //menu de contexto de botão direito
         buttonList.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
