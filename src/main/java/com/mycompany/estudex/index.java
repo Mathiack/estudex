@@ -1,23 +1,65 @@
 package com.mycompany.estudex;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import telas.mainBiblioteca;
-import telas.mainCalendario;
-import telas.mainNotas;
-import telas.mainSobre;
-import telas.mainTimer;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Random;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class index extends javax.swing.JFrame {
 
-    /**
-     * Creates new form index
-     */
+    private JLabel fraseLabel;
+
     public index() {
         initComponents();
-        setTitle("Estudex");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setSize(1050, 650);
         setVisible(true);
-        setSize(1280 , 720);
         setLocationRelativeTo(null);
+
+        JLabel fraseLabel = new JLabel("<html>“”<br><i>— Autor</i></html>", SwingConstants.CENTER);
+        fraseLabel.setFont(new Font("Serif", Font.PLAIN, 16));
+        fraseLabel.setForeground(new Color(30, 60, 90));
+
+        // Define um layout que aceita centralização
+        frasePanel.setLayout(new BorderLayout());
+        frasePanel.add(fraseLabel, BorderLayout.CENTER);
+
+        setVisible(true);
+    }
+
+    private JSONObject obterFraseAleatoria() {
+        try {
+            String jsonText = Files.readString(Path.of("data/frases.json"));
+            JSONObject jsonObj = new JSONObject(jsonText);
+            JSONArray frases = jsonObj.getJSONArray("frases");
+
+            int indice = new Random().nextInt(frases.length());
+            return frases.getJSONObject(indice);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new JSONObject()
+                    .put("texto", "Erro ao carregar frases.")
+                    .put("autor", "Sistema");
+        }
+    }
+
+    private String formatarFrase(JSONObject fraseObj) {
+        String texto = fraseObj.getString("texto");
+        String autor = fraseObj.getString("autor");
+
+        return "<html><div style='text-align:center'>"
+                + "“" + texto + "”<br><br>"
+                + "<i>— " + autor + "</i></div></html>";
     }
 
     /**
@@ -29,149 +71,41 @@ public class index extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainTitle = new javax.swing.JLabel();
-        bibliotecaBtn = new javax.swing.JButton();
-        notasBtn = new javax.swing.JButton();
-        calendarioBtn = new javax.swing.JButton();
-        tarefasBtn = new javax.swing.JButton();
-        timerBtn = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        sobreBtn1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        frasePanel = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 174, 0));
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setSize(new java.awt.Dimension(1400, 800));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(48, 52, 63));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        mainTitle.setFont(new java.awt.Font("Segoe UI", 1, 70)); // NOI18N
-        mainTitle.setForeground(new java.awt.Color(255, 174, 0));
-        mainTitle.setText("Estudex");
-        getContentPane().add(mainTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 270, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(105, 122, 33));
+        jLabel1.setText("Estudex");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 40));
 
-        bibliotecaBtn.setBackground(new java.awt.Color(51, 51, 51));
-        bibliotecaBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        bibliotecaBtn.setForeground(new java.awt.Color(219, 220, 220));
-        bibliotecaBtn.setText("Biblioteca");
-        bibliotecaBtn.setBorder(null);
-        bibliotecaBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bibliotecaBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 150, 240, 60));
+        jSeparator1.setForeground(new java.awt.Color(105, 122, 33));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 470, 40));
 
-        notasBtn.setBackground(new java.awt.Color(51, 51, 51));
-        notasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        notasBtn.setForeground(new java.awt.Color(219, 220, 220));
-        notasBtn.setText("Notas");
-        notasBtn.setBorder(null);
-        notasBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                notasBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(notasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 220, 240, 60));
+        javax.swing.GroupLayout frasePanelLayout = new javax.swing.GroupLayout(frasePanel);
+        frasePanel.setLayout(frasePanelLayout);
+        frasePanelLayout.setHorizontalGroup(
+            frasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1030, Short.MAX_VALUE)
+        );
+        frasePanelLayout.setVerticalGroup(
+            frasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 210, Short.MAX_VALUE)
+        );
 
-        calendarioBtn.setBackground(new java.awt.Color(51, 51, 51));
-        calendarioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        calendarioBtn.setForeground(new java.awt.Color(219, 220, 220));
-        calendarioBtn.setText("Calendário");
-        calendarioBtn.setBorder(null);
-        calendarioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calendarioBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(calendarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 290, 240, 60));
-
-        tarefasBtn.setBackground(new java.awt.Color(51, 51, 51));
-        tarefasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tarefasBtn.setForeground(new java.awt.Color(219, 220, 220));
-        tarefasBtn.setText("Tarefas");
-        tarefasBtn.setBorder(null);
-        tarefasBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tarefasBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tarefasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 430, 240, 60));
-
-        timerBtn.setBackground(new java.awt.Color(51, 51, 51));
-        timerBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        timerBtn.setForeground(new java.awt.Color(219, 220, 220));
-        timerBtn.setText("Timer");
-        timerBtn.setBorder(null);
-        timerBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                timerBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(timerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 360, 240, 60));
-
-        jSeparator1.setForeground(new java.awt.Color(255, 174, 0));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 603, 10));
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(219, 220, 220));
-        jLabel1.setText("Estudex é seu app para focar nos estudos, marcar eventos importantes, registrar suas conquistas e sua evolução");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 820, 20));
-
-        sobreBtn1.setBackground(new java.awt.Color(51, 51, 51));
-        sobreBtn1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        sobreBtn1.setForeground(new java.awt.Color(219, 220, 220));
-        sobreBtn1.setText("Sobre");
-        sobreBtn1.setBorder(null);
-        sobreBtn1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sobreBtn1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(sobreBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 500, 240, 60));
+        getContentPane().add(frasePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 1030, 210));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    mainBiblioteca biblioteca = new mainBiblioteca();
-    mainNotas notas = new mainNotas();
-    mainTimer timer = new mainTimer();
-    mainCalendario calendario = new mainCalendario();
-    mainSobre sobre = new mainSobre();
-    
-    private void bibliotecaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaBtnActionPerformed
-        new mainBiblioteca();
-        biblioteca.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_bibliotecaBtnActionPerformed
+    public void mostrarFraseMotivacionalQueVaiFazerOCaraVirarODavidGoggins() {
 
-    private void notasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notasBtnActionPerformed
-        new mainNotas();
-        notas.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_notasBtnActionPerformed
-
-    private void calendarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calendarioBtnActionPerformed
-        new mainCalendario();
-        calendario.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_calendarioBtnActionPerformed
-
-    private void tarefasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefasBtnActionPerformed
-        
-    }//GEN-LAST:event_tarefasBtnActionPerformed
-
-    private void timerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerBtnActionPerformed
-        new mainTimer();
-        timer.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_timerBtnActionPerformed
-
-    private void sobreBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreBtn1ActionPerformed
-        new mainSobre();
-        sobre.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_sobreBtn1ActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -182,24 +116,13 @@ public class index extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.err.println("Falha ao inicializar o FlatLaf");
         }
-        
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new index().setVisible(true);
-            }
-        });
+
+        SwingUtilities.invokeLater(index::new);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bibliotecaBtn;
-    private javax.swing.JButton calendarioBtn;
+    private javax.swing.JPanel frasePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JLabel mainTitle;
-    private javax.swing.JButton notasBtn;
-    private javax.swing.JButton sobreBtn1;
-    private javax.swing.JButton tarefasBtn;
-    private javax.swing.JButton timerBtn;
     // End of variables declaration//GEN-END:variables
 }

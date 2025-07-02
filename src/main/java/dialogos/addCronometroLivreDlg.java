@@ -6,6 +6,7 @@ public class addCronometroLivreDlg extends javax.swing.JFrame {
         initComponents();
         setTitle("Novo Cronômetro Livre");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setResizable(false);
     }
 
     /**

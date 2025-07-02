@@ -1,33 +1,49 @@
 package telas;
 
+import com.mycompany.estudex.mainIndex;
 import dialogos.addCronometroLivreDlg;
 import dialogos.addPomodoroDlg;
 import dialogos.addTemporizadorDlg;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
-import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.*;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 
 public class mainTimer extends javax.swing.JFrame {
 
     private DefaultTableModel tabelaModel;
-    private static final String JSON_PATH = "timer.json";
+    private static final String JSON_PATH = "data/timer.json";
 
     public mainTimer() {
         initComponents();
         setTitle("Timer");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        setResizable(false);
 
         tabelaModel = new DefaultTableModel(new Object[]{"Título"}, 0);
         buttonList.setModel(tabelaModel);
         //carregarTimersNaTabela();
+
+        //quando fechar a janela, volta para o mainIndex
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                new mainIndex().setVisible(true);
+            }
+        });
 
         //menu de contexto de botão direito
         buttonList.addMouseListener(new MouseAdapter() {
@@ -41,6 +57,58 @@ public class mainTimer extends javax.swing.JFrame {
                 }
             }
         });
+
+        tabelaModel = new DefaultTableModel(new Object[]{"Título", "Tipo", "Duração"}, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // impede edição em todas as células
+            }
+        };
+
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "recarregarTabela");
+
+        getRootPane().getActionMap().put("recarregarTabela", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                atualizarTabelaTimers();
+            }
+        });
+
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("alt P"), "abrirPomodoro");
+
+        getRootPane().getActionMap().put("abrirPomodoro", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addPomodoroDlg dlgPomodoro = new addPomodoroDlg(mainTimer.this);
+                dlgPomodoro.setVisible(true);
+            }
+        });
+
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("alt T"), "abrirTemporizador");
+
+        getRootPane().getActionMap().put("abrirTemporizador", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addTemporizadorDlg dlgTemporizador = new addTemporizadorDlg();
+                dlgTemporizador.setVisible(true);
+            }
+        });
+
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
+                .put(KeyStroke.getKeyStroke("alt C"), "abrirCronometro");
+
+        getRootPane().getActionMap().put("abrirCronometro", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addCronometroLivreDlg dlgCronometro = new addCronometroLivreDlg();
+                dlgCronometro.setVisible(true);
+            }
+        });
+
+        atualizarTabelaTimers(); //atualiza a tabela quando entra
     }
 
     /**
@@ -68,7 +136,7 @@ public class mainTimer extends javax.swing.JFrame {
 
         jMenuItem2.setText("jMenuItem2");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1400, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -108,11 +176,6 @@ public class mainTimer extends javax.swing.JFrame {
         getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 880, 520));
 
         addTimerMenuBtn.setText("Timer");
-        addTimerMenuBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addTimerMenuBtnActionPerformed(evt);
-            }
-        });
 
         novoPomodoroMenuBtn.setText("Novo Pomodoro");
         novoPomodoroMenuBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -145,10 +208,6 @@ public class mainTimer extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void addTimerMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTimerMenuBtnActionPerformed
-
-    }//GEN-LAST:event_addTimerMenuBtnActionPerformed
 
     private void novoPomodoroMenuBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoPomodoroMenuBtnActionPerformed
         addPomodoroDlg addPomodoroDlg = new addPomodoroDlg(this);
@@ -220,11 +279,16 @@ public class mainTimer extends javax.swing.JFrame {
                 int descanso = obj.getInt("descanso");
                 tabelaModel.addRow(new Object[]{titulo, "Pomodoro", trabalho + " / " + descanso + " min"});
             } else {
-                // futuros tipos
+
             }
         }
     }
-    
+
+    public void atualizarTabelaTimers() {
+        tabelaModel.setRowCount(0); // limpa a tabela
+        carregarTimersSalvos();     // recarrega do JSON
+    }
+
     private void mostrarMenuContexto(MouseEvent e, int row) {
         JPopupMenu menu = new JPopupMenu();
 

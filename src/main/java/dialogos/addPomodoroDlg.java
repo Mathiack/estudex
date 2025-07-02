@@ -14,14 +14,9 @@ public class addPomodoroDlg extends javax.swing.JFrame {
         this.mainRef = parent;
         initComponents();
         setTitle("Novo Pomodoro");
+        setSize(300, 250);
         setLocationRelativeTo(parent);
-
-        addPomodoroBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                adicionarPomodoro();
-            }
-        });
+        setResizable(false);
     }
 
     /**
@@ -37,36 +32,55 @@ public class addPomodoroDlg extends javax.swing.JFrame {
         inputAtivo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cancelarBtn = new javax.swing.JButton();
-        addPomodoroBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         inputTituloPomodoro = new javax.swing.JTextField();
+        cancelBtn = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(263, 216));
+        setPreferredSize(new java.awt.Dimension(300, 250));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(inputPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 100, 100, -1));
-        getContentPane().add(inputAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 100, -1));
+        getContentPane().add(inputPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 100, -1));
+        getContentPane().add(inputAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 100, -1));
 
         jLabel1.setText("Descanso");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
 
         jLabel2.setText("Tempo ativo");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
-
-        cancelarBtn.setText("Cancelar");
-        getContentPane().add(cancelarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, -1, -1));
-
-        addPomodoroBtn.setText("Adicionar");
-        getContentPane().add(addPomodoroBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jLabel3.setText("Nome do Pomodoro");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-        getContentPane().add(inputTituloPomodoro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 220, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        getContentPane().add(inputTituloPomodoro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 220, -1));
+
+        cancelBtn.setText("Cancelar");
+        cancelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 90, -1));
+
+        addButton.setText("Adicionar");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 90, -1));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        adicionarPomodoro();
+        mainRef.atualizarTabelaTimers();
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void cancelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void adicionarPomodoro() {
         String titulo = inputTituloPomodoro.getText().trim();
@@ -125,8 +139,8 @@ public class addPomodoroDlg extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addPomodoroBtn;
-    private javax.swing.JButton cancelarBtn;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton cancelBtn;
     private javax.swing.JTextField inputAtivo;
     private javax.swing.JTextField inputPausa;
     private javax.swing.JTextField inputTituloPomodoro;

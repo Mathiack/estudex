@@ -11,7 +11,7 @@ import java.awt.event.*;
 
 public class bibliotecaClass {
 
-    static final String FILE_PATH = "livros.json";
+    static final String FILE_PATH = "data/livros.json";
     static JSONArray livrosArray = new JSONArray();
     static JSONArray livrosArrayLocal = new JSONArray();
 

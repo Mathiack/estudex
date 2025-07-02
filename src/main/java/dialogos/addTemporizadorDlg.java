@@ -6,6 +6,7 @@ public class addTemporizadorDlg extends javax.swing.JFrame {
         initComponents();
         setTitle("Novo Temporizador");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setResizable(false);
     }
 
     /**

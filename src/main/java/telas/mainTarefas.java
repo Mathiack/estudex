@@ -1,6 +1,6 @@
 package telas;
 
-import com.mycompany.estudex.index;
+import com.mycompany.estudex.mainIndex;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -12,11 +12,12 @@ public class mainTarefas extends javax.swing.JFrame {
         initComponents();
         setTitle("Biblioteca");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setResizable(false);
         
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                new index().setVisible(true);
+                new mainIndex().setVisible(true);
             }
         });
     }

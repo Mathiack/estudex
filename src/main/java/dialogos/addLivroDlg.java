@@ -20,6 +20,7 @@ public class addLivroDlg extends javax.swing.JFrame {
         setTitle("Adicionar Livro");
         setSize(535, 694);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         // coisas do campo de descricao 
         inputDescricao.setLineWrap(true);

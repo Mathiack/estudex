@@ -2,9 +2,6 @@ package dialogos;
 
 import classes.LivroListener;
 import classes.bibliotecaClass;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import org.json.JSONObject;
 
 public class editLivroDlg extends javax.swing.JFrame {
@@ -25,6 +22,7 @@ public class editLivroDlg extends javax.swing.JFrame {
         setTitle("Editar Livro");
         setSize(535, 694);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         // Preenche os campos:
         inputNome.setText(livro.optString("nome", ""));
