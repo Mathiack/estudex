@@ -16,8 +16,6 @@ import org.json.JSONObject;
 
 public class index extends javax.swing.JFrame {
 
-    private JLabel fraseLabel;
-
     public index() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -25,9 +23,9 @@ public class index extends javax.swing.JFrame {
         setVisible(true);
         setLocationRelativeTo(null);
 
-        JLabel fraseLabel = new JLabel("<html>“”<br><i>— Autor</i></html>", SwingConstants.CENTER);
+        JLabel fraseLabel = new JLabel(formatarFrase(mostrarFraseMotivacionalQueVaiFazerOCaraVirarODavidGoggins()), SwingConstants.CENTER);
         fraseLabel.setFont(new Font("Serif", Font.PLAIN, 16));
-        fraseLabel.setForeground(new Color(30, 60, 90));
+        fraseLabel.setForeground(new Color(255, 255, 255));
 
         // Define um layout que aceita centralização
         frasePanel.setLayout(new BorderLayout());
@@ -36,7 +34,7 @@ public class index extends javax.swing.JFrame {
         setVisible(true);
     }
 
-    private JSONObject obterFraseAleatoria() {
+    private JSONObject mostrarFraseMotivacionalQueVaiFazerOCaraVirarODavidGoggins() {
         try {
             String jsonText = Files.readString(Path.of("data/frases.json"));
             JSONObject jsonObj = new JSONObject(jsonText);
@@ -56,10 +54,7 @@ public class index extends javax.swing.JFrame {
     private String formatarFrase(JSONObject fraseObj) {
         String texto = fraseObj.getString("texto");
         String autor = fraseObj.getString("autor");
-
-        return "<html><div style='text-align:center'>"
-                + "“" + texto + "”<br><br>"
-                + "<i>— " + autor + "</i></div></html>";
+        return "<html><div style='text-align:center'>“" + texto + "”<br><br><i>— " + autor + "</i></div></html>";
     }
 
     /**
@@ -74,6 +69,7 @@ public class index extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         frasePanel = new javax.swing.JPanel();
+        bibliotecaBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(48, 52, 63));
@@ -100,12 +96,11 @@ public class index extends javax.swing.JFrame {
 
         getContentPane().add(frasePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 1030, 210));
 
+        bibliotecaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/biblioteca.png"))); // NOI18N
+        getContentPane().add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 70, 70));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    public void mostrarFraseMotivacionalQueVaiFazerOCaraVirarODavidGoggins() {
-
-    }
 
     /**
      * @param args the command line arguments
@@ -121,6 +116,7 @@ public class index extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bibliotecaBtn;
     private javax.swing.JPanel frasePanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;

@@ -1,9 +1,124 @@
 {
   "frases": [
-    { "texto": "Acredite em você e tudo será possível.", "autor": "Desconhecido" },
-    { "texto": "Cada passo te aproxima do seu objetivo.", "autor": "Napoleon Hill" },
-    { "texto": "Persista, insista e não desista!", "autor": "Confúcio" },
-    { "texto": "O sucesso é uma jornada, não um destino.", "autor": "Ben Sweetland" },
-    { "texto": "Você é mais forte do que imagina.", "autor": "Og Mandino" }
+    {
+      "texto": "Sofrimento é o verdadeiro teste da vida.",
+      "autor": "David Goggins"
+    },
+    {
+      "texto": "Se você quer ser alguém diferente, tem que fazer algo diferente.",
+      "autor": "David Goggins"
+    },
+    {
+      "texto": "A mente é seu campo de batalha. Controle-a, ou será controlado.",
+      "autor": "David Goggins"
+    },
+    {
+      "texto": "Não reclame do resultado que você não teve pelo esforço que não fez.",
+      "autor": "Desconhecido"
+    },
+    {
+      "texto": "Você tem poder sobre sua mente — não sobre eventos externos. Perceba isso, e encontrará força.",
+      "autor": "Marco Aurélio"
+    },
+    {
+      "texto": "Não é o que acontece com você, mas como você reage, que importa.",
+      "autor": "Epicteto"
+    },
+    {
+      "texto": "A sorte é o que acontece quando a preparação encontra a oportunidade.",
+      "autor": "Sêneca"
+    },
+    {
+      "texto": "O sucesso é ir de fracasso em fracasso sem perder o entusiasmo.",
+      "autor": "Winston Churchill"
+    },
+    {
+      "texto": "As dificuldades preparam pessoas comuns para destinos extraordinários.",
+      "autor": "C.S. Lewis"
+    },
+    {
+      "texto": "Você nunca sabe a força que tem até que sua única alternativa é ser forte.",
+      "autor": "Johnny Depp"
+    },
+    {
+      "texto": "A disciplina é a ponte entre metas e realizações.",
+      "autor": "Jim Rohn"
+    },
+    {
+      "texto": "Quando tudo parecer estar contra você, lembre-se que o avião decola contra o vento, não a favor dele.",
+      "autor": "Henry Ford"
+    },
+    {
+      "texto": "Torne-se a versão mais difícil de matar de si mesmo.",
+      "autor": "Jocko Willink"
+    },
+    {
+      "texto": "A ação é a chave fundamental para todo sucesso.",
+      "autor": "Pablo Picasso"
+    },
+    {
+      "texto": "Não deseje que seja mais fácil, deseje que você seja melhor.",
+      "autor": "Jim Rohn"
+    },
+    {
+      "texto": "Seja tão bom que eles não possam te ignorar.",
+      "autor": "Steve Martin"
+    },
+    {
+      "texto": "O verdadeiro valor de um homem é medido pela quantidade de verdade que ele é capaz de suportar.",
+      "autor": "Friedrich Nietzsche"
+    },
+    {
+      "texto": "Treine até que sua mente não aceite outra opção que não a vitória.",
+      "autor": "Desconhecido"
+    },
+    {
+      "texto": "A dor é temporária. Desistir dura para sempre.",
+      "autor": "Lance Armstrong"
+    },
+    {
+      "texto": "A vida se encolhe ou se expande proporcionalmente à coragem do indivíduo.",
+      "autor": "Anaïs Nin"
+    },
+    {
+      "texto": "Se você sabe o que vale, então vá atrás do que merece, mas esteja disposto a apanhar.",
+      "autor": "Rocky Balboa"
+    },
+    {
+      "texto": "Todo homem que se supera está travando uma guerra contra si mesmo.",
+      "autor": "Desconhecido"
+    },
+    {
+      "texto": "Não espere motivação. Comece com disciplina.",
+      "autor": "Desconhecido"
+    },
+    {
+      "texto": "Não existe crescimento no conforto.",
+      "autor": "Greg Plitt"
+    },
+    {
+      "texto": "Você não pode parar quando está cansado. Você para quando terminou.",
+      "autor": "David Goggins"
+    },
+    {
+      "texto": "Não há nada nobre em ser superior a outro homem. A verdadeira nobreza está em ser superior a seu antigo eu.",
+      "autor": "Ernest Hemingway"
+    },
+    {
+      "texto": "A felicidade da sua vida depende da qualidade dos seus pensamentos.",
+      "autor": "Marco Aurélio"
+    },
+    {
+      "texto": "Aquele que tem um porquê para viver pode suportar quase qualquer como.",
+      "autor": "Friedrich Nietzsche"
+    },
+    {
+      "texto": "A única coisa que está entre você e seu objetivo é a história que você continua contando a si mesmo.",
+      "autor": "Jordan Belfort"
+    },
+    {
+      "texto": "Faça o que precisa ser feito, mesmo quando não tiver vontade.",
+      "autor": "Desconhecido"
+    }
   ]
 }
