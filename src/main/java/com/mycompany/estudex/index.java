@@ -30,8 +30,6 @@ public class index extends javax.swing.JFrame {
         // Define um layout que aceita centralização
         frasePanel.setLayout(new BorderLayout());
         frasePanel.add(fraseLabel, BorderLayout.CENTER);
-
-        setVisible(true);
     }
 
     private JSONObject mostrarFraseMotivacionalQueVaiFazerOCaraVirarODavidGoggins() {
@@ -66,38 +64,58 @@ public class index extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
         frasePanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        bibliotecaBtn1 = new javax.swing.JButton();
+        bibliotecaBtn4 = new javax.swing.JButton();
         bibliotecaBtn = new javax.swing.JButton();
+        bibliotecaBtn5 = new javax.swing.JButton();
+        bibliotecaBtn3 = new javax.swing.JButton();
+        bibliotecaBtn6 = new javax.swing.JButton();
+        bibliotecaBtn9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setBackground(new java.awt.Color(48, 52, 63));
+        setBackground(new java.awt.Color(27, 32, 33));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(105, 122, 33));
-        jLabel1.setText("Estudex");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 280, 40));
-
-        jSeparator1.setForeground(new java.awt.Color(105, 122, 33));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 470, 40));
 
         javax.swing.GroupLayout frasePanelLayout = new javax.swing.GroupLayout(frasePanel);
         frasePanel.setLayout(frasePanelLayout);
         frasePanelLayout.setHorizontalGroup(
             frasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1030, Short.MAX_VALUE)
+            .addGap(0, 960, Short.MAX_VALUE)
         );
         frasePanelLayout.setVerticalGroup(
             frasePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 210, Short.MAX_VALUE)
         );
 
-        getContentPane().add(frasePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 1030, 210));
+        getContentPane().add(frasePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 960, 210));
 
-        bibliotecaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/biblioteca.png"))); // NOI18N
-        getContentPane().add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 70, 70));
+        jPanel1.setForeground(new java.awt.Color(48, 52, 63));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        bibliotecaBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/timer.png"))); // NOI18N
+        jPanel1.add(bibliotecaBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 60, 60));
+
+        bibliotecaBtn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/documento.png"))); // NOI18N
+        jPanel1.add(bibliotecaBtn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 60, 60));
+
+        bibliotecaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lista.png"))); // NOI18N
+        jPanel1.add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 60, 60));
+
+        bibliotecaBtn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
+        jPanel1.add(bibliotecaBtn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 60, 60));
+
+        bibliotecaBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/notas.png"))); // NOI18N
+        jPanel1.add(bibliotecaBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 60, 60));
+
+        bibliotecaBtn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
+        jPanel1.add(bibliotecaBtn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 60));
+
+        bibliotecaBtn9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/biblioteca.png"))); // NOI18N
+        jPanel1.add(bibliotecaBtn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 60, 60));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 650));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -117,8 +135,13 @@ public class index extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bibliotecaBtn;
+    private javax.swing.JButton bibliotecaBtn1;
+    private javax.swing.JButton bibliotecaBtn3;
+    private javax.swing.JButton bibliotecaBtn4;
+    private javax.swing.JButton bibliotecaBtn5;
+    private javax.swing.JButton bibliotecaBtn6;
+    private javax.swing.JButton bibliotecaBtn9;
     private javax.swing.JPanel frasePanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
