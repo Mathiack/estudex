@@ -1,5 +1,6 @@
 package telas;
 
+import com.mycompany.estudex.index;
 import com.mycompany.estudex.mainIndex;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -14,10 +15,11 @@ public class mainTarefas extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setResizable(false);
         
+        //quando fechar a janela, volta para o index
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                new mainIndex().setVisible(true);
+                new index().setVisible(true);
             }
         });
     }

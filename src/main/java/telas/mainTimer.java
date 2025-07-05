@@ -1,5 +1,6 @@
 package telas;
 
+import com.mycompany.estudex.index;
 import com.mycompany.estudex.mainIndex;
 import dialogos.addCronometroLivreDlg;
 import dialogos.addPomodoroDlg;
@@ -37,11 +38,11 @@ public class mainTimer extends javax.swing.JFrame {
         buttonList.setModel(tabelaModel);
         //carregarTimersNaTabela();
 
-        //quando fechar a janela, volta para o mainIndex
+        //quando fechar a janela, volta para o index
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                new mainIndex().setVisible(true);
+                new index().setVisible(true);
             }
         });
 

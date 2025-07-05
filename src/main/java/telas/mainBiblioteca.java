@@ -1,6 +1,7 @@
 package telas;
 
 import classes.bibliotecaClass;
+import com.mycompany.estudex.index;
 import com.mycompany.estudex.mainIndex;
 import dialogos.addLivroDlg;
 import dialogos.editLivroDlg;
@@ -49,11 +50,11 @@ public class mainBiblioteca extends javax.swing.JFrame {
             }
         });
 
-        //quando fechar a janela, volta para o mainIndex
+        //quando fechar a janela, volta para o index
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                new mainIndex().setVisible(true);
+                new index().setVisible(true);
             }
         });
 

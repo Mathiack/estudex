@@ -8,18 +8,26 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Random;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import telas.mainBiblioteca;
+import telas.mainCalendario;
+import telas.mainDocumento;
+import telas.mainNotas;
+import telas.mainSobre;
+import telas.mainTarefas;
+import telas.mainTimer;
 
 public class index extends javax.swing.JFrame {
 
     public index() {
         initComponents();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(1050, 650);
+        setSize(1050, 690);
         setVisible(true);
         setLocationRelativeTo(null);
 
@@ -30,6 +38,34 @@ public class index extends javax.swing.JFrame {
         // Define um layout que aceita centralização
         frasePanel.setLayout(new BorderLayout());
         frasePanel.add(fraseLabel, BorderLayout.CENTER);
+        
+        //icones do botão
+        // slk agradecimentos ao flarom (ta nos contribuidores do projeto)
+        // por ter me ajudado com essa técnica milenar 
+        
+        homeBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24));
+        homeBtn.setText("\ue80f");
+        
+        bibliotecaBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24));
+        bibliotecaBtn.setText("\ue8f1");
+        
+        timerBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        timerBtn.setText("\ue823");
+        
+        notasBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        notasBtn.setText("\ue70b");
+        
+        tarefasBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        tarefasBtn.setText("\ue71d");
+        
+        calendarBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        calendarBtn.setText("\ue787");
+        
+        documentsBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        documentsBtn.setText("\ue7c3");
+        
+        sobreBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        sobreBtn.setText("\ue946");
     }
 
     private JSONObject mostrarFraseMotivacionalQueVaiFazerOCaraVirarODavidGoggins() {
@@ -66,13 +102,16 @@ public class index extends javax.swing.JFrame {
 
         frasePanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        bibliotecaBtn1 = new javax.swing.JButton();
-        bibliotecaBtn4 = new javax.swing.JButton();
+        documentsBtn = new javax.swing.JButton();
+        calendarBtn = new javax.swing.JButton();
+        tarefasBtn = new javax.swing.JButton();
+        notasBtn = new javax.swing.JButton();
         bibliotecaBtn = new javax.swing.JButton();
-        bibliotecaBtn5 = new javax.swing.JButton();
-        bibliotecaBtn3 = new javax.swing.JButton();
-        bibliotecaBtn6 = new javax.swing.JButton();
-        bibliotecaBtn9 = new javax.swing.JButton();
+        timerBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
+        sobreBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(27, 32, 33));
@@ -91,34 +130,126 @@ public class index extends javax.swing.JFrame {
 
         getContentPane().add(frasePanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 960, 210));
 
+        jPanel1.setBackground(new java.awt.Color(48, 52, 63));
         jPanel1.setForeground(new java.awt.Color(48, 52, 63));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bibliotecaBtn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/timer.png"))); // NOI18N
-        jPanel1.add(bibliotecaBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 60, 60));
+        documentsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                documentsBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(documentsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 50, 50));
 
-        bibliotecaBtn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/documento.png"))); // NOI18N
-        jPanel1.add(bibliotecaBtn4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 60, 60));
+        calendarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calendarBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(calendarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 50, 50));
 
-        bibliotecaBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/lista.png"))); // NOI18N
-        jPanel1.add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 60, 60));
+        tarefasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tarefasBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tarefasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 50, 50));
 
-        bibliotecaBtn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar.png"))); // NOI18N
-        jPanel1.add(bibliotecaBtn5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 60, 60));
+        notasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notasBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(notasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 50, 50));
 
-        bibliotecaBtn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/notas.png"))); // NOI18N
-        jPanel1.add(bibliotecaBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 60, 60));
+        bibliotecaBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 12)); // NOI18N
+        bibliotecaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bibliotecaBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 50, 50));
 
-        bibliotecaBtn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
-        jPanel1.add(bibliotecaBtn6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 60, 60));
+        timerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timerBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(timerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 50, 50));
 
-        bibliotecaBtn9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/biblioteca.png"))); // NOI18N
-        jPanel1.add(bibliotecaBtn9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 60, 60));
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(homeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 650));
+        sobreBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobreBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(sobreBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 50, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 690));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setText("Bem vindo!");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 180, 60));
+
+        jLabel2.setText("Prepare-se e vamos enfrentar mais um dia.");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 230, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    // 
+    
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void bibliotecaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaBtnActionPerformed
+        mainBiblioteca b = new mainBiblioteca();
+        b.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bibliotecaBtnActionPerformed
+
+    private void timerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerBtnActionPerformed
+        mainTimer tim = new mainTimer();
+        tim.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_timerBtnActionPerformed
+
+    private void documentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentsBtnActionPerformed
+        mainDocumento d = new mainDocumento();
+        d.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_documentsBtnActionPerformed
+
+    private void calendarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calendarBtnActionPerformed
+        mainCalendario c = new mainCalendario();
+        c.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_calendarBtnActionPerformed
+
+    private void tarefasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefasBtnActionPerformed
+        mainTarefas tar = new mainTarefas();
+        tar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_tarefasBtnActionPerformed
+
+    private void notasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notasBtnActionPerformed
+        mainNotas n = new mainNotas();
+        n.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_notasBtnActionPerformed
+
+    private void sobreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreBtnActionPerformed
+        mainSobre s = new mainSobre();
+        s.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_sobreBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,13 +266,16 @@ public class index extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bibliotecaBtn;
-    private javax.swing.JButton bibliotecaBtn1;
-    private javax.swing.JButton bibliotecaBtn3;
-    private javax.swing.JButton bibliotecaBtn4;
-    private javax.swing.JButton bibliotecaBtn5;
-    private javax.swing.JButton bibliotecaBtn6;
-    private javax.swing.JButton bibliotecaBtn9;
+    private javax.swing.JButton calendarBtn;
+    private javax.swing.JButton documentsBtn;
     private javax.swing.JPanel frasePanel;
+    private javax.swing.JButton homeBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton notasBtn;
+    private javax.swing.JButton sobreBtn;
+    private javax.swing.JButton tarefasBtn;
+    private javax.swing.JButton timerBtn;
     // End of variables declaration//GEN-END:variables
 }
