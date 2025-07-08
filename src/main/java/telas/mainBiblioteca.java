@@ -105,6 +105,29 @@ public class mainBiblioteca extends javax.swing.JFrame {
                 }
             }
         });
+        
+        //icones do botão
+        
+        homeBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24));
+        homeBtn.setText("\ue80f");
+        
+        bibliotecaBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24));
+        bibliotecaBtn.setText("\ue8f1");
+        
+        timerBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        timerBtn.setText("\ue823");
+        
+        documentsBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        documentsBtn.setText("\ue7c3");
+        
+        tarefasBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        tarefasBtn.setText("\ue71d");
+        
+        notasBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        notasBtn.setText("\ue70b");
+        
+        sobreBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        sobreBtn.setText("\ue946");
     }
 
     public void carregarTabelaLivros() {
@@ -232,10 +255,17 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        painelLateral = new javax.swing.JPanel();
+        painelCentral = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        documentsBtn = new javax.swing.JButton();
+        tarefasBtn = new javax.swing.JButton();
+        notasBtn = new javax.swing.JButton();
+        bibliotecaBtn = new javax.swing.JButton();
+        timerBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
+        sobreBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         buttonList = new javax.swing.JTable();
-        painelCentral = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         addLivroBtn = new javax.swing.JMenuItem();
@@ -248,6 +278,65 @@ public class mainBiblioteca extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1400, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 1030, 630));
+
+        jPanel1.setBackground(new java.awt.Color(48, 52, 63));
+        jPanel1.setForeground(new java.awt.Color(48, 52, 63));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        documentsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                documentsBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(documentsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 50, 50));
+
+        tarefasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tarefasBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tarefasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 50, 50));
+
+        notasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notasBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(notasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 50, 50));
+
+        bibliotecaBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 12)); // NOI18N
+        bibliotecaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bibliotecaBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 50, 50));
+
+        timerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timerBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(timerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 50, 50));
+
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(homeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        sobreBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobreBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(sobreBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 710, 50, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 780));
+
         buttonList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null},
@@ -259,29 +348,10 @@ public class mainBiblioteca extends javax.swing.JFrame {
                 "Title 1"
             }
         ));
+        buttonList.setPreferredSize(new java.awt.Dimension(75, 90));
         jScrollPane1.setViewportView(buttonList);
 
-        javax.swing.GroupLayout painelLateralLayout = new javax.swing.GroupLayout(painelLateral);
-        painelLateral.setLayout(painelLateralLayout);
-        painelLateralLayout.setHorizontalGroup(
-            painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelLateralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        painelLateralLayout.setVerticalGroup(
-            painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelLateralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
-
-        painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 60, 1080, 640));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 250, 780));
 
         jMenu2.setText("Livros");
 
@@ -308,6 +378,46 @@ public class mainBiblioteca extends javax.swing.JFrame {
         new addLivroDlg();
         add.setVisible(true);
     }//GEN-LAST:event_addLivroBtnActionPerformed
+
+    private void documentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentsBtnActionPerformed
+        mainDocumento d = new mainDocumento();
+        d.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_documentsBtnActionPerformed
+
+    private void tarefasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefasBtnActionPerformed
+        mainTarefas tar = new mainTarefas();
+        tar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_tarefasBtnActionPerformed
+
+    private void notasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notasBtnActionPerformed
+        mainNotas n = new mainNotas();
+        n.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_notasBtnActionPerformed
+
+    private void bibliotecaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaBtnActionPerformed
+        mainBiblioteca b = new mainBiblioteca();
+        b.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bibliotecaBtnActionPerformed
+
+    private void timerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerBtnActionPerformed
+        mainTimer tim = new mainTimer();
+        tim.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_timerBtnActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void sobreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreBtnActionPerformed
+        mainSobre s = new mainSobre();
+        s.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_sobreBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,13 +456,20 @@ public class mainBiblioteca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addLivroBtn;
+    private javax.swing.JButton bibliotecaBtn;
     private javax.swing.JTable buttonList;
+    private javax.swing.JButton documentsBtn;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton notasBtn;
     private javax.swing.JPanel painelCentral;
-    private javax.swing.JPanel painelLateral;
+    private javax.swing.JButton sobreBtn;
+    private javax.swing.JButton tarefasBtn;
+    private javax.swing.JButton timerBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,7 +1,6 @@
 package telas;
 
 import com.mycompany.estudex.index;
-import com.mycompany.estudex.mainIndex;
 import dialogos.addCronometroLivreDlg;
 import dialogos.addPomodoroDlg;
 import dialogos.addTemporizadorDlg;
@@ -11,7 +10,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.SwingUtilities;
@@ -31,12 +29,7 @@ public class mainTimer extends javax.swing.JFrame {
     public mainTimer() {
         initComponents();
         setTitle("Timer");
-
         setResizable(false);
-
-        tabelaModel = new DefaultTableModel(new Object[]{"Título"}, 0);
-        buttonList.setModel(tabelaModel);
-        //carregarTimersNaTabela();
 
         //quando fechar a janela, volta para o index
         addWindowListener(new WindowAdapter() {
@@ -59,12 +52,15 @@ public class mainTimer extends javax.swing.JFrame {
             }
         });
 
-        tabelaModel = new DefaultTableModel(new Object[]{"Título", "Tipo", "Duração"}, 0) {
+        tabelaModel = new DefaultTableModel(new Object[]{"Título"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // impede edição em todas as células
+                return false;
             }
         };
+        buttonList.setModel(tabelaModel);
+        
+        atualizarTabelaTimers(); //atualiza a tabela quando entra
 
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW)
                 .put(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0), "recarregarTabela");
@@ -109,7 +105,27 @@ public class mainTimer extends javax.swing.JFrame {
             }
         });
 
-        atualizarTabelaTimers(); //atualiza a tabela quando entra
+        //icones do botão
+        homeBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24));
+        homeBtn.setText("\ue80f");
+
+        bibliotecaBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24));
+        bibliotecaBtn.setText("\ue8f1");
+
+        timerBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        timerBtn.setText("\ue823");
+
+        documentsBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        documentsBtn.setText("\ue7c3");
+
+        tarefasBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        tarefasBtn.setText("\ue71d");
+
+        notasBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        notasBtn.setText("\ue70b");
+
+        sobreBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        sobreBtn.setText("\ue946");
     }
 
     /**
@@ -123,10 +139,17 @@ public class mainTimer extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        painelLateral = new javax.swing.JPanel();
+        painelCentral = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         buttonList = new javax.swing.JTable();
-        painelCentral = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        documentsBtn = new javax.swing.JButton();
+        tarefasBtn = new javax.swing.JButton();
+        notasBtn = new javax.swing.JButton();
+        bibliotecaBtn = new javax.swing.JButton();
+        timerBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
+        sobreBtn = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         addTimerMenuBtn = new javax.swing.JMenu();
         novoPomodoroMenuBtn = new javax.swing.JMenuItem();
@@ -138,8 +161,13 @@ public class mainTimer extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(54, 56, 58));
         setMinimumSize(new java.awt.Dimension(1400, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        painelCentral.setBackground(new java.awt.Color(54, 56, 58));
+        painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
+        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 100, 880, 520));
 
         buttonList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,29 +180,71 @@ public class mainTimer extends javax.swing.JFrame {
                 "Title 1"
             }
         ));
+        buttonList.setPreferredSize(new java.awt.Dimension(90, 80));
         jScrollPane1.setViewportView(buttonList);
 
-        javax.swing.GroupLayout painelLateralLayout = new javax.swing.GroupLayout(painelLateral);
-        painelLateral.setLayout(painelLateralLayout);
-        painelLateralLayout.setHorizontalGroup(
-            painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelLateralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        painelLateralLayout.setVerticalGroup(
-            painelLateralLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelLateralLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, 250, 780));
 
-        getContentPane().add(painelLateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 290, 780));
+        jPanel1.setForeground(new java.awt.Color(48, 52, 63));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        painelCentral.setLayout(new javax.swing.BoxLayout(painelCentral, javax.swing.BoxLayout.LINE_AXIS));
-        getContentPane().add(painelCentral, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, 880, 520));
+        documentsBtn.setBackground(new java.awt.Color(60, 63, 65));
+        documentsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                documentsBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(documentsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 50, 50));
+
+        tarefasBtn.setBackground(new java.awt.Color(60, 63, 65));
+        tarefasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tarefasBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tarefasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 50, 50));
+
+        notasBtn.setBackground(new java.awt.Color(60, 63, 65));
+        notasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notasBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(notasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 50, 50));
+
+        bibliotecaBtn.setBackground(new java.awt.Color(60, 63, 65));
+        bibliotecaBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 12)); // NOI18N
+        bibliotecaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bibliotecaBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 50, 50));
+
+        timerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timerBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(timerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 50, 50));
+
+        homeBtn.setBackground(new java.awt.Color(60, 63, 65));
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(homeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        sobreBtn.setBackground(new java.awt.Color(60, 63, 65));
+        sobreBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobreBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(sobreBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 710, 50, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 780));
 
         addTimerMenuBtn.setText("Timer");
 
@@ -225,6 +295,48 @@ public class mainTimer extends javax.swing.JFrame {
         temporizadorDlg.setVisible(true);
     }//GEN-LAST:event_temporizadorMenuBtnActionPerformed
 
+    private void sobreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreBtnActionPerformed
+        mainSobre s = new mainSobre();
+        s.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_sobreBtnActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+        this.dispose();
+        index i = new index();
+        i.setVisible(true);
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void timerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerBtnActionPerformed
+        mainTimer tim = new mainTimer();
+        tim.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_timerBtnActionPerformed
+
+    private void bibliotecaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaBtnActionPerformed
+        mainBiblioteca b = new mainBiblioteca();
+        b.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bibliotecaBtnActionPerformed
+
+    private void notasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notasBtnActionPerformed
+        mainNotas n = new mainNotas();
+        n.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_notasBtnActionPerformed
+
+    private void tarefasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefasBtnActionPerformed
+        mainTarefas tar = new mainTarefas();
+        tar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_tarefasBtnActionPerformed
+
+    private void documentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentsBtnActionPerformed
+        mainDocumento d = new mainDocumento();
+        d.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_documentsBtnActionPerformed
+
     // coisas do pomodoro
     public void adicionarPomodoro(String titulo, int trabalhoMin, int descansoMin) {
         JSONObject obj = new JSONObject();
@@ -232,11 +344,10 @@ public class mainTimer extends javax.swing.JFrame {
         obj.put("tipo", "pomodoro");
         obj.put("trabalho", trabalhoMin);
         obj.put("descanso", descansoMin);
+        
 
         tabelaModel.addRow(new Object[]{
-            titulo,
-            "Pomodoro",
-            trabalhoMin + " / " + descansoMin + " min"
+            "P - " + titulo
         });
 
         salvarTimer(obj);
@@ -263,7 +374,7 @@ public class mainTimer extends javax.swing.JFrame {
             }
             return new JSONArray(content.toString());
         } catch (IOException e) {
-            return new JSONArray(); // novo arquivo se não existir
+            return new JSONArray();
         }
     }
 
@@ -272,16 +383,17 @@ public class mainTimer extends javax.swing.JFrame {
         JSONArray lista = carregarTimersJson();
         for (int i = 0; i < lista.length(); i++) {
             JSONObject obj = lista.getJSONObject(i);
-            String titulo = obj.getString("titulo");
-            String tipo = obj.getString("tipo");
+            String titulo = obj.optString("titulo");
+            String tipo = obj.optString("tipo");
 
             if (tipo.equals("pomodoro")) {
-                int trabalho = obj.getInt("trabalho");
-                int descanso = obj.getInt("descanso");
-                tabelaModel.addRow(new Object[]{titulo, "Pomodoro", trabalho + " / " + descanso + " min"});
-            } else {
-
+                int trabalho = obj.optInt("trabalho");
+                int descanso = obj.optInt("descanso");
+                tabelaModel.addRow(new Object[]{
+                    titulo, "Pomodoro", String.format("%d / %d min", trabalho, descanso)
+                });
             }
+            // depois vai ter mais tipos
         }
     }
 
@@ -342,15 +454,22 @@ public class mainTimer extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu addTimerMenuBtn;
+    private javax.swing.JButton bibliotecaBtn;
     private javax.swing.JTable buttonList;
     private javax.swing.JMenuItem cronLivreMenuBtn;
+    private javax.swing.JButton documentsBtn;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton notasBtn;
     private javax.swing.JMenuItem novoPomodoroMenuBtn;
     private javax.swing.JPanel painelCentral;
-    private javax.swing.JPanel painelLateral;
+    private javax.swing.JButton sobreBtn;
+    private javax.swing.JButton tarefasBtn;
     private javax.swing.JMenuItem temporizadorMenuBtn;
+    private javax.swing.JButton timerBtn;
     // End of variables declaration//GEN-END:variables
 }

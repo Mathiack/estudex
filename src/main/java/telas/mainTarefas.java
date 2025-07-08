@@ -22,6 +22,29 @@ public class mainTarefas extends javax.swing.JFrame {
                 new index().setVisible(true);
             }
         });
+        
+        //icones do botão
+        
+        homeBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24));
+        homeBtn.setText("\ue80f");
+        
+        bibliotecaBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24));
+        bibliotecaBtn.setText("\ue8f1");
+        
+        timerBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        timerBtn.setText("\ue823");
+        
+        documentsBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        documentsBtn.setText("\ue7c3");
+        
+        tarefasBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        tarefasBtn.setText("\ue71d");
+        
+        notasBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        notasBtn.setText("\ue70b");
+        
+        sobreBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 24)); // NOI18N
+        sobreBtn.setText("\ue946");
     }
 
     /**
@@ -34,18 +57,138 @@ public class mainTarefas extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        documentsBtn = new javax.swing.JButton();
+        tarefasBtn = new javax.swing.JButton();
+        notasBtn = new javax.swing.JButton();
+        bibliotecaBtn = new javax.swing.JButton();
+        timerBtn = new javax.swing.JButton();
+        homeBtn = new javax.swing.JButton();
+        sobreBtn = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(54, 56, 58));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(60, 63, 65));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 174, 0));
-        jLabel1.setText("Timer");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 282, 57));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        jPanel1.setForeground(new java.awt.Color(48, 52, 63));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        documentsBtn.setBackground(new java.awt.Color(60, 63, 65));
+        documentsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                documentsBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(documentsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 50, 50));
+
+        tarefasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tarefasBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tarefasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 50, 50));
+
+        notasBtn.setBackground(new java.awt.Color(60, 63, 65));
+        notasBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notasBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(notasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 50, 50));
+
+        bibliotecaBtn.setBackground(new java.awt.Color(60, 63, 65));
+        bibliotecaBtn.setFont(new java.awt.Font("Segoe Fluent Icons", 0, 12)); // NOI18N
+        bibliotecaBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bibliotecaBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bibliotecaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 50, 50));
+
+        timerBtn.setBackground(new java.awt.Color(60, 63, 65));
+        timerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timerBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(timerBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 50, 50));
+
+        homeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(homeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        sobreBtn.setBackground(new java.awt.Color(60, 63, 65));
+        sobreBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sobreBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(sobreBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 710, 50, 50));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 780));
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void documentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentsBtnActionPerformed
+        mainDocumento d = new mainDocumento();
+        d.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_documentsBtnActionPerformed
+
+    private void tarefasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefasBtnActionPerformed
+        mainTarefas tar = new mainTarefas();
+        tar.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_tarefasBtnActionPerformed
+
+    private void notasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notasBtnActionPerformed
+        mainNotas n = new mainNotas();
+        n.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_notasBtnActionPerformed
+
+    private void bibliotecaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaBtnActionPerformed
+        mainBiblioteca b = new mainBiblioteca();
+        b.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bibliotecaBtnActionPerformed
+
+    private void timerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerBtnActionPerformed
+        mainTimer tim = new mainTimer();
+        tim.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_timerBtnActionPerformed
+
+    private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
+
+    }//GEN-LAST:event_homeBtnActionPerformed
+
+    private void sobreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreBtnActionPerformed
+        mainSobre s = new mainSobre();
+        s.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_sobreBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -86,6 +229,17 @@ public class mainTarefas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bibliotecaBtn;
+    private javax.swing.JButton documentsBtn;
+    private javax.swing.JButton homeBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton notasBtn;
+    private javax.swing.JButton sobreBtn;
+    private javax.swing.JButton tarefasBtn;
+    private javax.swing.JButton timerBtn;
     // End of variables declaration//GEN-END:variables
 }

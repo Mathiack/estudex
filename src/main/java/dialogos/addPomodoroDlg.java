@@ -1,9 +1,7 @@
 package dialogos;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import telas.mainBiblioteca;
+import javax.swing.text.MaskFormatter;
 import telas.mainTimer;
 
 public class addPomodoroDlg extends javax.swing.JFrame {
@@ -14,9 +12,20 @@ public class addPomodoroDlg extends javax.swing.JFrame {
         this.mainRef = parent;
         initComponents();
         setTitle("Novo Pomodoro");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(300, 250);
         setLocationRelativeTo(parent);
         setResizable(false);
+
+        // maskformatter para formatação dos campos de tempo
+        try {
+            MaskFormatter mascara = new MaskFormatter("##:##:##");
+            mascara.setPlaceholderCharacter('0');
+            inputAtivo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mascara));
+            inputPausa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(mascara));
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -28,20 +37,18 @@ public class addPomodoroDlg extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        inputPausa = new javax.swing.JTextField();
-        inputAtivo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         inputTituloPomodoro = new javax.swing.JTextField();
         cancelBtn = new javax.swing.JButton();
         addButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        inputPausa = new javax.swing.JFormattedTextField();
+        inputAtivo = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(300, 250));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(inputPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 100, -1));
-        getContentPane().add(inputAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 100, -1));
 
         jLabel1.setText("Descanso");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
@@ -69,6 +76,12 @@ public class addPomodoroDlg extends javax.swing.JFrame {
         });
         getContentPane().add(addButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 90, -1));
 
+        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4.setText("Formato hh:mm:ss");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 140, -1));
+        getContentPane().add(inputPausa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 100, -1));
+        getContentPane().add(inputAtivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 100, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -82,25 +95,45 @@ public class addPomodoroDlg extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cancelBtnActionPerformed
 
+    //adiciona o pomodoro
     private void adicionarPomodoro() {
         String titulo = inputTituloPomodoro.getText().trim();
-        int atividade;
-        int descanso;
+        int atividade, descanso;
 
         try {
-            atividade = Integer.parseInt(inputAtivo.getText().trim());
-            descanso = Integer.parseInt(inputPausa.getText().trim());
-            
-            if (titulo.isEmpty() || atividade <= 0 || descanso <= 0) {
-                throw new Exception();
+            String tempoAtivo = inputAtivo.getText().trim();
+            String tempoPausa = inputPausa.getText().trim();
+
+            if (tempoAtivo.equals("00:00:00") || tempoPausa.equals("00:00:00")) {
+                throw new Exception("Você não pode estudar ou descansar 00:00:00");
             }
+
+            atividade = converterParaMinutos(tempoAtivo);
+            descanso = converterParaMinutos(tempoPausa);
+
+            if (titulo.isEmpty()) {
+                throw new Exception("Título está vazio.");
+            }
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Preencha um título e duração válida (> 0).", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Preencha os campos corretamente. Verifique se há tempo e título válidos.", "Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         mainRef.adicionarPomodoro(titulo, atividade, descanso);
-        dispose();
+        this.dispose();
+    }
+
+    //converte os valores dos campos de tempo para minutos (meio óbvio né)
+    private int converterParaMinutos(String tempo) throws Exception {
+        String[] partes = tempo.split(":");
+        if (partes.length != 3) {
+            throw new Exception("Formato inválido (use hh:mm:ss)");
+        }
+        int horas = Integer.parseInt(partes[0]);
+        int minutos = Integer.parseInt(partes[1]);
+        int segundos = Integer.parseInt(partes[2]);
+        return horas * 60 + minutos + (segundos >= 30 ? 1 : 0); // arredonda se necessário
     }
 
     /**
@@ -141,11 +174,12 @@ public class addPomodoroDlg extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton cancelBtn;
-    private javax.swing.JTextField inputAtivo;
-    private javax.swing.JTextField inputPausa;
+    private javax.swing.JFormattedTextField inputAtivo;
+    private javax.swing.JFormattedTextField inputPausa;
     private javax.swing.JTextField inputTituloPomodoro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

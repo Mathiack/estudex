@@ -2,7 +2,6 @@ package com.mycompany.estudex;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import telas.mainBiblioteca;
-import telas.mainCalendario;
 import telas.mainNotas;
 import telas.mainSobre;
 import telas.mainTimer;
@@ -33,7 +32,6 @@ public class mainIndex extends javax.swing.JFrame {
         mainTitle = new javax.swing.JLabel();
         bibliotecaBtn = new javax.swing.JButton();
         notasBtn = new javax.swing.JButton();
-        calendarioBtn = new javax.swing.JButton();
         tarefasBtn = new javax.swing.JButton();
         timerBtn = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -74,18 +72,6 @@ public class mainIndex extends javax.swing.JFrame {
             }
         });
         getContentPane().add(notasBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 220, 240, 60));
-
-        calendarioBtn.setBackground(new java.awt.Color(51, 51, 51));
-        calendarioBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        calendarioBtn.setForeground(new java.awt.Color(219, 220, 220));
-        calendarioBtn.setText("Calendário");
-        calendarioBtn.setBorder(null);
-        calendarioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calendarioBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(calendarioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 290, 240, 60));
 
         tarefasBtn.setBackground(new java.awt.Color(51, 51, 51));
         tarefasBtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -137,7 +123,6 @@ public class mainIndex extends javax.swing.JFrame {
     mainBiblioteca biblioteca = new mainBiblioteca();
     mainNotas notas = new mainNotas();
     mainTimer timer = new mainTimer();
-    mainCalendario calendario = new mainCalendario();
     mainSobre sobre = new mainSobre();
     
     private void bibliotecaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaBtnActionPerformed
@@ -151,12 +136,6 @@ public class mainIndex extends javax.swing.JFrame {
         notas.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_notasBtnActionPerformed
-
-    private void calendarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calendarioBtnActionPerformed
-        new mainCalendario();
-        calendario.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_calendarioBtnActionPerformed
 
     private void tarefasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefasBtnActionPerformed
         
@@ -194,7 +173,6 @@ public class mainIndex extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bibliotecaBtn;
-    private javax.swing.JButton calendarioBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel mainTitle;
