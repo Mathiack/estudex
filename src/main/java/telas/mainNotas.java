@@ -1,5 +1,8 @@
 package telas;
 
+import dialogos.dlgSobre;
+import biblioteca.mainBiblioteca;
+import timer.mainTimer;
 import com.mycompany.estudex.index;
 import com.mycompany.estudex.mainIndex;
 import java.awt.event.WindowAdapter;
@@ -182,7 +185,7 @@ public class mainNotas extends javax.swing.JFrame {
     }//GEN-LAST:event_homeBtnActionPerformed
 
     private void sobreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreBtnActionPerformed
-        mainSobre s = new mainSobre();
+        dlgSobre s = new dlgSobre();
         s.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_sobreBtnActionPerformed

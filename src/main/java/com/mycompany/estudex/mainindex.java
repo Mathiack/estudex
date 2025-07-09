@@ -1,10 +1,10 @@
 package com.mycompany.estudex;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import telas.mainBiblioteca;
+import biblioteca.mainBiblioteca;
 import telas.mainNotas;
-import telas.mainSobre;
-import telas.mainTimer;
+import dialogos.dlgSobre;
+import timer.mainTimer;
 
 public class mainIndex extends javax.swing.JFrame {
 
@@ -123,7 +123,7 @@ public class mainIndex extends javax.swing.JFrame {
     mainBiblioteca biblioteca = new mainBiblioteca();
     mainNotas notas = new mainNotas();
     mainTimer timer = new mainTimer();
-    mainSobre sobre = new mainSobre();
+    dlgSobre sobre = new dlgSobre();
     
     private void bibliotecaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaBtnActionPerformed
         new mainBiblioteca();
@@ -148,7 +148,7 @@ public class mainIndex extends javax.swing.JFrame {
     }//GEN-LAST:event_timerBtnActionPerformed
 
     private void sobreBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreBtn1ActionPerformed
-        new mainSobre();
+        new dlgSobre();
         sobre.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_sobreBtn1ActionPerformed

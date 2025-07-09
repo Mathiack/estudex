@@ -13,12 +13,12 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import telas.mainBiblioteca;
+import biblioteca.mainBiblioteca;
 import telas.mainDocumento;
 import telas.mainNotas;
-import telas.mainSobre;
+import dialogos.dlgSobre;
 import telas.mainTarefas;
-import telas.mainTimer;
+import timer.mainTimer;
 
 public class index extends javax.swing.JFrame {
 
@@ -224,43 +224,45 @@ public class index extends javax.swing.JFrame {
     // 
     
     private void homeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeBtnActionPerformed
-        
+        mainBiblioteca b = new mainBiblioteca();
+        b.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_homeBtnActionPerformed
 
     private void bibliotecaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bibliotecaBtnActionPerformed
         mainBiblioteca b = new mainBiblioteca();
         b.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_bibliotecaBtnActionPerformed
 
     private void timerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timerBtnActionPerformed
         mainTimer tim = new mainTimer();
         tim.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_timerBtnActionPerformed
 
     private void documentsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_documentsBtnActionPerformed
         mainDocumento d = new mainDocumento();
         d.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_documentsBtnActionPerformed
 
     private void tarefasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tarefasBtnActionPerformed
         mainTarefas tar = new mainTarefas();
         tar.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_tarefasBtnActionPerformed
 
     private void notasBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notasBtnActionPerformed
         mainNotas n = new mainNotas();
         n.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_notasBtnActionPerformed
 
     private void sobreBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sobreBtnActionPerformed
-        mainSobre s = new mainSobre();
+        dlgSobre s = new dlgSobre();
         s.setVisible(true);
-        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_sobreBtnActionPerformed
 
     /**
