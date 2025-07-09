@@ -1,0 +1,5 @@
+![GitHub repo size](https://img.shields.io/github/repo-size/Mathiack/estudex?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/Mathiack/estudex?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/Mathiack/estudex?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/Mathiack/estudex?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/Mathiack/estudex?style=for-the-badge)
