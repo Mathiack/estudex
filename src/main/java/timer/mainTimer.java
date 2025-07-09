@@ -404,15 +404,54 @@ public class mainTimer extends javax.swing.JFrame {
         carregarTimersSalvos();     // recarrega do JSON
     }
 
+    private void excluirTimer(int row) {
+        JSONArray lista = carregarTimersJson();
+        if (row >= 0 && row < lista.length()) {
+            lista.remove(row);
+            try (FileWriter file = new FileWriter(JSON_PATH)) {
+                file.write(lista.toString(4));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            atualizarTabelaTimers();
+        }
+    }
+
+    private void editarTimer(int row) {
+        JSONArray lista = carregarTimersJson();
+        if (row >= 0 && row < lista.length()) {
+            JSONObject timer = lista.getJSONObject(row);
+            String tipo = timer.optString("tipo");
+
+            if ("pomodoro".equals(tipo)) {
+                editPomodoroDlg dlg = new editPomodoroDlg(this, row, timer); // Abre com os dados
+                dlg.setVisible(true);
+            }
+        }
+    }
+
+    public void atualizarTimerEditado(int index, JSONObject novoTimer) {
+        JSONArray lista = carregarTimersJson();
+        if (index >= 0 && index < lista.length()) {
+            lista.put(index, novoTimer);
+            try (FileWriter file = new FileWriter(JSON_PATH)) {
+                file.write(lista.toString(4));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            atualizarTabelaTimers();
+        }
+    }
+
     private void mostrarMenuContexto(MouseEvent e, int row) {
         JPopupMenu menu = new JPopupMenu();
 
         JMenuItem editar = new JMenuItem("Editar");
-        //editar.addActionListener(ae -> editarLivro(row));
+        editar.addActionListener(ae -> editarTimer(row));
         menu.add(editar);
 
         JMenuItem excluir = new JMenuItem("Excluir");
-        //excluir.addActionListener(ae -> excluirLivro(row));
+        excluir.addActionListener(ae -> excluirTimer(row));
         menu.add(excluir);
 
         menu.show(e.getComponent(), e.getX(), e.getY());

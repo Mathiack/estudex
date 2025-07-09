@@ -5,6 +5,7 @@ biblioteca\bibliotecaClass$1.class
 telas\mainTarefas$5.class
 com\mycompany\estudex\index$3.class
 telas\mainNotas$3.class
+timer\editPomodoroDlg$1.class
 com\mycompany\estudex\mainIndex$2.class
 telas\mainTarefas$2.class
 biblioteca\mainBiblioteca$11.class
@@ -44,6 +45,7 @@ telas\mainNotas$9.class
 biblioteca\mainBiblioteca$9.class
 biblioteca\mainBiblioteca$12.class
 com\mycompany\estudex\index$4.class
+timer\editPomodoroDlg.class
 timer\addPomodoroDlg.class
 telas\mainNotas$7.class
 timer\mainTimer$11.class
@@ -64,6 +66,7 @@ biblioteca\mainBiblioteca$8.class
 biblioteca\editLivroDlg$2.class
 com\mycompany\estudex\mainIndex$1.class
 telas\mainTarefas$3.class
+timer\editPomodoroDlg$2.class
 timer\mainTimer$5.class
 classes\geral.class
 biblioteca\addLivroDlg.class
