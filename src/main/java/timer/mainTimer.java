@@ -19,6 +19,14 @@ import biblioteca.mainBiblioteca;
 import telas.mainDocumento;
 import telas.mainNotas;
 import dialogos.dlgSobre;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import telas.mainTarefas;
 
 public class mainTimer extends javax.swing.JFrame {
@@ -99,6 +107,17 @@ public class mainTimer extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 addCronometroLivreDlg dlgCronometro = new addCronometroLivreDlg();
                 dlgCronometro.setVisible(true);
+            }
+        });
+        
+        //clicar no botão da tela
+        buttonList.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = buttonList.rowAtPoint(evt.getPoint());
+                if (row >= 0 && SwingUtilities.isLeftMouseButton(evt)) {
+                    mostrarTimerNaTela(row);
+                }
             }
         });
 
@@ -346,7 +365,7 @@ public class mainTimer extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_documentsBtnActionPerformed
 
-    // coisas do pomodoro
+    // COISAS DO POMODORO
     public void adicionarPomodoro(String titulo, int trabalhoMin, int descansoMin) {
         JSONObject obj = new JSONObject();
         obj.put("titulo", titulo);
@@ -354,6 +373,57 @@ public class mainTimer extends javax.swing.JFrame {
         obj.put("trabalho", trabalhoMin);
         obj.put("descanso", descansoMin);
         salvarTimer(obj);
+    }
+
+    private void mostrarTimerNaTela(int row) {
+        JSONArray timers = carregarTimersJson();
+        if (row >= 0 && row < timers.length()) {
+            JSONObject timer = timers.getJSONObject(row);
+
+            painelCentral.removeAll();
+            painelCentral.setLayout(new BoxLayout(painelCentral, BoxLayout.Y_AXIS));
+
+            String tituloOriginal = timer.optString("titulo", "Sem Título");
+            FontMetrics metrics = getFontMetrics(new Font("Arial", Font.BOLD, 20));
+            int larguraMaxima = 480;
+
+            String tituloExibido = tituloOriginal;
+            while (metrics.stringWidth(tituloExibido + "...") > larguraMaxima && tituloExibido.length() > 0) {
+                tituloExibido = tituloExibido.substring(0, tituloExibido.length() - 1);
+            }
+            if (!tituloExibido.equals(tituloOriginal)) {
+                tituloExibido += "...";
+            }
+
+            JTextField tituloField = new JTextField(tituloExibido);
+            tituloField.setFont(new Font("Arial", Font.BOLD, 20));
+            tituloField.setEditable(false);
+            tituloField.setOpaque(false);
+            tituloField.setFocusable(false);
+            tituloField.setBorder(BorderFactory.createEmptyBorder(0, 0, 5, 0));
+            tituloField.setMaximumSize(new Dimension(500, 35));
+            tituloField.setAlignmentX(Component.LEFT_ALIGNMENT);
+            tituloField.setToolTipText(tituloOriginal);
+            painelCentral.add(tituloField);
+
+            adicionarLabel("Tipo: " + timer.optString("tipo", "Desconhecido"));
+
+            if (timer.optString("tipo").equals("pomodoro")) {
+                adicionarLabel(timer.optInt("trabalho") + " min");
+                adicionarLabel(timer.optInt("descanso") + " min");
+            }
+
+            painelCentral.revalidate();
+            painelCentral.repaint();
+        }
+    }
+
+    private void adicionarLabel(String texto) {
+        JLabel label = new JLabel(texto);
+        label.setFont(new Font("Arial", Font.PLAIN, 16));
+        label.setAlignmentX(Component.LEFT_ALIGNMENT);
+        label.setBorder(BorderFactory.createEmptyBorder(4, 0, 4, 0));
+        painelCentral.add(label);
     }
 
     // salva no JSON
